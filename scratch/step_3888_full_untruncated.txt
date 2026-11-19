@@ -1,0 +1,456 @@
+﻿<USER_REQUEST>
+      # TASK: FIX ALL INTERACTIVE ELEMENTS â€“ FULL FUNCTIONALITY IMPLEMENTATION FOR NAM VIá»†T AI
+
+Báº¡n hÃ£y Ä‘Ã³ng vai Senior Full-stack Developer, Frontend Engineer, Backend Engineer vÃ  QA Tester.
+
+TÃ´i muá»‘n báº¡n kiá»ƒm tra vÃ  sá»­a toÃ n bá»™ cÃ¡c nÃºt báº¥m, chá»©c nÄƒng tÆ°Æ¡ng tÃ¡c vÃ  Ä‘iá»u hÆ°á»›ng trÃªn website NAM VIá»†T AI â€“ B2B Lead Intelligence hiá»‡n táº¡i.
+
+## 1. Váº¤N Äá»€ HIá»†N Táº I
+
+Website Ä‘Ã£ cÃ³ giao diá»‡n tÆ°Æ¡ng Ä‘á»‘i hoÃ n chá»‰nh nhÆ°ng nhiá»u nÃºt báº¥m chÆ°a hoáº¡t Ä‘á»™ng hoáº·c chÆ°a thá»±c hiá»‡n Ä‘Ãºng chá»©c nÄƒng.
+
+Má»™t sá»‘ váº¥n Ä‘á» cÃ³ thá»ƒ gáº·p:
+
+- Click nÃºt nhÆ°ng khÃ´ng cÃ³ pháº£n há»“i.
+- NÃºt chá»‰ cÃ³ giao diá»‡n nhÆ°ng chÆ°a cÃ³ logic.
+- NÃºt Ä‘iá»u hÆ°á»›ng khÃ´ng chuyá»ƒn Ä‘Ãºng trang.
+- NÃºt upload khÃ´ng má»Ÿ há»™p thoáº¡i chá»n file.
+- NÃºt Run AI Agent khÃ´ng thá»±c sá»± cháº¡y Agent.
+- NÃºt Reset khÃ´ng xÃ³a hoáº·c khÃ´i phá»¥c tráº¡ng thÃ¡i.
+- NÃºt táº£i file máº«u khÃ´ng táº£i Ä‘Æ°á»£c file.
+- CÃ¡c báº£ng dá»¯ liá»‡u chÆ°a cÃ³ chá»©c nÄƒng tÃ¬m kiáº¿m vÃ  lá»c.
+- Modal khÃ´ng má»Ÿ hoáº·c khÃ´ng Ä‘Ã³ng Ä‘Æ°á»£c.
+- Má»™t sá»‘ nÃºt bá»‹ disabled nhÆ°ng khÃ´ng giáº£i thÃ­ch lÃ½ do.
+- Frontend cÃ³ nÃºt nhÆ°ng chÆ°a káº¿t ná»‘i API backend.
+- CÃ¡c chá»©c nÄƒng Demo Mode chÆ°a hoáº¡t Ä‘á»™ng Ä‘Ãºng.
+
+**YÃŠU Cáº¦U: KhÃ´ng chá»‰ sá»­a má»™t vÃ i nÃºt. HÃ£y audit vÃ  xá»­ lÃ½ toÃ n bá»™ cÃ¡c thÃ nh pháº§n tÆ°Æ¡ng tÃ¡c trÃªn website.**
+
+## 2. KIá»‚M TRA TOÃ€N Bá»˜ CODEBASE TRÆ¯á»šC KHI Sá»¬A
+
+TrÆ°á»›c tiÃªn, hÃ£y:
+
+1. Kiá»ƒm tra cáº¥u trÃºc project.
+2. Kiá»ƒm tra framework frontend.
+3. Kiá»ƒm tra backend vÃ  API.
+4. Kiá»ƒm tra cÃ¡c component chá»©a button.
+5. Kiá»ƒm tra event handlers.
+6. Kiá»ƒm tra cÃ¡c hÃ m onClick, onSubmit, onChange.
+7. Kiá»ƒm tra cÃ¡c route Ä‘iá»u hÆ°á»›ng.
+8. Kiá»ƒm tra API calls.
+9. Kiá»ƒm tra tráº¡ng thÃ¡i loading, disabled vÃ  error.
+10. Kiá»ƒm tra console errors vÃ  backend logs.
+
+HÃ£y láº­p danh sÃ¡ch táº¥t cáº£ nÃºt báº¥m trÃªn website vÃ  phÃ¢n loáº¡i:
+
+- ÄÃ£ hoáº¡t Ä‘á»™ng.
+- ChÆ°a cÃ³ chá»©c nÄƒng.
+- CÃ³ chá»©c nÄƒng nhÆ°ng bá»‹ lá»—i.
+- ChÆ°a káº¿t ná»‘i backend.
+- Äang bá»‹ disabled theo Ä‘iá»u kiá»‡n.
+- KhÃ´ng cÃ²n cáº§n thiáº¿t.
+
+Sau Ä‘Ã³ tiáº¿n hÃ nh sá»­a trá»±c tiáº¿p.
+
+## 3. KÃCH HOáº T TOÃ€N Bá»˜ SIDEBAR
+
+Kiá»ƒm tra táº¥t cáº£ má»¥c Ä‘iá»u hÆ°á»›ng á»Ÿ sidebar:
+
+- Tá»•ng Quan & KPI.
+- Náº¡p Dá»¯ Liá»‡u & Cá»•ng 3.
+- Quy TrÃ¬nh AI Agent.
+- KhÃ¡ch HÃ ng / Golden Records.
+- Äiá»u Phá»‘i NhÃ¢n ViÃªn.
+- Quáº£n LÃ½ TÃ¡c Vá»¥.
+- Human Review.
+- BÃ¡o CÃ¡o & Analytics.
+- Activity Logs.
+
+YÃªu cáº§u:
+
+- Click vÃ o tá»«ng má»¥c pháº£i chuyá»ƒn Ä‘Ãºng ná»™i dung.
+- Active state pháº£i thay Ä‘á»•i chÃ­nh xÃ¡c.
+- KhÃ´ng bá»‹ lá»—i trang tráº¯ng.
+- KhÃ´ng bá»‹ máº¥t tráº¡ng thÃ¡i dá»¯ liá»‡u khi chuyá»ƒn trang náº¿u cáº§n giá»¯.
+- Sidebar cÃ³ thá»ƒ thu gá»n vÃ  má»Ÿ rá»™ng.
+- CÃ¡c icon vÃ  nhÃ£n pháº£i cÃ³ tooltip khi sidebar thu gá»n.
+- Hoáº¡t Ä‘á»™ng á»•n Ä‘á»‹nh trÃªn desktop vÃ  laptop.
+
+KhÃ´ng táº¡o route giáº£ cho nhá»¯ng trang chÆ°a Ä‘Æ°á»£c triá»ƒn khai.
+
+## 4. KÃCH HOáº T CÃC NÃšT TRÃŠN TOPBAR
+
+Kiá»ƒm tra vÃ  sá»­a:
+
+### AI Agent Status
+- Hiá»ƒn thá»‹ tráº¡ng thÃ¡i thá»±c táº¿.
+- Náº¿u backend káº¿t ná»‘i bÃ¬nh thÆ°á»ng, hiá»ƒn thá»‹ Ready.
+- Náº¿u Ä‘ang cháº¡y, hiá»ƒn thá»‹ Processing.
+- Náº¿u cÃ³ lá»—i, hiá»ƒn thá»‹ Error.
+- KhÃ´ng hardcode tráº¡ng thÃ¡i Online.
+
+### Demo Mode
+- Click Ä‘á»ƒ báº­t/táº¯t Demo Mode.
+- Hiá»ƒn thá»‹ tráº¡ng thÃ¡i Ä‘ang báº­t hoáº·c táº¯t.
+- Khi báº­t, sá»­ dá»¥ng dá»¯ liá»‡u demo Ä‘Ã£ xÃ¡c Ä‘á»‹nh rÃµ.
+- KhÃ´ng ghi Ä‘Ã¨ dá»¯ liá»‡u ngÆ°á»i dÃ¹ng.
+- CÃ³ thÃ´ng bÃ¡o rÃµ rÃ ng khi chuyá»ƒn cháº¿ Ä‘á»™.
+
+### Reset
+- Click má»Ÿ há»™p thoáº¡i xÃ¡c nháº­n.
+- Hiá»ƒn thá»‹ chÃ­nh xÃ¡c nhá»¯ng dá»¯ liá»‡u hoáº·c tráº¡ng thÃ¡i sáº½ Ä‘Æ°á»£c reset.
+- Chá»‰ reset sau khi ngÆ°á»i dÃ¹ng xÃ¡c nháº­n.
+- KhÃ´ng xÃ³a dá»¯ liá»‡u gá»‘c hoáº·c dá»¯ liá»‡u production ngoÃ i pháº¡m vi Ä‘Æ°á»£c phÃ©p.
+- Sau khi reset, cáº­p nháº­t láº¡i giao diá»‡n.
+
+### Run AI Agent
+- Pháº£i gá»i Ä‘Ãºng chá»©c nÄƒng backend.
+- Kiá»ƒm tra dá»¯ liá»‡u Ä‘áº§u vÃ o trÆ°á»›c khi cháº¡y.
+- Hiá»ƒn thá»‹ loading.
+- Chá»‘ng click nhiá»u láº§n trong khi Ä‘ang xá»­ lÃ½.
+- Hiá»ƒn thá»‹ káº¿t quáº£ thá»±c táº¿.
+- Hiá»ƒn thá»‹ lá»—i náº¿u Agent tháº¥t báº¡i.
+- KhÃ´ng giáº£ láº­p Agent cháº¡y thÃ nh cÃ´ng.
+
+## 5. KÃCH HOáº T TOÃ€N Bá»˜ CHá»¨C NÄ‚NG Cá»”NG 3 â€“ DATA IMPORT
+
+Kiá»ƒm tra vÃ  sá»­a cÃ¡c nÃºt:
+
+### Upload / Browse Files
+- Click pháº£i má»Ÿ há»™p thoáº¡i chá»n file.
+- Há»— trá»£ cÃ¡c Ä‘á»‹nh dáº¡ng backend thá»±c sá»± Ä‘á»c Ä‘Æ°á»£c.
+- CÃ³ thá»ƒ kÃ©o tháº£ file.
+- Hiá»ƒn thá»‹ tÃªn file sau khi chá»n.
+- Hiá»ƒn thá»‹ dung lÆ°á»£ng vÃ  Ä‘á»‹nh dáº¡ng.
+- Cho phÃ©p xÃ³a file Ä‘Ã£ chá»n.
+
+### Import Data
+- Upload file lÃªn backend thá»±c sá»±.
+- Kiá»ƒm tra file rá»—ng.
+- Kiá»ƒm tra Ä‘á»‹nh dáº¡ng.
+- Kiá»ƒm tra kháº£ nÄƒng Ä‘á»c dá»¯ liá»‡u.
+- Tráº£ vá» lá»—i cá»¥ thá»ƒ khi khÃ´ng xá»­ lÃ½ Ä‘Æ°á»£c.
+- Hiá»ƒn thá»‹ káº¿t quáº£ upload.
+
+### Download Excel Template
+- Click pháº£i táº£i xuá»‘ng file Excel máº«u há»£p lá»‡.
+- File táº£i vá» pháº£i thá»±c sá»± tá»“n táº¡i.
+- Ná»™i dung template pháº£i phÃ¹ há»£p vá»›i schema Ä‘Æ°á»£c há»— trá»£.
+- KhÃ´ng táº¡o liÃªn káº¿t táº£i xuá»‘ng giáº£.
+
+### Download CSV Test
+- Táº£i Ä‘Ãºng bá»™ dá»¯ liá»‡u kiá»ƒm thá»­.
+- Äáº£m báº£o file CSV cÃ³ ná»™i dung há»£p lá»‡.
+
+### Preview Dataset
+- Hiá»ƒn thá»‹ báº£ng xem trÆ°á»›c.
+- CÃ³ phÃ¢n trang náº¿u nhiá»u dá»¯ liá»‡u.
+- CÃ³ thá»ƒ cuá»™n ngang náº¿u nhiá»u cá»™t.
+- Hiá»ƒn thá»‹ sá»‘ dÃ²ng vÃ  sá»‘ cá»™t.
+
+### Continue / Proceed
+- Chá»‰ cho phÃ©p tiáº¿p tá»¥c khi Ä‘iá»u kiá»‡n Ä‘áº§u vÃ o Ä‘Æ°á»£c Ä‘Ã¡p á»©ng.
+- Náº¿u chÆ°a Ä‘Ã¡p á»©ng, hiá»ƒn thá»‹ lÃ½ do cá»¥ thá»ƒ.
+
+LÆ°u Ã½: Universal Data Intelligence vÃ  B2B Lead Intelligence pháº£i giá»¯ Ä‘Ãºng logic Ä‘Ã£ thiáº¿t káº¿ á»Ÿ phiÃªn báº£n trÆ°á»›c.
+
+## 6. KÃCH HOáº T AI AGENT WORKFLOW
+
+Táº¥t cáº£ cÃ¡c bÆ°á»›c trong workflow pháº£i cÃ³ tÆ°Æ¡ng tÃ¡c phÃ¹ há»£p vá»›i tráº¡ng thÃ¡i thá»±c táº¿.
+
+CÃ¡c bÆ°á»›c tham kháº£o:
+
+1. Data Validation.
+2. Data Cleaning.
+3. Duplicate Detection.
+4. Golden Record Creation.
+5. Lead Qualification.
+6. Sales Routing.
+7. Outreach Draft Generation.
+8. Final Report.
+
+YÃªu cáº§u:
+
+- Click vÃ o bÆ°á»›c Ä‘Ã£ hoÃ n thÃ nh cÃ³ thá»ƒ xem káº¿t quáº£ tÆ°Æ¡ng á»©ng.
+- BÆ°á»›c Ä‘ang xá»­ lÃ½ pháº£i cÃ³ tráº¡ng thÃ¡i Processing.
+- BÆ°á»›c chÆ°a cháº¡y pháº£i hiá»ƒn thá»‹ Pending.
+- BÆ°á»›c lá»—i pháº£i hiá»ƒn thá»‹ Error vÃ  lÃ½ do.
+- CÃ³ thá»ƒ xem log cá»§a tá»«ng bÆ°á»›c.
+- CÃ³ thá»ƒ xem dá»¯ liá»‡u Ä‘áº§u ra cá»§a tá»«ng bÆ°á»›c náº¿u backend cung cáº¥p.
+
+KhÃ´ng cho phÃ©p ngÆ°á»i dÃ¹ng click Ä‘á»ƒ Ä‘Ã¡nh dáº¥u má»™t bÆ°á»›c lÃ  hoÃ n thÃ nh khi backend chÆ°a thá»±c hiá»‡n bÆ°á»›c Ä‘Ã³.
+
+## 7. KÃCH HOáº T CUSTOMER INTELLIGENCE
+
+Kiá»ƒm tra táº¥t cáº£ thÃ nh pháº§n:
+
+### Search
+- TÃ¬m kiáº¿m khÃ¡ch hÃ ng theo tÃªn, doanh nghiá»‡p hoáº·c trÆ°á»ng dá»¯ liá»‡u phÃ¹ há»£p.
+- CÃ³ thá»ƒ xÃ³a tá»« khÃ³a tÃ¬m kiáº¿m.
+
+### Filter
+- Lá»c theo Priority.
+- Lá»c theo Status.
+- Lá»c theo Salesperson.
+- Lá»c theo Domain náº¿u cÃ³.
+
+### Sort
+- Sáº¯p xáº¿p tÄƒng dáº§n.
+- Sáº¯p xáº¿p giáº£m dáº§n.
+- Sáº¯p xáº¿p theo Lead Score náº¿u cÃ³.
+
+### Customer Detail
+- Click vÃ o má»™t dÃ²ng khÃ¡ch hÃ ng Ä‘á»ƒ má»Ÿ chi tiáº¿t.
+- Hiá»ƒn thá»‹ há»“ sÆ¡ khÃ¡ch hÃ ng.
+- Hiá»ƒn thá»‹ nguá»“n dá»¯ liá»‡u.
+- Hiá»ƒn thá»‹ lÃ½ do phÃ¢n loáº¡i.
+- Hiá»ƒn thá»‹ thÃ´ng tin cÃ²n thiáº¿u.
+- Hiá»ƒn thá»‹ Ä‘á» xuáº¥t tiáº¿p theo.
+
+### Pagination
+- Chuyá»ƒn trang.
+- Chá»n sá»‘ báº£n ghi má»—i trang náº¿u há»— trá»£.
+- Hiá»ƒn thá»‹ tá»•ng sá»‘ báº£n ghi.
+
+## 8. KÃCH HOáº T SALES ROUTING
+
+Kiá»ƒm tra:
+
+- Xem danh sÃ¡ch nhÃ¢n viÃªn.
+- Xem sá»‘ lÆ°á»£ng khÃ¡ch hÃ ng Ä‘Æ°á»£c phÃ¢n cÃ´ng.
+- Lá»c theo nhÃ¢n viÃªn.
+- Xem khÃ¡ch hÃ ng chÆ°a Ä‘Æ°á»£c phÃ¢n cÃ´ng.
+- Xem trÆ°á»ng há»£p xung Ä‘á»™t phÃ¢n cÃ´ng.
+- Xem lÃ½ do Agent Ä‘á» xuáº¥t nhÃ¢n viÃªn.
+- Xem tráº¡ng thÃ¡i xá»­ lÃ½.
+
+Náº¿u cÃ³ nÃºt Reassign, pháº£i thá»±c hiá»‡n cáº­p nháº­t phÃ¢n cÃ´ng thá»±c sá»± vÃ  lÆ°u káº¿t quáº£ theo cÆ¡ cháº¿ dá»¯ liá»‡u hiá»‡n táº¡i.
+
+KhÃ´ng tá»± Ä‘á»™ng phÃ¢n cÃ´ng náº¿u chÆ°a Ä‘Ã¡p á»©ng business rules.
+
+## 9. KÃCH HOáº T TASK MANAGEMENT
+
+CÃ¡c chá»©c nÄƒng cáº§n hoáº¡t Ä‘á»™ng:
+
+- Táº¡o task náº¿u backend há»— trá»£.
+- Xem task detail.
+- TÃ¬m kiáº¿m task.
+- Lá»c theo tráº¡ng thÃ¡i.
+- Lá»c theo má»©c Ä‘á»™ Æ°u tiÃªn.
+- Cáº­p nháº­t tráº¡ng thÃ¡i.
+- Xem ngÆ°á»i phá»¥ trÃ¡ch.
+- Xem khÃ¡ch hÃ ng liÃªn quan.
+
+Náº¿u cÃ³ nÃºt Complete Task, pháº£i cáº­p nháº­t tráº¡ng thÃ¡i thá»±c táº¿.
+
+Náº¿u cÃ³ nÃºt Edit, pháº£i má»Ÿ form chá»‰nh sá»­a vÃ  lÆ°u Ä‘Æ°á»£c thay Ä‘á»•i.
+
+## 10. KÃCH HOáº T HUMAN REVIEW
+
+Kiá»ƒm tra cÃ¡c nÃºt:
+
+- View Details.
+- Approve.
+- Reject.
+- Request More Information.
+- Assign to Manager.
+
+YÃªu cáº§u:
+
+- Hiá»ƒn thá»‹ lÃ½ do cáº§n kiá»ƒm tra.
+- Hiá»ƒn thá»‹ dá»¯ liá»‡u liÃªn quan.
+- Hiá»ƒn thá»‹ Ä‘á» xuáº¥t cá»§a Agent.
+- Cho phÃ©p con ngÆ°á»i xÃ¡c nháº­n hoáº·c tá»« chá»‘i theo Ä‘Ãºng quy trÃ¬nh.
+- LÆ°u láº¡i quyáº¿t Ä‘á»‹nh.
+- Ghi log ngÆ°á»i thá»±c hiá»‡n vÃ  thá»i Ä‘iá»ƒm náº¿u há»‡ thá»‘ng cÃ³ há»— trá»£.
+
+CÃ¡c trÆ°á»ng há»£p Do Not Contact pháº£i Ä‘Æ°á»£c báº£o vá»‡ theo business rules hiá»‡n cÃ³. KhÃ´ng Ä‘Æ°á»£c tá»± Ä‘á»™ng gá»­i thÃ´ng tin liÃªn há»‡ khÃ¡ch hÃ ng.
+
+## 11. KÃCH HOáº T REPORTS & ANALYTICS
+
+Kiá»ƒm tra:
+
+- CÃ¡c tab bÃ¡o cÃ¡o.
+- Bá»™ lá»c thá»i gian.
+- Bá»™ lá»c dá»¯ liá»‡u.
+- Chart interactions.
+- Tooltip.
+- Download Report.
+- Export Excel/CSV/PDF náº¿u Ä‘Æ°á»£c há»— trá»£.
+
+Chart pháº£i láº¥y dá»¯ liá»‡u thá»±c táº¿.
+
+Khi thay Ä‘á»•i bá»™ lá»c, sá»‘ liá»‡u vÃ  biá»ƒu Ä‘á»“ pháº£i cáº­p nháº­t tÆ°Æ¡ng á»©ng.
+
+KhÃ´ng hardcode KPI hoáº·c dá»¯ liá»‡u biá»ƒu Ä‘á»“.
+
+## 12. KÃCH HOáº T ACTIVITY LOGS
+
+- NÃºt xem chi tiáº¿t log pháº£i hoáº¡t Ä‘á»™ng.
+- CÃ³ thá»ƒ má»Ÿ rá»™ng vÃ  thu gá»n tá»«ng log.
+- CÃ³ thá»ƒ lá»c theo tráº¡ng thÃ¡i.
+- CÃ³ thá»ƒ lá»c theo Execution ID.
+- CÃ³ thá»ƒ tÃ¬m kiáº¿m log.
+- CÃ³ thá»ƒ xem lá»—i vÃ  cáº£nh bÃ¡o.
+- CÃ³ thá»ƒ xem cÃ¡c bÆ°á»›c Agent thá»±c hiá»‡n náº¿u log backend cÃ³ dá»¯ liá»‡u.
+
+## 13. CHUáº¨N HÃ“A TÆ¯Æ NG TÃC TOÃ€N WEBSITE
+
+Má»—i nÃºt pháº£i cÃ³ má»™t hÃ nh Ä‘á»™ng rÃµ rÃ ng.
+
+Quy Ä‘á»‹nh:
+
+### Button feedback
+- Hover state.
+- Active state.
+- Focus state.
+- Disabled state.
+- Loading state.
+
+### Toast notifications
+Sau thao tÃ¡c, hiá»ƒn thá»‹ thÃ´ng bÃ¡o:
+
+- Success.
+- Warning.
+- Error.
+- Information.
+
+ThÃ´ng bÃ¡o pháº£i mÃ´ táº£ hÃ nh Ä‘á»™ng vá»«a thá»±c hiá»‡n.
+
+### Modal
+- CÃ³ nÃºt Ä‘Ã³ng.
+- CÃ³ thá»ƒ Ä‘Ã³ng báº±ng phÃ­m Escape náº¿u phÃ¹ há»£p.
+- CÃ³ nÃºt Cancel.
+- CÃ³ xÃ¡c nháº­n cho hÃ nh Ä‘á»™ng quan trá»ng.
+
+### Form
+- Validate dá»¯ liá»‡u.
+- Hiá»ƒn thá»‹ lá»—i ngay táº¡i trÆ°á»ng.
+- KhÃ´ng tá»± reset form khi cÃ³ lá»—i.
+- CÃ³ thÃ´ng bÃ¡o sau khi lÆ°u thÃ nh cÃ´ng.
+
+### Loading
+- KhÃ´ng Ä‘á»ƒ ngÆ°á»i dÃ¹ng tÆ°á»Ÿng nÃºt khÃ´ng hoáº¡t Ä‘á»™ng.
+- Hiá»ƒn thá»‹ tráº¡ng thÃ¡i Ä‘ang xá»­ lÃ½.
+- KhÃ´ng cho gá»­i yÃªu cáº§u trÃ¹ng láº·p ngoÃ i Ã½ muá»‘n.
+
+### Error handling
+- KhÃ´ng Ä‘á»ƒ lá»—i API lÃ m crash toÃ n bá»™ giao diá»‡n.
+- Hiá»ƒn thá»‹ thÃ´ng bÃ¡o dá»… hiá»ƒu.
+- Ghi lá»—i ká»¹ thuáº­t vÃ o log phÃ¹ há»£p.
+
+## 14. KIá»‚M TRA BACKEND VÃ€ API
+
+ÄÃ¢y lÃ  pháº§n báº¯t buá»™c.
+
+KhÃ´ng Ä‘Æ°á»£c chá»‰ thÃªm onClick vÃ o nÃºt Ä‘á»ƒ táº¡o cáº£m giÃ¡c hoáº¡t Ä‘á»™ng.
+
+HÃ£y kiá»ƒm tra tá»«ng nÃºt cÃ³ cáº§n gá»i backend hay khÃ´ng.
+
+Náº¿u cáº§n:
+
+- Káº¿t ná»‘i API Ä‘Ãºng endpoint.
+- Gá»­i Ä‘Ãºng request body.
+- Xá»­ lÃ½ response.
+- Xá»­ lÃ½ lá»—i.
+- Cáº­p nháº­t tráº¡ng thÃ¡i frontend.
+- Äá»“ng bá»™ dá»¯ liá»‡u sau khi thao tÃ¡c.
+
+KhÃ´ng tá»± Ã½ thay Ä‘á»•i API hoáº·c database schema náº¿u khÃ´ng cáº§n thiáº¿t.
+
+Náº¿u má»™t chá»©c nÄƒng chÆ°a cÃ³ backend:
+
+1. XÃ¡c Ä‘á»‹nh rÃµ chá»©c nÄƒng cÃ²n thiáº¿u.
+2. Triá»ƒn khai backend phÃ¹ há»£p náº¿u cÃ³ thá»ƒ.
+3. Náº¿u khÃ´ng thá»ƒ triá»ƒn khai, hiá»ƒn thá»‹ tráº¡ng thÃ¡i Not Available vÃ  giáº£i thÃ­ch lÃ½ do.
+4. KhÃ´ng táº¡o nÃºt giáº£ hoáº·c thÃ´ng bÃ¡o thÃ nh cÃ´ng giáº£.
+
+## 15. Báº®T BUá»˜C Táº O Báº¢NG KIá»‚M THá»¬ TOÃ€N Bá»˜ NÃšT Báº¤M
+
+Sau khi sá»­a, hÃ£y kiá»ƒm thá»­ táº¥t cáº£ thÃ nh pháº§n tÆ°Æ¡ng tÃ¡c.
+
+Táº¡o báº£ng bÃ¡o cÃ¡o:
+
+| Component | Expected Action | Actual Result | Status |
+| Button A | Expected behavior | Actual behavior | PASS/FAIL |
+| Button B | Expected behavior | Actual behavior | PASS/FAIL |
+
+Kiá»ƒm tra:
+
+- Click.
+- Double click.
+- Click khi Ä‘ang loading.
+- Click khi thiáº¿u dá»¯ liá»‡u.
+- Click khi backend offline.
+- Click khi API tráº£ vá» lá»—i.
+- Äiá»u hÆ°á»›ng giá»¯a cÃ¡c trang.
+- Responsive.
+
+KhÃ´ng Ä‘Ã¡nh dáº¥u PASS náº¿u chá»‰ kiá»ƒm tra báº±ng cÃ¡ch nhÃ¬n giao diá»‡n.
+
+HÃ£y thá»±c sá»± thá»±c hiá»‡n thao tÃ¡c vÃ  kiá»ƒm tra káº¿t quáº£.
+
+## 16. Æ¯U TIÃŠN KHÃ”NG LÃ€M Há»ŽNG GIAO DIá»†N
+
+Trong quÃ¡ trÃ¬nh sá»­a:
+
+- Giá»¯ nguyÃªn phong cÃ¡ch Dark AI Enterprise.
+- Giá»¯ mÃ u sáº¯c navy, indigo, purple vÃ  cyan.
+- Giá»¯ layout hiá»‡n táº¡i náº¿u khÃ´ng cÃ³ váº¥n Ä‘á».
+- KhÃ´ng xÃ³a chá»©c nÄƒng Ä‘Ã£ hoáº¡t Ä‘á»™ng.
+- KhÃ´ng thay Ä‘á»•i business logic.
+- KhÃ´ng thay Ä‘á»•i dá»¯ liá»‡u gá»‘c.
+- KhÃ´ng xÃ³a cÃ¡c module AI Agent.
+- KhÃ´ng tá»± Ã½ viáº¿t láº¡i toÃ n bá»™ project.
+
+Æ¯u tiÃªn sá»­a Ä‘Ãºng nguyÃªn nhÃ¢n vá»›i pháº¡m vi thay Ä‘á»•i nhá» nháº¥t.
+
+## 17. FINAL ACCEPTANCE CRITERIA
+
+Chá»‰ Ä‘Æ°á»£c bÃ¡o hoÃ n thÃ nh khi:
+
+1. ToÃ n bá»™ sidebar Ä‘iá»u hÆ°á»›ng hoáº¡t Ä‘á»™ng.
+2. CÃ¡c nÃºt trÃªn topbar hoáº¡t Ä‘á»™ng.
+3. Upload file hoáº¡t Ä‘á»™ng.
+4. Import Data hoáº¡t Ä‘á»™ng.
+5. Download template hoáº¡t Ä‘á»™ng.
+6. Run AI Agent thá»±c sá»± gá»i workflow.
+7. Reset cÃ³ xÃ¡c nháº­n.
+8. Search vÃ  Filter hoáº¡t Ä‘á»™ng.
+9. Customer Detail má»Ÿ Ä‘Æ°á»£c.
+10. Sales Routing hoáº¡t Ä‘á»™ng theo logic thá»±c táº¿.
+11. Task Management cÃ³ thá»ƒ thao tÃ¡c.
+12. Human Review cÃ³ thá»ƒ ghi nháº­n quyáº¿t Ä‘á»‹nh.
+13. Reports hiá»ƒn thá»‹ dá»¯ liá»‡u thá»±c.
+14. Activity Logs xem Ä‘Æ°á»£c.
+15. KhÃ´ng cÃ³ lá»—i JavaScript nghiÃªm trá»ng.
+16. KhÃ´ng cÃ³ nÃºt quan trá»ng nÃ o bá»‹ click nhÆ°ng khÃ´ng pháº£n há»“i.
+
+Cuá»‘i cÃ¹ng, hÃ£y:
+
+- Cháº¡y láº¡i localhost.
+- Thá»­ tá»«ng chá»©c nÄƒng.
+- Sá»­a lá»—i phÃ¡t hiá»‡n Ä‘Æ°á»£c.
+- BÃ¡o cÃ¡o danh sÃ¡ch nÃºt Ä‘Ã£ sá»­a.
+- BÃ¡o cÃ¡o chá»©c nÄƒng nÃ o chÆ°a hoÃ n thÃ nh vÃ  lÃ½ do.
+- HÆ°á»›ng dáº«n tÃ´i cÃ¡ch cháº¡y láº¡i website.
+
+**YÃŠU Cáº¦U QUAN TRá»ŒNG NHáº¤T:**
+
+HÃ£y trá»±c tiáº¿p sá»­a code vÃ  lÃ m cho website thá»±c sá»± tÆ°Æ¡ng tÃ¡c Ä‘Æ°á»£c.
+
+TÃ´i khÃ´ng cáº§n má»™t báº£n thiáº¿t káº¿ má»›i hoáº·c má»™t danh sÃ¡ch hÆ°á»›ng dáº«n. TÃ´i cáº§n má»™t sáº£n pháº©m hoáº¡t Ä‘á»™ng thá»±c táº¿, trong Ä‘Ã³ má»—i nÃºt báº¥m Ä‘á»u thá»±c hiá»‡n Ä‘Ãºng chá»©c nÄƒng Ä‘Æ°á»£c thá»ƒ hiá»‡n trÃªn giao diá»‡n.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-19T11:24:53+07:00.
+
+The user's current state is as follows:
+Active Document: c:\Users\cong chua sofia\Downloads\AII_DEMO\AI301_AI_AGENT_PITCH_DECK.html (LANGUAGE_UNSPECIFIED)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\server.ps1 (LANGUAGE_UNSPECIFIED)
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\index.html (LANGUAGE_UNSPECIFIED)
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\ai_engine.js (LANGUAGE_UNSPECIFIED)
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\styles.css (LANGUAGE_UNSPECIFIED)
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\mock_data.js (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>

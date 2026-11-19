@@ -1,0 +1,1962 @@
+﻿<!DOCTYPE html>
+<html lang="vi" data-theme="white">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAM VIỆT AI — Universal Data Intelligence & Enterprise AI Agent</title>
+  <!-- Google Fonts: Inter & Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&subset=vietnamese,latin-ext&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            appDark: "#F8FAFC",
+            surface: "#FFFFFF",
+            surfaceElevated: "#FFFFFF",
+            borderMain: "#E2E8F0",
+            primaryIndigo: "#FF2A85",
+            aiPurple: "#A855F7",
+            cyanAccent: "#0EA5E9",
+            successGreen: "#10B981",
+            warningAmber: "#FFA500",
+            dangerRose: "#EF4444"
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- SheetJS for Excel/CSV parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <!-- App Stylesheet & Theme White -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="theme_white.css" />
+</head>
+<body>
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+  <!-- APPLICATION SHELL -->
+  <div class="app-shell" id="appShell">
+    <!-- ==================================================================
+         SIDEBAR NAVIGATION
+         ================================================================== -->
+    <aside class="app-sidebar" id="appSidebar">
+      <!-- Brand Header -->
+      <div class="sidebar-header">
+        <a href="javascript:void(0)" onclick="switchPage(1)" class="sidebar-brand-box">
+          <div class="sidebar-brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div class="sidebar-brand-text">
+            <div class="sidebar-brand-title">
+              <span>NAM VIỆT AI</span>
+              <span class="sidebar-brand-badge">SaaS V2.4</span>
+            </div>
+            <span class="sidebar-brand-sub">Universal Data Intelligence</span>
+          </div>
+        </a>
+        <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebar()" title="Thu gọn / Mở rộng Sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation Items -->
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-group-title">ĐIỀU HƯỚNG 3 TRANG</div>
+
+        <div class="sidebar-nav-item active" id="sidebarNavPage1" onclick="switchPage(1)" title="Trang 1: Giới Thiệu Sản Phẩm & Định Hướng Phân Tích">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">01 · Giới Thiệu & Định Hướng</span>
+          <span class="sidebar-nav-pill" style="background:#FFE8F2; color:#FF2A85;">P1</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="sidebarNavPage2" onclick="switchPage(2)" title="Trang 2: Luồng Phân Tích AI Agent & Cổng Tiếp Nhận">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">02 · Luồng Phân Tích Agent</span>
+          <span class="sidebar-nav-pill" style="background:#FEF3C7; color:#D97706;">P2</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="sidebarNavPage3" onclick="switchPage(3)" title="Trang 3: Dashboard KPI & Báo Cáo Điều Hành">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">03 · Dashboard KPI & Báo Cáo</span>
+          <span class="sidebar-nav-pill" style="background:#E0F2FE; color:#0284C7;">P3</span>
+        </div>
+
+        <div class="sidebar-nav-group-title">CHI TIẾT NGHIỆP VỤ</div>
+
+        <div class="sidebar-nav-item" id="navItemImport" onclick="switchNavSection('sec-import')" title="Nạp Dữ Liệu & Cổng 3">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">Nạp Dữ Liệu & Cổng 3</span>
+          <span class="sidebar-nav-pill">Cổng 3</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="navItemAgent" onclick="switchNavSection('sec-agent')" title="Quy Trình AI Agent (7 Bước)">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">Quy Trình AI Agent</span>
+          <span class="sidebar-nav-pill">7 Bước</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="navItemOverview" onclick="switchNavSection('sec-overview')" title="Tổng Quan & KPI">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">Tổng Quan & KPI</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="navItemCustomers" onclick="switchNavSection('sec-customers')" title="Khách Hàng (538 Golden Records)">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">Khách Hàng (Golden Records)</span>
+          <span class="sidebar-nav-pill" id="badgeGoldenCount">538</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="navItemTasks" onclick="switchNavSection('sec-tasks')" title="Quản Lý Tác Vụ SLA CRM">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">Quản Lý Tác Vụ SLA</span>
+          <span class="sidebar-nav-pill warning">4h SLA</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="navItemReview" onclick="switchNavSection('sec-review')" title="Human Review (Cổng 5 Phê Duyệt)">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">Human Review (Cổng 5)</span>
+          <span class="sidebar-nav-pill warning">Duyệt</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="navItemReports" onclick="switchNavSection('sec-reports')" title="Báo Cáo Điều Hành & Xuất Bản">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">Báo Cáo Điều Hành & Xuất</span>
+        </div>
+
+        <div class="sidebar-nav-item" id="navItemLogs" onclick="switchNavSection('sec-logs')" title="Nhật Ký Thực Thi (Audit Log)">
+          <div class="sidebar-nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+          </div>
+          <span class="sidebar-nav-label">Nhật Ký Thực Thi (Audit Log)</span>
+        </div>
+      </nav>
+
+      <!-- Sidebar Status Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-status-box">
+          <div class="sidebar-status-indicator">
+            <span class="status-dot-pulse"></span>
+            <span>Hệ thống: <strong>Online</strong></span>
+          </div>
+          <span id="sidebarDatasetCount" style="color:var(--cyan); font-weight:700;">700 hồ sơ</span>
+        </div>
+        <div style="font-size:11px; color:var(--text-muted); display:flex; justify-content:space-between;">
+          <span id="sidebarDatasetName">Nam Việt Leads</span>
+          <span>Port 8080</span>
+        </div>
+      </div>
+    </aside>
+    <!-- ==================================================================
+         MAIN CONTENT AREA
+         ================================================================== -->
+    <main class="app-main">
+      <!-- TOPBAR -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="sidebar-collapse-btn" onclick="toggleSidebar()" title="Đóng/Mở Sidebar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="topbar-breadcrumbs">
+            <a href="javascript:void(0)" onclick="switchPage(1)">Nam Việt AI</a>
+            <span class="divider">/</span>
+            <span class="current" id="topbarCurrentViewTitle" title="01 · Giới Thiệu & Định Hướng Phân Tích">01 · Giới Thiệu & Định Hướng</span>
+          </div>
+        </div>
+
+        <!-- CENTER: 3 PROMINENT PAGE TABS MATCHING REFERENCE DESIGN -->
+        <div class="top-page-tabs">
+          <button type="button" class="page-tab-btn active" id="pageTabBtn1" onclick="switchPage(1)">
+            <span class="tab-num">1</span>
+            <span>Giới Thiệu & Định Hướng</span>
+          </button>
+          <button type="button" class="page-tab-btn" id="pageTabBtn2" onclick="switchPage(2)">
+            <span class="tab-num">2</span>
+            <span>Luồng Phân Tích Agent</span>
+          </button>
+          <button type="button" class="page-tab-btn" id="pageTabBtn3" onclick="switchPage(3)">
+            <span class="tab-num">3</span>
+            <span>Dashboard KPI & Báo Cáo</span>
+          </button>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Live Status Badge -->
+          <div class="topbar-status-badge" id="topbarStatusBadgeContainer">
+            <span class="badge-dot" id="topbarStatusDot"></span>
+            <span id="topbarAgentStatusText">AI Agent: Sẵn sàng</span>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <button type="button" class="btn-ai btn-ai-outline btn-ai-sm" id="topbarDemoModeBtn" onclick="toggleDemoMode()" title="Khởi động / Thoát chế độ thuyết trình demo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span id="topbarDemoModeBtnText">Demo Mode</span>
+          </button>
+
+          <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="topbarResetBtn" onclick="confirmResetModal()" title="Đặt lại trạng thái ban đầu có hộp thoại xác nhận">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 4v6h-6"></path>
+              <path d="M1 20v-6h6"></path>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+            <span>Reset</span>
+          </button>
+
+          <!-- Orange START button from reference image -->
+          <button type="button" class="btn-start-orange" id="topbarRunAgentBtn" onclick="triggerRunAiPipeline(); switchPage(3);" title="Kích hoạt toàn bộ quy trình AI Agent">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="topbarRunAgentIcon">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span id="topbarRunAgentText">START · Chạy Pipeline</span>
+          </button>
+
+          <!-- White DOWNLOAD pill button from reference image -->
+          <button type="button" class="btn-download-pill" onclick="downloadReportDoc()" title="Tải báo cáo điều hành Word">
+            <span>DOWNLOAD</span>
+            <span class="arrow-pink">⬇</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- SCROLLABLE CANVAS -->
+      <div class="app-canvas" id="appCanvas">
+        <!-- ==============================================================
+             PAGE 1: GIỚI THIỆU SẢN PHẨM & ĐỊNH HƯỚNG PHÂN TÍCH
+             ============================================================== -->
+        <div id="pageIntro" class="app-page-section active">
+          <!-- 1. HERO SHOWCASE CARD (EXACT FIDELITY TO REFERENCE IMAGE) -->
+          <div class="hero-art-card">
+            <!-- Left Column: Branding, Title, Description & Action -->
+            <div class="hero-art-left">
+              <!-- Mini Nav Menu matching reference image -->
+              <div class="hero-art-nav-preview">
+                <span>HOME</span>
+                <span>ABOUT US</span>
+                <span>SERVICE</span>
+                <span>CONTACT</span>
+                <span style="margin-left:auto; color:#222736;">NAM VIỆT AI ENTERPRISE</span>
+              </div>
+
+              <!-- Main Display Title with Pink Script -->
+              <div class="hero-display-title">
+                NAM VIỆT AI
+                <span class="hero-script-pink">Data Intelligence</span>
+              </div>
+
+              <!-- Subtitle Description -->
+              <p class="hero-art-desc">
+                Hệ sinh thái AI Agent doanh nghiệp thế hệ mới: Tiếp nhận, kiểm định và khai phá dữ liệu đa nguồn từ Bán lẻ đa kênh, B2B Leads, Marketing/ROAS đến Tài chính và Vận hành. Tự động hóa tiền kiểm định, phân loại schema thông minh và tổng hợp báo cáo điều hành chuẩn C-Level.
+              </p>
+
+              <!-- Action Button Row with Orange Start Pill and Pink Plus -->
+              <div class="hero-art-actions">
+                <button type="button" class="btn-start-orange" onclick="switchPage(2)" title="Bắt đầu khám phá luồng phân tích AI Agent">
+                  <span>START</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+
+                <div class="art-floating-plus" style="position:static; cursor:pointer;" onclick="switchPage(2)" title="Khám phá ngay">+</div>
+              </div>
+
+              <!-- Decorative Dots Row -->
+              <div class="hero-dots-row">
+                <span class="hero-dot-pink"></span>
+                <span class="hero-dot-pink" style="opacity:0.7;"></span>
+                <span class="hero-dot-pink" style="opacity:0.4;"></span>
+                <span class="hero-dot-gray"></span>
+                <span class="hero-dot-gray"></span>
+              </div>
+
+              <!-- Social / Verification Icons -->
+              <div style="display:flex; gap:12px; margin-top:14px; color:#94A3B8; font-size:16px;">
+                <span title="Bảo mật cấp doanh nghiệp">🔒</span>
+                <span title="Xử lý thời gian thực">⚡</span>
+                <span title="Phân tích không ảo giác">🛡️</span>
+                <span title="Chuẩn hóa ISO/IEC">✓</span>
+              </div>
+            </div>
+
+            <!-- Right Column: Slate Navy Container with Floating Widgets & Download Button -->
+            <div class="hero-art-right">
+              <!-- Top Pink Globe Icon Badge -->
+              <div style="display:flex; justify-content:center; position:relative; z-index:2;">
+                <div style="width:48px; height:48px; border-radius:50%; background:#FF2A85; display:flex; align-items:center; justify-content:center; color:#FFFFFF; font-size:22px; box-shadow:0 8px 24px rgba(255,42,133,0.45);">
+                  🌐
+                </div>
+              </div>
+
+              <!-- Mini Calendar Widget matching image -->
+              <div class="art-widget-calendar">
+                <div class="art-cal-header">MONTH 2026</div>
+                <div class="art-cal-grid" style="font-weight:800; color:#222736; margin-bottom:4px;">
+                  <span>SU</span><span>MO</span><span>TU</span><span>WE</span><span>TH</span><span>FR</span><span>SA</span>
+                </div>
+                <div class="art-cal-grid">
+                  <span>1</span><span>2</span><span>3</span><span>4</span>
+                  <span class="art-cal-day-active">5</span>
+                  <span>6</span><span>7</span>
+                  <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                </div>
+              </div>
+
+              <!-- Floating Shield Badge (Orange) -->
+              <div class="art-floating-shield" title="An Toàn & Bảo Mật Dữ Liệu">
+                <span style="color:#FFA500; font-size:24px;">🛡️</span>
+              </div>
+
+              <!-- Floating Wifi Badge (Orange Gradient) -->
+              <div class="art-floating-wifi" title="Kết Nối & Đồng Bộ Dữ Liệu Thời Gian Thực">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                  <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                </svg>
+              </div>
+
+              <!-- Floating Mail Badge (Pink Round) -->
+              <div class="art-floating-mail" title="Tự Động Sinh Kịch Bản & Thông Báo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+
+              <!-- Floating Cloud Badge (White Round Purple Border) -->
+              <div class="art-floating-cloud" title="Điện Toán Đám Mây & Xuất Dữ Liệu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                  <polyline points="12 13 12 9"></polyline>
+                  <polyline points="9 11 12 8 15 11"></polyline>
+                </svg>
+              </div>
+
+              <!-- Bottom Download Button Pill matching image -->
+              <div style="display:flex; justify-content:flex-end; position:relative; z-index:2; margin-top:16px;">
+                <button type="button" class="btn-download-pill" onclick="downloadReportDoc()" title="Tải hồ sơ nghiệm thu báo cáo Word">
+                  <span>DOWNLOAD</span>
+                  <span class="arrow-pink">⬇</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. HƯỚNG PHÂN TÍCH DỮ LIỆU ĐA NGÀNH (5 UNIVERSAL DATA DOMAINS) -->
+          <div style="margin-bottom: 32px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+              <div>
+                <h2 style="font-size:22px; font-weight:700; color:#222736; display:flex; align-items:center; gap:8px;">
+                  <span style="color:#FF2A85;">✦</span> 5 Hướng Phân Tích Dữ Liệu Đa Ngành Của NAM VIỆT AI
+                </h2>
+                <p style="font-size:13px; color:#64748B; margin-top:2px;">
+                  Hệ thống linh hoạt tiếp nhận và trích xuất thông tin chuyên sâu cho từng bài toán nghiệp vụ cụ thể
+                </p>
+              </div>
+              <button type="button" class="btn-ai btn-ai-outline btn-ai-sm" onclick="switchPage(2)">
+                Xem Luồng Phân Tích ➔
+              </button>
+            </div>
+
+            <div class="domain-cards-grid">
+              <!-- Domain 1: Retail Omnichannel -->
+              <div class="domain-card">
+                <div>
+                  <div class="domain-card-header">
+                    <div class="domain-card-icon" style="background:rgba(16,185,129,0.12); color:#10B981;">🛒</div>
+                    <span style="font-size:11px; font-weight:800; padding:2px 8px; border-radius:99px; background:#ECFDF5; color:#10B981;">THƯƠNG MẠI</span>
+                  </div>
+                  <div class="domain-card-title">Bán Lẻ Đa Kênh (Omnichannel Retail)</div>
+                  <p class="domain-card-desc">
+                    Phân tích đa chiều theo Website, Cửa Hàng và Đối Tác; đo lường chi phí giá vốn (COGS), biên lợi nhuận ròng và xác định kênh tăng trưởng chủ lực.
+                  </p>
+                  <div class="domain-card-metrics">
+                    <span>● <strong>Chỉ số:</strong> Doanh thu, Chi phí giá vốn, Lợi nhuận gộp</span>
+                    <span>● <strong>Mục tiêu:</strong> Tối ưu đóng góp doanh thu theo kênh</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" style="width:100%; justify-content:center;" onclick="switchPage(2)">
+                  Khám Phá Luồng Này ➔
+                </button>
+              </div>
+
+              <!-- Domain 2: B2B Lead Intelligence -->
+              <div class="domain-card">
+                <div>
+                  <div class="domain-card-header">
+                    <div class="domain-card-icon" style="background:rgba(255,42,133,0.12); color:#FF2A85;">🏢</div>
+                    <span style="font-size:11px; font-weight:800; padding:2px 8px; border-radius:99px; background:#FFE8F2; color:#FF2A85;">B2B LEADS</span>
+                  </div>
+                  <div class="domain-card-title">B2B Lead Intelligence & ICP Scoring</div>
+                  <p class="domain-card-desc">
+                    Tiền kiểm định hồ sơ doanh nghiệp, tra cứu đối chiếu MST, chuẩn hóa số điện thoại, khử 162 cuộc gọi trùng và phân hạng tiềm năng theo ICP 4 cấp.
+                  </p>
+                  <div class="domain-card-metrics">
+                    <span>● <strong>Chỉ số:</strong> 538 Golden Records, Tỷ lệ sạch 100%</span>
+                    <span>● <strong>Mục tiêu:</strong> Khử trùng lặp & ưu tiên Lead hạng A (P1)</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" style="width:100%; justify-content:center;" onclick="switchPage(2)">
+                  Khám Phá Luồng Này ➔
+                </button>
+              </div>
+
+              <!-- Domain 3: Marketing & Campaign -->
+              <div class="domain-card">
+                <div>
+                  <div class="domain-card-header">
+                    <div class="domain-card-icon" style="background:rgba(14,165,233,0.12); color:#0EA5E9;">📈</div>
+                    <span style="font-size:11px; font-weight:800; padding:2px 8px; border-radius:99px; background:#E0F2FE; color:#0EA5E9;">MARKETING</span>
+                  </div>
+                  <div class="domain-card-title">Marketing & Tối Ưu Chiến Dịch (ROAS)</div>
+                  <p class="domain-card-desc">
+                    Đánh giá hiệu quả chiến dịch Google Search, Facebook, TikTok; phân tích chi phí thu hút khách hàng (CAC) và tối ưu hóa ngân sách chuyển đổi.
+                  </p>
+                  <div class="domain-card-metrics">
+                    <span>● <strong>Chỉ số:</strong> Chi phí / Lead, ROAS, Tỷ lệ chuyển đổi đơn</span>
+                    <span>● <strong>Mục tiêu:</strong> Cắt giảm lãng phí ngân sách ads</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" style="width:100%; justify-content:center;" onclick="switchPage(2)">
+                  Khám Phá Luồng Này ➔
+                </button>
+              </div>
+
+              <!-- Domain 4: Finance & Cost Control -->
+              <div class="domain-card">
+                <div>
+                  <div class="domain-card-header">
+                    <div class="domain-card-icon" style="background:rgba(245,158,11,0.12); color:#F59E0B;">💰</div>
+                    <span style="font-size:11px; font-weight:800; padding:2px 8px; border-radius:99px; background:#FEF3C7; color:#D97706;">TÀI CHÍNH</span>
+                  </div>
+                  <div class="domain-card-title">Tài Chính & Kiểm Soát Chi Phí</div>
+                  <p class="domain-card-desc">
+                    Phân tích cơ cấu OPEX, cảnh báo sớm vượt hạn mức ngân sách, theo dõi dòng tiền và tỷ suất hoàn vốn đầu tư trên từng danh mục sản phẩm.
+                  </p>
+                  <div class="domain-card-metrics">
+                    <span>● <strong>Chỉ số:</strong> Chi phí vận hành, Biên EBITDA, Dòng tiền</span>
+                    <span>● <strong>Mục tiêu:</strong> Bảo vệ biên lợi nhuận an toàn</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" style="width:100%; justify-content:center;" onclick="switchPage(2)">
+                  Khám Phá Luồng Này ➔
+                </button>
+              </div>
+
+              <!-- Domain 5: Operations & SLA -->
+              <div class="domain-card">
+                <div>
+                  <div class="domain-card-header">
+                    <div class="domain-card-icon" style="background:rgba(168,85,247,0.12); color:#A855F7;">⚙️</div>
+                    <span style="font-size:11px; font-weight:800; padding:2px 8px; border-radius:99px; background:#F3E8FF; color:#9333EA;">VẬN HÀNH</span>
+                  </div>
+                  <div class="domain-card-title">Vận Hành & Giám Sát SLA Quy Trình</div>
+                  <p class="domain-card-desc">
+                    Đo lường thời gian xử lý hồ sơ, giám sát cam kết SLA 4 giờ, phát hiện các điểm nghẽn quy trình và cảnh báo nguy cơ trễ hạn xử lý.
+                  </p>
+                  <div class="domain-card-metrics">
+                    <span>● <strong>Chỉ số:</strong> Cam kết SLA 4h, Tỷ lệ trễ hạn, Năng suất</span>
+                    <span>● <strong>Mục tiêu:</strong> Tối ưu hóa chu trình tiếp cận</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" style="width:100%; justify-content:center;" onclick="switchPage(2)">
+                  Khám Phá Luồng Này ➔
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. TRỤ CỘT NĂNG LỰC CỦA AGENT -->
+          <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:24px; padding:32px; margin-bottom:32px; box-shadow:0 8px 30px rgba(0,0,0,0.03);">
+            <h3 style="font-size:18px; font-weight:800; color:#222736; margin-bottom:20px; display:flex; align-items:center; gap:8px;">
+              <span style="color:#FFA500;">★</span> 4 Trụ Cột Năng Lực Cốt Lõi Của NAM VIỆT AI
+            </h3>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px;">
+              <div style="border-left:3px solid #FF2A85; padding-left:14px;">
+                <h4 style="font-size:14.5px; font-weight:800; color:#222736; margin-bottom:4px;">Universal Ingestion</h4>
+                <p style="font-size:12.5px; color:#64748B; line-height:1.6;">Tiếp nhận mọi tệp dữ liệu bảng Excel/CSV, không ép buộc schema, tự động nhận dạng cấu trúc cột và kiểu dữ liệu.</p>
+              </div>
+              <div style="border-left:3px solid #FFA500; padding-left:14px;">
+                <h4 style="font-size:14.5px; font-weight:800; color:#222736; margin-bottom:4px;">Explainable Reasoning</h4>
+                <p style="font-size:12.5px; color:#64748B; line-height:1.6;">Minh bạch lý do phân tích, hiển thị công thức tính toán và căn cứ đưa ra đề xuất hành động.</p>
+              </div>
+              <div style="border-left:3px solid #0EA5E9; padding-left:14px;">
+                <h4 style="font-size:14.5px; font-weight:800; color:#222736; margin-bottom:4px;">Zero-Hallucination Guardrails</h4>
+                <p style="font-size:12.5px; color:#64748B; line-height:1.6;">Cơ chế kiểm soát an toàn Cổng 5 Human-in-the-loop, tuyệt đối không tự bịa đặt hay làm biến dạng dữ liệu gốc.</p>
+              </div>
+              <div style="border-left:3px solid #10B981; padding-left:14px;">
+                <h4 style="font-size:14.5px; font-weight:800; color:#222736; margin-bottom:4px;">Instant C-Level Export</h4>
+                <p style="font-size:12.5px; color:#64748B; line-height:1.6;">Xuất bản báo cáo hoàn chỉnh sang file Word (.doc), Markdown (.md) và PDF in ấn chỉ với một cú nhấp chuột.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. BOTTOM CALL TO ACTION BANNER -->
+          <div style="background:linear-gradient(135deg, #222736 0%, #171A24 100%); border-radius:24px; padding:32px 36px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; box-shadow:0 14px 40px rgba(34,39,54,0.18);">
+            <div>
+              <h3 style="font-size:20px; font-weight:700; color:#FFFFFF; margin-bottom:6px;">Sẵn Sàng Trải Nghiệm Luồng Phân Tích Thực Tế?</h3>
+              <p style="font-size:13.5px; color:#94A3B8; margin:0;">
+                Xem chi tiết quy trình 7 bước, nạp file tại Cổng 3 và kích hoạt AI Agent xử lý trực tiếp.
+              </p>
+            </div>
+            <button type="button" class="btn-start-orange" style="font-size:14px; padding:12px 28px;" onclick="switchPage(2)">
+              <span>Sang Trang 2: Luồng Phân Tích AI Agent</span>
+              <span>➔</span>
+            </button>
+          </div>
+        </div>
+        <!-- ==============================================================
+             PAGE 2: LUỒNG PHÂN TÍCH AI AGENT & CỔNG TIẾP NHẬN ĐA NGUỒN
+             ============================================================== -->
+        <div id="pagePipeline" class="app-page-section">
+          <!-- Page 2 Header Banner -->
+          <div class="card-enterprise" style="margin-bottom:20px; padding:20px 24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <h2 style="font-size:22px; font-weight:700; color:#222736; display:flex; align-items:center; gap:10px;">
+                  <span style="color:#FFA500;">⚡</span> 02 · Quy Trình Phân Tích AI Agent & Cổng Tiếp Nhận Đa Nguồn
+                </h2>
+                <p style="font-size:13px; color:#64748B; margin-top:3px;">
+                  Theo dõi luồng xử lý tự động 7 bước từ làm sạch, khử trùng, chấm điểm đến kịch bản khai thác
+                </p>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button type="button" class="btn-ai btn-ai-outline btn-ai-sm" onclick="switchPage(1)">❮ Trang 1</button>
+                <button type="button" class="btn-start-orange" style="font-size:12px; padding:8px 18px;" onclick="triggerRunAiPipeline(); switchPage(3);">Chạy Pipeline & Xem KPI (Trang 3) ➔</button>
+              </div>
+            </div>
+          </div>
+<section class="view-section" id="sec-agent">
+          <!-- Control Panel -->
+          <div class="card-enterprise">
+            <div class="card-header-row">
+              <div class="card-title-group">
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ai-accent)" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  <span>Trung Tâm Điều Khiển AI Agent Pipeline</span>
+                </h2>
+                <span class="card-subtitle">Theo dõi luồng xử lý tự động 7 bước từ làm sạch, khử trùng, chấm điểm đến kịch bản khai thác</span>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <button type="button" class="btn-ai btn-ai-outline btn-ai-sm" onclick="openWeightModal()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                  <span>Chỉnh Trọng Số Scoring</span>
+                </button>
+                <button type="button" class="btn-ai btn-ai-primary" onclick="triggerRunAiPipeline()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span>Chạy Toàn Bộ Pipeline</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 7 Processing Step Cards (Interactive Workflow Inspectors) -->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-bottom:20px;">
+              <div class="card-enterprise elevated step-card-clickable" onclick="openWorkflowStepModal(1)" title="Click để xem chi tiết Bước 1: Tiền Kiểm Định Cổng 3" style="padding:16px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                  <strong style="color:var(--cyan);">01 · Tiền Kiểm Định Cổng 3</strong>
+                  <span class="badge-status success">Hoàn tất ➔</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);">Kiểm tra 12 trường cấu trúc bắt buộc và encoding UTF-8.</p>
+              </div>
+
+              <div class="card-enterprise elevated step-card-clickable" onclick="openWorkflowStepModal(2)" title="Click để xem chi tiết Bước 2: Cleaning & Chuẩn Hóa" style="padding:16px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                  <strong style="color:var(--primary);">02 · Cleaning & Chuẩn Hóa</strong>
+                  <span class="badge-status success">Hoàn tất ➔</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);">Làm sạch SĐT 10 số, chuẩn hóa email, loại ký tự rác.</p>
+              </div>
+
+              <div class="card-enterprise elevated step-card-clickable" onclick="openWorkflowStepModal(3)" title="Click để xem chi tiết Bước 3: Khử Trùng Lặp Thực Thể" style="padding:16px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                  <strong style="color:var(--danger);">03 · Khử Trùng Lặp Thực Thể</strong>
+                  <span class="badge-status success">162 Trùng ➔</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);">Nhận diện cùng doanh nghiệp qua MST, Domain & Alias.</p>
+              </div>
+
+              <div class="card-enterprise elevated step-card-clickable" onclick="openWorkflowStepModal(4)" title="Click để xem chi tiết Bước 4: Tạo Golden Record" style="padding:16px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                  <strong style="color:var(--success);">04 · Tạo Golden Record</strong>
+                  <span class="badge-status success">538 Sạch ➔</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);">Hợp nhất thông tin tốt nhất vào 1 hồ sơ duy nhất.</p>
+              </div>
+
+              <div class="card-enterprise elevated step-card-clickable" onclick="openWorkflowStepModal(5)" title="Click để xem chi tiết Bước 5: Chấm Điểm ICP" style="padding:16px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                  <strong style="color:var(--ai-accent);">05 · Chấm Điểm P1-P4 (ICP)</strong>
+                  <span class="badge-status success">204 Hot P1 ➔</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);">Thuật toán 4 trọng số: Ngành, Quy mô, Ngân sách, Thẩm quyền.</p>
+              </div>
+
+              <div class="card-enterprise elevated step-card-clickable" onclick="openWorkflowStepModal(6)" title="Click để xem chi tiết Bước 6: Kiểm Định Cổng 5" style="padding:16px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                  <strong style="color:var(--warning);">06 · Kiểm Định Cổng 5</strong>
+                  <span class="badge-status warning">Human Loop ➔</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);">Rà soát ca VIP vượt trần và hồ sơ thiếu ngân sách.</p>
+              </div>
+
+              <div class="card-enterprise elevated step-card-clickable" onclick="openWorkflowStepModal(7)" title="Click để xem chi tiết Bước 7: Sinh Kịch Bản & Task Khai Thác" style="padding:16px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                  <strong style="color:var(--cyan);">07 · Sinh Kịch Bản & Task Khai Thác</strong>
+                  <span class="badge-status success">Sẵn sàng ➔</span>
+                </div>
+                <p style="font-size:12px; color:var(--text-secondary);">Tạo kịch bản mở đầu cá nhân hóa và lịch trình khai thác thông minh.</p>
+              </div>
+            </div>
+
+            <!-- Real-time Terminal Execution Trace -->
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <div class="terminal-title">
+                  <span style="width:8px; height:8px; border-radius:50%; background:var(--success);"></span>
+                  <span>AI EXECUTION TRACE TERMINAL (REAL-TIME ENGINE LOGS)</span>
+                </div>
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="exportLogsJson()">Xuất Log JSON</button>
+              </div>
+              <div class="terminal-body" id="agentLiveTerminal">
+                <div class="terminal-line"><span class="terminal-time">[10:00:01]</span> <span class="terminal-stage">[PipelineInit]</span> <span>Khởi tạo mô hình AI Agent Nam Việt...</span></div>
+                <div class="terminal-line"><span class="terminal-time">[10:00:02]</span> <span class="terminal-stage">[DataIngestion]</span> <span>Tiếp nhận 700 hồ sơ khách hàng thô từ 3 kênh phân tán.</span></div>
+                <div class="terminal-line"><span class="terminal-time">[10:00:03]</span> <span class="terminal-stage">[Gate3_Format]</span> <span>Kiểm tra định dạng cấu trúc Cổng 3: 12/12 cột hợp lệ ✓</span></div>
+                <div class="terminal-line"><span class="terminal-time">[10:00:04]</span> <span class="terminal-stage">[EntityResolution]</span> <span>Phát hiện 162 hồ sơ trùng lặp (Alias/MST/Domain). Khử trùng hoàn tất.</span></div>
+                <div class="terminal-line"><span class="terminal-time">[10:00:05]</span> <span class="terminal-stage">[GoldenRecord]</span> <span>Tạo thành công 538 Golden Records duy nhất.</span></div>
+                <div class="terminal-line"><span class="terminal-time">[10:00:06]</span> <span class="terminal-stage">[LeadScoring]</span> <span>Phân loại: 204 Hot P1, 188 Warm P2, 108 Cold P3, 38 Non-fit P4.</span></div>
+                <div class="terminal-line"><span class="terminal-time">[10:00:07]</span> <span class="terminal-stage">[OutreachPrep]</span> <span>Đã hoàn tất phân hạng và sẵn sàng kịch bản khai thác cho 538 khách hàng.</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+<section class="view-section" id="sec-import">
+          <div class="card-enterprise">
+            <!-- Header Row -->
+            <div class="card-header-row" style="margin-bottom: 20px;">
+              <div class="card-title-group">
+                <h2 class="card-title" style="display: flex; align-items: center; gap: 10px;">
+                  <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; color: var(--cyan);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                  </div>
+                  <div>
+                    <span style="font-size: 19px; font-weight: 800; color: #1E293B;">Cổng 3 · Universal Data Validation & Intelligent Schema Detection</span>
+                    <span class="card-subtitle" style="display: block; font-size: 12.5px; color: var(--text-secondary); margin-top: 2px;">
+                      Tiếp nhận đa lĩnh vực: Tự động phát hiện cấu trúc bảng, nhận diện Schema & Domain (Sales, HR, Finance, Marketing, B2B...)
+                    </span>
+                  </div>
+                </h2>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span class="badge-status success" id="gate3StatusBadge">CỔNG 3: READY (UNIVERSAL MODE)</span>
+              </div>
+            </div>
+
+            <!-- PHẦN 2: PROCESSING MODE SELECTOR (CHỌN CHẾ ĐỘ XỬ LÝ) -->
+            <div style="margin-bottom: 22px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <label style="font-size: 13.5px; font-weight: 700; color: #E2E8F0; display: flex; align-items: center; gap: 6px;">
+                  <span>⚙️ CHỌN CHẾ ĐỘ XỬ LÝ (PROCESSING MODE):</span>
+                </label>
+                <span style="font-size: 12px; color: var(--cyan); font-weight: 600;">Mặc định: Universal Data Intelligence</span>
+              </div>
+              <div class="mode-selector-grid">
+                <!-- CARD 1: UNIVERSAL DATA INTELLIGENCE (DEFAULT) -->
+                <div class="mode-card active" id="modeCardUniversal" onclick="setProcessingMode('UNIVERSAL')">
+                  <div>
+                    <div class="mode-card-header">
+                      <div class="mode-card-title">
+                        <span style="color: var(--cyan); font-size: 18px;">🌐</span>
+                        <span>UNIVERSAL DATA INTELLIGENCE</span>
+                      </div>
+                      <span class="badge-status success" style="font-size: 10px; padding: 2px 6px;">MẶC ĐỊNH</span>
+                    </div>
+                    <div class="mode-card-desc">
+                      Phân tích dữ liệu đa lĩnh vực. Tự động nhận diện cấu trúc, thống kê và không ép theo bất kỳ nghiệp vụ cố định nào.
+                    </div>
+                  </div>
+                  <div class="mode-card-features">
+                    <span class="mode-tag">✓ Không bắt buộc 12 trường</span>
+                    <span class="mode-tag">✓ Bảo toàn 100% cột gốc</span>
+                    <span class="mode-tag">✓ Thống kê số học & Tần suất</span>
+                    <span class="mode-tag">✓ Hỗ trợ Sales, HR, Finance...</span>
+                  </div>
+                </div>
+
+                <!-- CARD 2: B2B LEAD INTELLIGENCE -->
+                <div class="mode-card" id="modeCardB2B" onclick="setProcessingMode('B2B')">
+                  <div>
+                    <div class="mode-card-header">
+                      <div class="mode-card-title">
+                        <span style="color: var(--primary); font-size: 18px;">🏢</span>
+                        <span>B2B LEAD INTELLIGENCE</span>
+                      </div>
+                      <span class="badge-status info" style="font-size: 10px; padding: 2px 6px;">CHUYÊN SÂU NAM VIỆT</span>
+                    </div>
+                    <div class="mode-card-desc">
+                      Phân tích dữ liệu khách hàng doanh nghiệp, chuẩn hóa Lead theo 12 trường và phân hạng tiềm năng ICP tự động.
+                    </div>
+                  </div>
+                  <div class="mode-card-features">
+                    <span class="mode-tag">✓ Ánh xạ 12 trường chuẩn</span>
+                    <span class="mode-tag">✓ Lọc trùng Golden Record</span>
+                    <span class="mode-tag">✓ Chấm điểm ICP (0-100)</span>
+                    <span class="mode-tag">✓ Phân bổ SLA 15 phút</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PHẦN 1: UPLOAD ZONE (KHU VỰC TẢI TỆP TRỰC TIẾP & KÉO THẢ) -->
+            <div class="universal-upload-zone" id="universalDropZone">
+              <input type="file" id="universalFileInput" accept=".csv,.xlsx,.xls,.json" style="display:none;" onchange="handleDirectFileUpload(this.files[0])" />
+              <div style="font-size: 38px; margin-bottom: 8px;">📤</div>
+              <h3 style="font-size: 17px; font-weight: 700; color: #F1F5F9; margin: 0 0 4px 0;">Upload Your Dataset</h3>
+              <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 16px 0;">
+                AI tự động nhận diện cấu trúc, phân loại lĩnh vực và phân tích dữ liệu của bạn.
+              </p>
+              <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
+                <button type="button" class="btn-ai btn-ai-primary" onclick="document.getElementById('universalFileInput').click()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                  <span>Chọn Tệp Từ Máy Tính (Browse Files)</span>
+                </button>
+                <button type="button" class="btn-ai btn-ai-secondary" onclick="openDataImportModal()">
+                  <span>📥 Nạp Qua Google Sheets</span>
+                </button>
+              </div>
+              <div style="font-size: 11.5px; color: #94A3B8;">
+                Hỗ trợ định dạng: <code style="color:var(--cyan);">.CSV</code>, <code style="color:var(--cyan);">.XLSX</code>, <code style="color:var(--cyan);">.XLS</code>, <code style="color:var(--cyan);">.JSON</code> · Dung lượng tối đa: 50MB
+              </div>
+            </div>
+
+            <!-- QUICK TEST SUITE TOOLBAR (12 BỘ TEST ĐA DẠNG) -->
+            <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+                <div style="font-size: 13px; font-weight: 700; color: #1E293B; display: flex; align-items: center; gap: 8px;">
+                  <span>🧪 BỘ DỮ LIỆU KIỂM THỬ CỔNG 3 (AUTOMATED TEST SUITE):</span>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="downloadExcelTemplate()" title="Tải xuống tệp Excel mẫu chuẩn 12 trường">
+                    📊 Tải Mẫu Excel (.xlsx)
+                  </button>
+                  <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="downloadCsvTemplate()" title="Tải xuống tệp CSV UTF-8 mẫu chuẩn 12 trường">
+                    📄 Tải Mẫu CSV (.csv)
+                  </button>
+                  <a href="/NamViet_DuLieuKhuyetThieu_TestDemo.csv" download="NamViet_DuLieuKhuyetThieu_TestDemo.csv" class="btn-ai btn-ai-secondary btn-ai-sm" style="text-decoration:none; font-size:11px;">
+                    📥 Tải 25 Ca Khuyết Thiếu
+                  </a>
+                  <a href="/NamViet_DuLieuTho_TestDemo_ChuaXuLy.csv" download="NamViet_DuLieuTho_TestDemo_ChuaXuLy.csv" class="btn-ai btn-ai-secondary btn-ai-sm" style="text-decoration:none; font-size:11px;">
+                    📥 Tải 30 Ca Test Thô
+                  </a>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <select class="ai-select" id="testSuiteSelectBox" onchange="loadSelectedTestSuiteFile()" style="min-width: 320px; flex: 1;">
+                  <optgroup label="── 1. Dữ liệu Đa Lĩnh Vực (Universal Datasets) ──">
+                    <option value="test_02_sales_data.csv" selected>📊 TEST 2: Sales Data (order_id, product, quantity, revenue, region)</option>
+                    <option value="test_03_hr_data.csv">👥 TEST 3: HR Data (employee_id, name, department, salary, hire_date)</option>
+                    <option value="test_04_marketing_data.csv">🎯 TEST 4: Marketing Data (campaign_id, impressions, clicks, cost)</option>
+                    <option value="test_05_finance_data.csv">💰 TEST 5: Finance Data (transaction_id, category, amount, account)</option>
+                    <option value="test_09_unknown_dataset.csv">🌐 TEST 9: Unknown / General Dataset (feature_alpha, metric_gamma...)</option>
+                    <option value="test_12_large_dataset.csv">⚡ TEST 12: Large Dataset (2,000 dòng kiểm thử hiệu năng)</option>
+                  </optgroup>
+                  <optgroup label="── 2. Dữ liệu Khách Hàng B2B Nam Việt ──">
+                    <option value="test_01_b2b_lead.csv">🏢 TEST 1: B2B Lead Data (Đầy đủ 12 trường chuẩn B2B)</option>
+                    <option value="NamViet_DuLieuKhuyetThieu_TestDemo.csv">⚠️ 25 Ca Khuyết Thiếu (Test Zero Hallucination)</option>
+                    <option value="NamViet_DuLieuTho_TestDemo_ChuaXuLy.csv">🧪 30 Ca Test Thô (Bẫy, Trùng, Thiếu TT, Tranh chấp)</option>
+                    <option value="leads700">🚀 Nam Việt 700 Leads (~700 hồ sơ SME tuần)</option>
+                    <option value="leads20">⚡ Nam Việt 20 Ca Mẫu Cốt Lõi</option>
+                  </optgroup>
+                  <optgroup label="── 3. Ca Kiểm Thử Bẫy Lỗi (Edge Cases & Errors) ──">
+                    <option value="test_06_empty_file.csv">🚫 TEST 6: Empty File (0 Byte File Test)</option>
+                    <option value="test_07_header_only.csv">📄 TEST 7: Header Only (0 Data Rows Test)</option>
+                    <option value="test_08_corrupted_file.csv">💥 TEST 8: Corrupted File (Tệp nhị phân hỏng)</option>
+                    <option value="test_10_mixed_data_types.csv">🔀 TEST 10: Mixed Data Types (Cột lẫn lộn số và chữ)</option>
+                    <option value="test_11_duplicate_data.csv">📑 TEST 11: Duplicate Data (Trùng lặp 100%)</option>
+                  </optgroup>
+                </select>
+
+                <button type="button" class="btn-ai btn-ai-primary" onclick="loadSelectedTestSuiteFile()" style="font-weight: 700;">
+                  <span>⚡ Nạp & Phân Tích Cổng 3</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- PHẦN 5: VALIDATION RESULT BANNER (THÔNG BÁO KẾT QUẢ ĐA TẦNG) -->
+            <div id="universalValidationBanner" style="margin-bottom: 20px;">
+              <!-- Dynamic Banner populated by JS -->
+            </div>
+
+            <!-- PHẦN 3: AI SCHEMA DETECTION & DATA PROFILING CARD -->
+            <div class="card-enterprise elevated" id="schemaDetectionSection" style="padding: 20px 22px; margin-bottom: 20px; border: 1px solid #E2E8F0; border-radius: 14px; background: #FFFFFF; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+                <div>
+                  <h4 style="font-size: 16px; font-weight: 800; color: #1E293B; display: flex; align-items: center; gap: 8px; margin: 0 0 3px 0;">
+                    <span>🔍 AI SCHEMA DETECTION & DATA PROFILING</span>
+                  </h4>
+                  <span style="font-size: 12.5px; color: var(--text-secondary);" id="schemaFileInfoText">
+                    Tự động nhận diện cấu trúc và trích xuất dữ liệu đa trường.
+                  </span>
+                </div>
+                <div id="detectedDomainBadgeContainer">
+                  <span class="badge-status success" id="detectedDomainBadge" style="font-size: 12.5px; padding: 6px 12px;">
+                    📊 Lĩnh Vực: Đang phân tích...
+                  </span>
+                </div>
+              </div>
+
+              <!-- 6 Metric KPI Counters -->
+              <div class="schema-metric-grid">
+                <div class="schema-metric-card">
+                  <div class="schema-metric-val" id="schemaTotalRows" style="color:var(--cyan);">0</div>
+                  <div class="schema-metric-lbl">Tổng số dòng (Rows)</div>
+                </div>
+                <div class="schema-metric-card">
+                  <div class="schema-metric-val" id="schemaTotalCols" style="color:#A78BFA;">0</div>
+                  <div class="schema-metric-lbl">Tổng số cột (Cols)</div>
+                </div>
+                <div class="schema-metric-card">
+                  <div class="schema-metric-val" id="schemaCompleteness" style="color:var(--success);">100%</div>
+                  <div class="schema-metric-lbl">Độ đầy đủ (Completeness)</div>
+                </div>
+                <div class="schema-metric-card">
+                  <div class="schema-metric-val" id="schemaDuplicates" style="color:#FBBF24;">0</div>
+                  <div class="schema-metric-lbl">Bản ghi trùng lặp</div>
+                </div>
+                <div class="schema-metric-card">
+                  <div class="schema-metric-val" id="schemaTypeDist" style="font-size: 15px; color:#1E293B;">--</div>
+                  <div class="schema-metric-lbl">Phân bổ kiểu dữ liệu</div>
+                </div>
+                <div class="schema-metric-card">
+                  <div class="schema-metric-val" id="schemaQualityScore" style="color:var(--success);">95/100</div>
+                  <div class="schema-metric-lbl">Điểm chất lượng (Data Score)</div>
+                </div>
+              </div>
+
+              <!-- Domain Evidence & Quality Warnings -->
+              <div id="schemaQualityIssuesContainer" style="margin-top: 10px;"></div>
+            </div>
+
+            <!-- PHẦN 4: INTELLIGENT COLUMN MAPPING TABLE -->
+            <div class="card-enterprise elevated" id="columnMappingSection" style="padding: 20px 22px; margin-bottom: 20px; border: 1px solid #E2E8F0; border-radius: 14px; background: #FFFFFF; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;">
+                <div>
+                  <h4 style="font-size: 15px; font-weight: 700; color: #F1F5F9; margin: 0 0 2px 0;">
+                    BẢNG ÁNH XẠ Ý NGHĨA CỘT (INTELLIGENT COLUMN MAPPING)
+                  </h4>
+                  <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">
+                    AI tự động đề xuất ý nghĩa cho từng cột. Bạn có thể chỉnh sửa tên chuẩn hóa và kiểu dữ liệu trước khi phân tích.
+                  </p>
+                </div>
+                <button type="button" class="btn-ai btn-ai-outline btn-ai-sm" onclick="resetToAutoMapping()">
+                  <span>↺ Khôi Phục Tự Động</span>
+                </button>
+              </div>
+
+              <div class="table-responsive-wrapper" style="max-height: 380px;">
+                <table class="mapping-table" id="universalMappingTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 22%;">Tên Cột Gốc</th>
+                      <th style="width: 25%;">Ý Nghĩa Đề Xuất (Semantic)</th>
+                      <th style="width: 18%;">Kiểu Dữ Liệu</th>
+                      <th style="width: 15%;">Mẫu Dữ Liệu</th>
+                      <th style="width: 20%;">Độ Tin Cậy / Trạng Thái</th>
+                    </tr>
+                  </thead>
+                  <tbody id="universalMappingTbody">
+                    <!-- Populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- PHẦN 6: ACTION BUTTONS TOOLBAR -->
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 22px;">
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="btn-ai btn-ai-secondary" onclick="scrollToPreviewTable()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span>Xem Trước Bảng Dữ Liệu (Preview)</span>
+                </button>
+                <button type="button" class="btn-ai btn-ai-outline" onclick="confirmSchemaMapping()">
+                  <span>✓ Xác Nhận Cấu Trúc Schema</span>
+                </button>
+                <button type="button" class="btn-ai btn-ai-secondary" onclick="exportValidationReport()">
+                  <span>📥 Xuất Báo Cáo Kiểm Định (JSON)</span>
+                </button>
+              </div>
+
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <button type="button" class="btn-ai btn-ai-primary" id="btnRunAnalysisAction" onclick="triggerRunUniversalOrB2BAnalysis()" style="font-size: 14px; padding: 10px 20px; font-weight: 800;">
+                  <span id="runAnalysisButtonText">🚀 Chạy Phân Tích Dữ Liệu (Universal) ➔</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- PHẦN 7: UNIVERSAL ANALYTICS VIEW (CHỈ HIỂN THỊ KHI CHẾ ĐỘ UNIVERSAL HOẠT ĐỘNG) -->
+            <div class="card-enterprise elevated" id="universalAnalyticsCard" style="padding: 20px 22px; margin-bottom: 24px; border: 1px solid #E2E8F0; border-radius: 14px; background:#FFFFFF; box-shadow:0 4px 16px rgba(0,0,0,0.03); display: none;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+                <div>
+                  <h4 style="font-size: 16px; font-weight: 800; color: #1E293B; display: flex; align-items: center; gap: 8px; margin: 0 0 3px 0;">
+                    <span>📊 TỔNG QUAN PHÂN TÍCH THỐNG KÊ (UNIVERSAL ANALYTICS)</span>
+                  </h4>
+                  <span style="font-size: 12.5px; color: var(--text-secondary);">
+                    Thống kê tự động đa chiều cho các cột số học và danh mục mà không ép buộc theo nghiệp vụ B2B.
+                  </span>
+                </div>
+                <span class="badge-status success" id="analyticsDomainBadge">PHÂN TÍCH ĐA NĂNG</span>
+              </div>
+
+              <!-- Thống kê số học -->
+              <div style="margin-bottom: 18px;">
+                <h5 style="font-size: 13.5px; font-weight: 700; color: var(--cyan); margin-bottom: 10px;">
+                  1. Thống Kê Số Học Cốt Lõi (Numeric Metrics)
+                </h5>
+                <div class="table-responsive-wrapper">
+                  <table class="mapping-table" id="analyticsNumericTable">
+                    <thead>
+                      <tr>
+                        <th>Trường Dữ Liệu</th>
+                        <th>Giá Trị Nhỏ Nhất (Min)</th>
+                        <th>Giá Trị Lớn Nhất (Max)</th>
+                        <th>Trung Bình (Avg)</th>
+                        <th>Tổng Cộng (Sum)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="analyticsNumericTbody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Thống kê phân loại danh mục -->
+              <div>
+                <h5 style="font-size: 13.5px; font-weight: 700; color: #A78BFA; margin-bottom: 10px;">
+                  2. Phân Bổ Tần Suất Danh Mục Hàng Đầu (Top Categories)
+                </h5>
+                <div id="analyticsCategoryContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;"></div>
+              </div>
+            </div>
+
+            <!-- ==============================================================
+                 KHỐI: KIỂM TRA NGUỒN DỮ LIỆU (Bối cảnh doanh nghiệp & Trao đổi AI)
+                 Thiết kế chuẩn xác đồng bộ Dark AI Enterprise Style
+                 ============================================================== -->
+            <div class="source-check-wrapper card-enterprise elevated" style="margin-bottom: 24px; padding: 24px 26px; border: 1px solid #E2E8F0; border-radius: 14px; background: #FFFFFF; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+              <div style="margin-bottom: 18px;">
+                <h3 style="font-size: 19px; font-weight: 700; color: #1E293B; display: flex; align-items: center; gap: 8px; margin: 0 0 4px 0;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <span>Kiểm tra nguồn dữ liệu</span>
+                </h3>
+                <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">
+                  Kiểm tra bối cảnh, từng bảng và cách đọc tiêu đề trước khi làm sạch.
+                </p>
+              </div>
+
+              <!-- CARD 1: Bối cảnh doanh nghiệp -->
+              <div class="card-enterprise source-check-subcard" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px 22px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px;">
+                  <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: #34D399; flex-shrink: 0; margin-top: 2px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  </div>
+                  <div>
+                    <h4 style="font-size: 15px; font-weight: 700; color: #1E293B; margin: 0 0 3px 0;">Bối cảnh doanh nghiệp</h4>
+                    <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0;">Câu hỏi của bạn định hướng việc chọn chỉ số và đọc kết quả.</p>
+                  </div>
+                </div>
+
+                <!-- Trường 1: Loại hình doanh nghiệp -->
+                <div style="margin-bottom: 16px;">
+                  <label for="businessTypeInput" style="display: block; font-size: 12.5px; font-weight: 600; color: #334155; margin-bottom: 6px;">
+                    Loại hình doanh nghiệp <span style="color: #EF4444;">*</span>
+                  </label>
+                  <input type="text" id="businessTypeInput" value="Bán lẻ đa kênh" style="background: #FFFFFF; border: 1.5px solid #10B981; border-radius: 8px; color: #1E293B; font-size: 13.5px; padding: 10px 14px; width: 100%; box-shadow: 0 0 0 1px rgba(16,185,129,0.25); outline: none; transition: border-color 0.2s;" />
+                </div>
+
+                <!-- Trường 2: Thông tin bổ sung -->
+                <div style="margin-bottom: 16px;">
+                  <label for="businessExtraInfo" style="display: block; font-size: 12.5px; font-weight: 600; color: #334155; margin-bottom: 6px;">
+                    Thông tin bổ sung <span style="font-weight: normal; color: var(--text-muted); font-size: 11.5px;">· không bắt buộc</span>
+                  </label>
+                  <textarea id="businessExtraInfo" rows="2" placeholder="Ví dụ: Hai chi nhánh, đang đánh giá hiệu quả quý I" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; color: #1E293B; font-size: 13px; padding: 9px 12px; width: 100%; resize: vertical; outline: none;"></textarea>
+                </div>
+
+                <!-- Trường 3: Vấn đề cần phân tích -->
+                <div>
+                  <label for="businessQuestionsInput" style="display: block; font-size: 12.5px; font-weight: 600; color: #334155; margin-bottom: 6px;">
+                    Vấn đề cần phân tích <span style="color: #EF4444;">*</span>
+                  </label>
+                  <textarea id="businessQuestionsInput" rows="3" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; color: #1E293B; font-size: 13px; line-height: 1.6; padding: 9px 12px; width: 100%; resize: vertical; outline: none;">Doanh thu theo kênh nào cao nhất?&#10;Chi phí theo chiến dịch nào cao nhất?</textarea>
+                  <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 5px;">Nhập tối đa 8 câu hỏi, mỗi câu một dòng.</div>
+                </div>
+              </div>
+
+              <!-- CARD 2: Trao đổi yêu cầu với AI -->
+              <div class="card-enterprise source-check-subcard" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;">
+                  <div>
+                    <h4 style="font-size: 15px; font-weight: 700; color: #1E293B; margin: 0 0 3px 0;">Trao đổi yêu cầu với AI</h4>
+                    <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0;">Xem cách AI hiểu yêu cầu và bổ sung thông tin trước khi phân tích.</p>
+                  </div>
+                  <button type="button" class="btn-ai btn-ai-outline btn-ai-sm scope-review-btn" onclick="reviewScopeWithAI()" style="font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 7px 15px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>✧ Xem lại phạm vi</span>
+                  </button>
+                </div>
+
+                <!-- Alert bar -->
+                <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-left: 3.5px solid #F59E0B; padding: 10px 14px; border-radius: 6px; font-size: 12.5px; color: #B45309; margin-bottom: 18px;">
+                  Nguồn đã thay đổi. Xem lại phạm vi với các cột mới trước khi tiếp tục.
+                </div>
+
+                <!-- Section: Tôi hiểu yêu cầu của bạn -->
+                <div style="margin-bottom: 18px;">
+                  <h5 style="font-size: 13.5px; font-weight: 700; color: #1E293B; margin: 0 0 6px 0;">Tôi hiểu yêu cầu của bạn</h5>
+                  <p id="aiUnderstandText" style="font-size: 13px; color: #475569; line-height: 1.6; margin: 0;">
+                    Bạn muốn phân tích Bán lẻ đa kênh qua 2 câu hỏi. Trọng tâm đầu tiên là “Doanh thu theo kênh nào cao nhất?”.
+                  </p>
+                </div>
+
+                <!-- Section: Góc nhìn đề xuất bổ sung -->
+                <div style="margin-bottom: 20px;">
+                  <h5 style="font-size: 13.5px; font-weight: 700; color: #1E293B; margin: 0 0 8px 0;">Góc nhìn đề xuất bổ sung</h5>
+                  <ul id="aiSuggestedPerspectives" style="margin: 0; padding-left: 18px; font-size: 13px; color: #475569; line-height: 1.6;">
+                    <li>So sánh kỳ mới nhất với kỳ trước trên cùng phạm vi và xác định nhóm đóng góp vào thay đổi.</li>
+                    <li>Xem thêm lợi nhuận hoặc biên lợi nhuận nếu doanh thu và chi phí cùng phạm vi, đơn vị và định nghĩa.</li>
+                  </ul>
+                </div>
+
+                <!-- Section: Câu hỏi cần làm rõ -->
+                <div>
+                  <h5 style="font-size: 13.5px; font-weight: 700; color: #1E293B; margin: 0 0 12px 0;">Câu hỏi cần làm rõ</h5>
+
+                  <!-- Q1 -->
+                  <div style="margin-bottom: 14px;">
+                    <label for="aiClarifyQ1" style="display: block; font-size: 12.5px; font-weight: 600; color: #334155; margin-bottom: 5px;">
+                      Bạn muốn xem toàn bộ dữ liệu hay tập trung vào tháng hoặc quý nào?
+                    </label>
+                    <textarea id="aiClarifyQ1" rows="2" placeholder="Nhập câu trả lời nếu đã xác định" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; color: #1E293B; font-size: 12.5px; padding: 8px 12px; width: 100%; resize: vertical; outline: none;"></textarea>
+                  </div>
+
+                  <!-- Q2 -->
+                  <div style="margin-bottom: 14px;">
+                    <label for="aiClarifyQ2" style="display: block; font-size: 12.5px; font-weight: 600; color: #334155; margin-bottom: 5px;">
+                      Bạn sẽ dùng báo cáo để ra quyết định gì và chỉ số nào cần ưu tiên?
+                    </label>
+                    <textarea id="aiClarifyQ2" rows="2" placeholder="Nhập câu trả lời nếu đã xác định" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; color: #1E293B; font-size: 12.5px; padding: 8px 12px; width: 100%; resize: vertical; outline: none;"></textarea>
+                  </div>
+
+                  <!-- Q3 -->
+                  <div style="margin-bottom: 14px;">
+                    <label for="aiClarifyQ3" style="display: block; font-size: 12.5px; font-weight: 600; color: #334155; margin-bottom: 5px;">
+                      Bạn muốn so với kỳ trước, mục tiêu hay một nhóm cụ thể? Nếu có mục tiêu, giá trị và đơn vị là gì?
+                    </label>
+                    <textarea id="aiClarifyQ3" rows="2" placeholder="Nhập câu trả lời nếu đã xác định" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; color: #1E293B; font-size: 12.5px; padding: 8px 12px; width: 100%; resize: vertical; outline: none;"></textarea>
+                  </div>
+
+                  <!-- Q4 -->
+                  <div style="margin-bottom: 8px;">
+                    <label for="aiClarifyQ4" style="display: block; font-size: 12.5px; font-weight: 600; color: #334155; margin-bottom: 5px;">
+                      Các bộ dữ liệu có cùng thời gian và đơn vị đo không? Nếu cần đối chiếu giữa các bộ, trường nào liên kết được chúng?
+                    </label>
+                    <textarea id="aiClarifyQ4" rows="2" placeholder="Nhập câu trả lời nếu đã xác định" style="background: #FFFFFF; border: 1.5px solid #CBD5E1; border-radius: 8px; color: #1E293B; font-size: 12.5px; padding: 8px 12px; width: 100%; resize: vertical; outline: none;"></textarea>
+                  </div>
+
+                  <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
+                    Câu trả lời giúp xác định phạm vi phân tích.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Preview Data Table -->
+            <div class="card-header-row" style="margin-bottom:12px;">
+              <div class="card-title-group">
+                <h3 class="card-title">
+                  <span id="tablePreviewName">Nam Việt Leads 700</span>
+                  <span class="preview-table-stats" id="tablePreviewStats" style="font-size:12px; font-weight:normal; color:var(--text-secondary); margin-left:8px;">700 dòng nguồn · 12 cột</span>
+                </h3>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <label style="display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--text-secondary); cursor:pointer;">
+                  <input type="checkbox" id="chkUseFirstRowHeader" checked />
+                  <span>Dòng đầu là tiêu đề</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="table-responsive-wrapper" style="max-height:480px;">
+              <table class="table-enterprise" id="studioPreviewTable">
+                <thead id="studioPreviewThead"></thead>
+                <tbody id="studioPreviewTbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+<section class="view-section" id="sec-logs">
+          <div class="card-enterprise">
+            <div class="card-header-row">
+              <div class="card-title-group">
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                  <span>Nhật Ký Thực Thi Thời Gian Thực (Audit Trail)</span>
+                </h2>
+                <span class="card-subtitle">Minh chứng thực tế các quyết định khử trùng, chấm điểm và điều phối của AI Agent</span>
+              </div>
+              <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="exportLogsJson()">
+                <span>Xuất File JSON</span>
+              </button>
+            </div>
+
+            <div class="table-responsive-wrapper" style="max-height:560px;">
+              <table class="table-enterprise">
+                <thead>
+                  <tr>
+                    <th>Thời Gian</th>
+                    <th>Mã Audit</th>
+                    <th>Giai Đoạn</th>
+                    <th>Thực Thể / Công Ty</th>
+                    <th>Hành Động</th>
+                    <th>Chi Tiết Quyết Định</th>
+                    <th>Tác Nhân</th>
+                  </tr>
+                </thead>
+                <tbody id="auditLogTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+          <!-- Page 2 Footer CTA Banner -->
+          <div style="background:linear-gradient(135deg, #222736 0%, #171A24 100%); border-radius:24px; padding:28px 32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-top:24px;">
+            <div>
+              <h3 style="font-size:18px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">Đã Kiểm Tra Xong Nguồn Dữ Liệu?</h3>
+              <p style="font-size:13px; color:#94A3B8; margin:0;">Kích hoạt AI Agent để tự động hóa toàn bộ 7 bước và chuyển sang Dashboard KPI điều hành.</p>
+            </div>
+            <button type="button" class="btn-start-orange" style="font-size:13px; padding:10px 24px;" onclick="triggerRunAiPipeline(); switchPage(3);">
+              <span>⚡ Kích Hoạt & Xem Dashboard KPI (Trang 3)</span>
+              <span>➔</span>
+            </button>
+          </div>
+        </div>
+        <!-- ==============================================================
+             PAGE 3: PHÂN TÍCH DỮ LIỆU & DASHBOARD KPI
+             ============================================================== -->
+        <div id="pageDashboard" class="app-page-section">
+          <!-- Page 3 Header Banner -->
+          <div class="card-enterprise" style="margin-bottom:20px; padding:20px 24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <h2 style="font-size:22px; font-weight:700; color:#222736; display:flex; align-items:center; gap:10px;">
+                  <span style="color:#FF2A85;">📊</span> 03 · Báo Cáo Kinh Doanh & Dashboard KPI Điều Hành
+                </h2>
+                <p style="font-size:13px; color:#64748B; margin-top:3px;">
+                  Số liệu trực quan hóa động tính toán chính xác 100% theo tệp dữ liệu nạp vào và kỳ báo cáo
+                </p>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button type="button" class="btn-ai btn-ai-outline btn-ai-sm" onclick="switchPage(2)">❮ Trang 2: Luồng Phân Tích</button>
+                <button type="button" class="btn-download-pill" onclick="downloadReportDoc()"><span>DOWNLOAD WORD</span> <span class="arrow-pink">⬇</span></button>
+              </div>
+            </div>
+          </div>
+<section class="view-section" id="sec-reports">
+          <div class="card-enterprise">
+            <div class="card-header-row">
+              <div class="card-title-group">
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                  <span>Báo Cáo Điều Hành & Xuất Bản Kết Quả (C-Level Report)</span>
+                </h2>
+                <span class="card-subtitle">Xuất bản hồ sơ nghiệm thu báo cáo dự án AI301 sang Word (.doc), Markdown (.md) và in PDF</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="btnDownloadReportDoc" onclick="downloadReportDoc()">
+                  <span>📄 Xuất Word (.doc)</span>
+                </button>
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="btnDownloadReportMd" onclick="downloadReportMd()">
+                  <span>📝 Xuất Markdown (.md)</span>
+                </button>
+                <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" id="btnDownloadReportPdf" onclick="downloadReportPdf()">
+                  <span>🖨 In / Lưu PDF</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Report Document Body -->
+            <div class="card-enterprise elevated" id="reportDocumentContent" style="padding:28px 36px; line-height:1.7;">
+              <!-- Dynamically populated by renderExecutiveReport -->
+            </div>
+          </div>
+        </section>
+<section class="view-section active" id="sec-overview">
+          <!-- Hero Section -->
+          <div class="hero-banner-card">
+            <div class="hero-banner-content">
+              <div>
+                <div class="hero-badge-tag">
+                  <span class="status-dot-pulse"></span>
+                  <span>AI LEAD INTELLIGENCE SYSTEM</span>
+                </div>
+                <h1 class="hero-title">AI Lead Intelligence Dashboard</h1>
+                <p class="hero-subtitle">
+                  Transform fragmented customer data into actionable business intelligence. Hệ thống tự động hợp nhất thực thể doanh nghiệp, loại bỏ 162 cuộc gọi trùng lặp và phân hạng tiềm năng chính xác theo ICP.
+                </p>
+                <div class="hero-actions-row">
+                  <button type="button" class="btn-ai btn-ai-primary" onclick="switchNavSection('sec-import')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span>Nạp Dữ Liệu Nguồn</span>
+                  </button>
+
+                  <button type="button" class="btn-ai btn-ai-secondary" onclick="triggerRunAiPipeline()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>Kích Hoạt AI Agent</span>
+                  </button>
+
+                  <button type="button" class="btn-ai btn-ai-outline" onclick="switchNavSection('sec-customers')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Xem 538 Golden Records</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Quick Meta Box -->
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:var(--radius-md); padding:16px 20px; min-width:240px; display:flex; flex-direction:column; gap:8px;">
+                <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase;">TRẠNG THÁI MÔ HÌNH</div>
+                <div style="font-size:14px; font-weight:800; color:#1E293B; display:flex; align-items:center; gap:8px;">
+                  <span style="color:var(--success);">●</span> NamViet Rule + Heuristic
+                </div>
+                <div style="font-size:12px; color:var(--text-muted); border-top:1px solid #E2E8F0; padding-top:8px;">
+                  Tốc độ xử lý: <strong style="color:var(--cyan);" id="headerProcSpeed">0.85s / 700 Leads</strong>
+                </div>
+                <div style="font-size:12px; color:var(--text-muted);">
+                  Tỷ lệ làm sạch: <strong style="color:var(--success);">100%</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 KPI METRICS GRID -->
+          <div class="kpi-grid-6">
+            <div class="kpi-card accent-primary">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">Tổng Leads Đầu Vào</span>
+                <div class="kpi-card-icon">⚡</div>
+              </div>
+              <div class="kpi-card-value" id="kpiBigRawVal">700</div>
+              <div class="kpi-card-sub" id="kpiBigRawSub">Hội thảo, Web & Quảng cáo</div>
+            </div>
+
+            <div class="kpi-card accent-cyan">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">Golden Records Sạch</span>
+                <div class="kpi-card-icon">💎</div>
+              </div>
+              <div class="kpi-card-value" id="kpiBigGolden">538</div>
+              <div class="kpi-card-sub">Hồ sơ thực thể hợp nhất</div>
+            </div>
+
+            <div class="kpi-card accent-danger">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">Trùng Lặp Triệt Tiêu</span>
+                <div class="kpi-card-icon">🛡️</div>
+              </div>
+              <div class="kpi-card-value" id="kpiCleanRemoved">162</div>
+              <div class="kpi-card-sub">Tránh gọi trùng & xung đột</div>
+            </div>
+
+            <div class="kpi-card accent-warning">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">Thiếu Thông Tin</span>
+                <div class="kpi-card-icon">⚠️</div>
+              </div>
+              <div class="kpi-card-value" id="kpiCleanEmptyCells">84</div>
+              <div class="kpi-card-sub">Cần bổ sung qua vòng lặp AI</div>
+            </div>
+
+            <div class="kpi-card accent-purple">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">Lead Ưu Tiên Cao (P1)</span>
+                <div class="kpi-card-icon">🔥</div>
+              </div>
+              <div class="kpi-card-value" id="kpiBigFit">204</div>
+              <div class="kpi-card-sub">Cam kết SLA tiếp cận 4 giờ</div>
+            </div>
+
+            <div class="kpi-card accent-success">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">Sẵn Sàng Khai Thác</span>
+                <div class="kpi-card-icon">🎯</div>
+              </div>
+              <div class="kpi-card-value" id="kpiBigAction">538</div>
+              <div class="kpi-card-sub">Hồ sơ chuẩn hóa đã sẵn sàng</div>
+            </div>
+          </div>
+
+          <!-- 6-STAGE PIPELINE VISUALIZATION -->
+          <div class="pipeline-flow-container">
+            <div class="card-header-row">
+              <div class="card-title-group">
+                <h3 class="card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Quy Trình Pipeline Thực Thi Của AI Agent</span>
+                </h3>
+                <span class="card-subtitle">Theo sát lưu đồ nghiệp vụ chuẩn hóa, kiểm soát Cổng 3 và Cổng 5 Feedback Loop</span>
+              </div>
+              <span class="badge-status success" id="currentStageBadge">● Đang ở Bước 1: Tiếp nhận dữ liệu</span>
+            </div>
+
+            <div class="pipeline-flow-track">
+              <div class="pipeline-node active" id="wfNode1" onclick="switchNavSection('sec-import')">
+                <div class="pipeline-node-circle" id="wfCircle1">1</div>
+                <span class="pipeline-node-label">Nhập Dữ Liệu</span>
+                <span class="pipeline-node-status">Excel/CSV thô</span>
+              </div>
+              <div class="pipeline-connector active"></div>
+
+              <div class="pipeline-node" id="wfNode2" onclick="switchNavSection('sec-agent')">
+                <div class="pipeline-node-circle" id="wfCircle2">2</div>
+                <span class="pipeline-node-label">Cleaning</span>
+                <span class="pipeline-node-status">Chuẩn hóa dữ liệu</span>
+              </div>
+              <div class="pipeline-connector"></div>
+
+              <div class="pipeline-node" id="wfNodeGate3" onclick="switchNavSection('sec-import')">
+                <div class="pipeline-node-circle" style="border-radius:4px; transform:rotate(45deg);"><span style="transform:rotate(-45deg);">3</span></div>
+                <span class="pipeline-node-label">Cổng 3</span>
+                <span class="pipeline-node-status">Đúng định dạng?</span>
+              </div>
+              <div class="pipeline-connector"></div>
+
+              <div class="pipeline-node" id="wfNode4" onclick="switchNavSection('sec-agent')">
+                <div class="pipeline-node-circle" id="wfCircle4">4</div>
+                <span class="pipeline-node-label">Xử Lý AI Agent</span>
+                <span class="pipeline-node-status">Scoring & Routing</span>
+              </div>
+              <div class="pipeline-connector"></div>
+
+              <div class="pipeline-node" id="wfNodeGate5" onclick="switchNavSection('sec-review')">
+                <div class="pipeline-node-circle" style="border-radius:4px; transform:rotate(45deg);"><span style="transform:rotate(-45deg);">5</span></div>
+                <span class="pipeline-node-label">Cổng 5 Verify</span>
+                <span class="pipeline-node-status">Human-in-the-loop</span>
+              </div>
+              <div class="pipeline-connector"></div>
+
+              <div class="pipeline-node" id="wfNode6" onclick="switchNavSection('sec-customers')">
+                <div class="pipeline-node-circle" id="wfCircle6">6</div>
+                <span class="pipeline-node-label">Trả Lại Kết Quả</span>
+                <span class="pipeline-node-status">Golden Records</span>
+              </div>
+              <div class="pipeline-connector"></div>
+
+              <div class="pipeline-node" id="wfNode7" onclick="switchNavSection('sec-reports')">
+                <div class="pipeline-node-circle" id="wfCircle7">7</div>
+                <span class="pipeline-node-label">Báo Cáo & BI</span>
+                <span class="pipeline-node-status">C-Level Export</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXECUTIVE CHARTS ROW (DUAL SPLINE & DONUT) -->
+          <div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px; margin-bottom:24px;">
+            <!-- Left Spline Chart -->
+            <div class="card-enterprise">
+              <div class="card-header-row">
+                <div class="card-title-group">
+                  <h3 class="card-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+                    <span>Doanh Thu & Cơ Hội Dự Kiến Theo Thời Gian</span>
+                  </h3>
+                  <span class="card-subtitle">Mô hình dự báo doanh số trên 538 Golden Records</span>
+                </div>
+                <div style="display:flex; gap:6px;">
+                  <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="btnPeriodDay" onclick="setChartPeriod('day')">Ngày</button>
+                  <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" id="btnPeriodWeek" onclick="setChartPeriod('week')">Tuần</button>
+                  <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="btnPeriodMonth" onclick="setChartPeriod('month')">Tháng</button>
+                </div>
+              </div>
+
+              <!-- Top Spline KPIs -->
+              <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-bottom:16px;">
+                <div style="background:var(--bg-surface-elevated); padding:10px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-main);">
+                  <div style="font-size:11px; color:var(--text-muted);">TỔNG DOANH THU KỲ VỌNG</div>
+                  <div style="font-size:18px; font-weight:800; color:#1E293B;" id="kpiRevenueNum">14.8 Tỷ</div>
+                  <div style="font-size:11px; color:var(--success);">+18.4% so với trước AI</div>
+                </div>
+                <div style="background:var(--bg-surface-elevated); padding:10px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-main);">
+                  <div style="font-size:11px; color:var(--text-muted);">SỐ CƠ HỘI HỢP LỆ</div>
+                  <div style="font-size:18px; font-weight:800; color:var(--cyan);" id="kpiOrdersNum">538 Đơn</div>
+                  <div style="font-size:11px; color:var(--text-secondary);">Sau loại 162 trùng</div>
+                </div>
+                <div style="background:var(--bg-surface-elevated); padding:10px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-main);">
+                  <div style="font-size:11px; color:var(--text-muted);">LỢI NHUẬN GỘP DỰ KIẾN</div>
+                  <div style="font-size:18px; font-weight:800; color:var(--success);" id="kpiProfitNum">5.92 Tỷ</div>
+                  <div style="font-size:11px; color:var(--text-secondary);">Biên 40% phần mềm</div>
+                </div>
+                <div style="background:var(--bg-surface-elevated); padding:10px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-main);">
+                  <div style="font-size:11px; color:var(--text-muted);">TIẾT KIỆM CHI PHÍ VẬN HÀNH</div>
+                  <div style="font-size:18px; font-weight:800; color:var(--ai-accent);" id="kpiCostNum">32.4 Triệu</div>
+                  <div style="font-size:11px; color:var(--success);">162 cuộc gọi trùng</div>
+                </div>
+              </div>
+
+              <!-- SVG Spline Chart Container -->
+              <div id="splineChartContainer" style="width:100%; height:260px; position:relative;"></div>
+              <div id="splineXAxisContainer" style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); padding-top:8px;"></div>
+              <div id="splineTooltip" style="display:none; position:absolute; background:#172033; border:1px solid var(--primary); padding:6px 12px; border-radius:6px; color:#fff; font-size:12px; pointer-events:none;"></div>
+            </div>
+
+            <!-- Right Donut Status Chart -->
+            <div class="card-enterprise">
+              <div class="card-header-row">
+                <div class="card-title-group">
+                  <h3 class="card-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ai-accent)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Phân Hạng Tiềm Năng (ICP)</span>
+                  </h3>
+                  <span class="card-subtitle">Tỷ lệ phân hạng theo mô hình 4 cấp</span>
+                </div>
+              </div>
+
+              <!-- Donut Visual -->
+              <div style="display:flex; justify-content:center; align-items:center; height:200px; position:relative;">
+                <svg id="donutSvgElement" width="180" height="180" viewBox="0 0 100 100"></svg>
+                <div style="position:absolute; text-align:center;">
+                  <div style="font-size:24px; font-weight:900; color:#1E293B;" id="donutCenterPct">100%</div>
+                  <div style="font-size:11px; color:var(--text-muted);" id="donutCenterSub">538 Leads</div>
+                </div>
+              </div>
+
+              <!-- Donut Legend -->
+              <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                  <span style="display:flex; align-items:center; gap:6px;"><span style="width:8px; height:8px; border-radius:50%; background:#F43F5E;"></span> P1 Hot (Ưu tiên cao)</span>
+                  <strong style="color:#1E293B;" id="legendCompleted">204 (38%)</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                  <span style="display:flex; align-items:center; gap:6px;"><span style="width:8px; height:8px; border-radius:50%; background:#F59E0B;"></span> P2 Warm (Nuôi dưỡng)</span>
+                  <strong style="color:#1E293B;" id="legendShipped">188 (35%)</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                  <span style="display:flex; align-items:center; gap:6px;"><span style="width:8px; height:8px; border-radius:50%; background:#22D3EE;"></span> P3 Cold (Dài hạn)</span>
+                  <strong style="color:#1E293B;" id="legendProcessing">108 (20%)</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px;">
+                  <span style="display:flex; align-items:center; gap:6px;"><span style="width:8px; height:8px; border-radius:50%; background:#64748B;"></span> P4 Non-fit (Loại trừ)</span>
+                  <strong style="color:#1E293B;" id="legendCanceled">38 (7%)</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+<section class="view-section" id="sec-customers">
+          <div class="card-enterprise">
+            <div class="card-header-row">
+              <div class="card-title-group">
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                  <span>Customer Intelligence — Danh Sách Golden Records</span>
+                </h2>
+                <span class="card-subtitle">Hồ sơ khách hàng doanh nghiệp hợp nhất, đã chấm điểm và phân loại hành động</span>
+              </div>
+              <div style="font-size:13px; color:var(--text-secondary);" id="scoringCountLabel">
+                Hiển thị <strong>538</strong> Golden Records
+              </div>
+            </div>
+
+            <!-- Search & Filters Toolbar -->
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; flex-wrap:wrap;">
+              <div class="search-input-wrapper">
+                <input type="text" class="ai-input" id="leadSearchInput" placeholder="🔍 Tìm theo tên công ty, MST, người liên hệ, SĐT, email..." oninput="handleSearchLeads(this.value)" />
+                <button type="button" id="btnClearLeadSearch" onclick="clearLeadSearch()" class="search-clear-btn" title="Xóa tìm kiếm">✕</button>
+              </div>
+
+              <select class="ai-select" id="stageFilterSelect" onchange="handlePriorityFilter(this.value)">
+                <option value="ALL">Mọi Phân Hạng (P1 - P4)</option>
+                <option value="P1">🔥 P1 Hot (Ưu tiên cao)</option>
+                <option value="P2">⚡ P2 Warm (Nuôi dưỡng)</option>
+                <option value="P3">❄️ P3 Cold (Dài hạn)</option>
+                <option value="P4">🚫 P4 Non-fit (Loại trừ)</option>
+              </select>
+
+              <select class="ai-select" id="repFilterSelect" onchange="handleRepFilter(this.value)">
+                <option value="ALL">Tất cả Nhóm Khai Thác</option>
+                <option value="Trần Văn Tuấn">Khu vực Miền Bắc (Senior)</option>
+                <option value="Lê Thị Hà">Khu vực Miền Bắc (Mid)</option>
+                <option value="Nguyễn Hải Nam">Khu vực Miền Bắc (Junior)</option>
+                <option value="Phạm Quốc Bảo">Khu vực Miền Trung (Senior)</option>
+                <option value="Đỗ Ngọc Ánh">Khu vực Miền Trung (Mid)</option>
+                <option value="Hoàng Gia Huy">Khu vực Miền Nam (Senior)</option>
+                <option value="Vũ Thu Phương">Khu vực Miền Nam (Mid)</option>
+                <option value="Bùi Đình Thịnh">Khu vực Miền Nam (Junior)</option>
+              </select>
+
+              <select class="ai-select" id="sortFilterSelect" onchange="handleSortChange(this.value)">
+                <option value="score_desc">🔥 Điểm ICP cao nhất</option>
+                <option value="score_asc">❄️ Điểm ICP thấp nhất</option>
+                <option value="name_asc">🏢 Tên công ty (A-Z)</option>
+                <option value="budget_desc">💰 Ngân sách cao nhất</option>
+              </select>
+
+              <select class="ai-select" id="pageSizeSelect" onchange="setScoringPageSize(this.value)">
+                <option value="15">15 bản ghi / trang</option>
+                <option value="25" selected>25 bản ghi / trang</option>
+                <option value="50">50 bản ghi / trang</option>
+                <option value="ALL">Tất cả bản ghi</option>
+              </select>
+            </div>
+
+            <!-- Golden Records Table -->
+            <div class="table-responsive-wrapper" style="max-height:560px;">
+              <table class="table-enterprise">
+                <thead>
+                  <tr>
+                    <th style="min-width:240px;">Doanh Nghiệp (Pháp Nhân & Alias)</th>
+                    <th style="min-width:300px;">Người Đại Diện & Nhu Cầu</th>
+                    <th style="min-width:180px;">Khớp Sản Phẩm (Fit)</th>
+                    <th style="min-width:180px;">Điểm Số (ICP & SLA)</th>
+                    <th style="min-width:200px;">Định Tuyến Khai Thác</th>
+                    <th style="min-width:160px;">Trạng Thái & Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody id="scoringTableBody"></tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Control Bar -->
+            <div class="pagination-bar" id="scoringPaginationBar">
+              <div style="font-size:12.5px; color:var(--text-secondary);" id="scoringPageSummary">
+                Đang hiển thị 1 - 25 trong tổng số 538 Golden Records
+              </div>
+              <div class="pagination-btns" id="scoringPaginationBtns">
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="btnPageFirst" onclick="setScoringPage(1)" title="Trang đầu">⇤ Đầu</button>
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="btnPagePrev" onclick="changeScoringPage(-1)">❮ Trước</button>
+                <span id="scoringCurrentPageNum" style="font-size:12.5px; font-weight:700; color:#1E293B; padding:0 8px;">Trang 1 / 22</span>
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="btnPageNext" onclick="changeScoringPage(1)">Sau ❯</button>
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" id="btnPageLast" onclick="setScoringPage('LAST')" title="Trang cuối">Cuối ⇥</button>
+              </div>
+            </div>
+          </div>
+        </section>
+<section class="view-section" id="sec-review">
+          <div class="card-enterprise" id="decisionGate5Card">
+            <div class="card-header-row">
+              <div class="card-title-group">
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <span>Cổng 5: Verify Dữ Liệu & Phê Duyệt Quản Lý (Human-in-the-loop)</span>
+                </h2>
+                <span class="card-subtitle">Rà soát các trường hợp vượt thẩm quyền, xung đột địa lý hoặc thiếu thông tin cần bổ sung</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" onclick="handleManagerApprovalAll()">
+                  <span>⚡ Duyệt Nhanh Toàn Bộ Hợp Lệ</span>
+                </button>
+                <button type="button" class="btn-ai btn-ai-outline btn-ai-sm" onclick="openFeedbackModal()">
+                  <span>💬 Feedback & Tinh Chỉnh Trọng Số</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- CỔNG 5 VERIFY GATE BANNER (Theo đúng sơ đồ luồng chuẩn: OK -> Bước 6 & 7; KHÔNG OK -> Feedback & vòng lại) -->
+            <div id="verifyGateContainer" style="margin-bottom:20px;"></div>
+
+            <!-- Escalations Container -->
+            <div id="managerApprovalContainer" style="margin-bottom:20px;"></div>
+
+            <!-- Feedback Loop Panel -->
+            <div class="card-enterprise elevated" id="feedbackAdjustmentPanel">
+              <h4 style="font-size:14px; font-weight:700; color:#1E293B; margin-bottom:8px;">Vòng Lặp Feedback & Điều Chỉnh Trực Tiếp</h4>
+              <p style="font-size:12.5px; color:var(--text-secondary); margin-bottom:12px;">
+                Nhập phản hồi hoặc yêu cầu điều chỉnh từ Trưởng phòng để AI Agent cập nhật ma trận phân loại & định tuyến:
+              </p>
+              <!-- 4 Gợi ý Feedback Nhanh Một Chạm -->
+              <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="applyFeedbackPreset('increaseBudget')">🎯 Tăng Điểm Ngân Sách (+15%)</button>
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="applyFeedbackPreset('balanceLoad')">⚖️ Tối Ưu Phân Bổ Quy Trình (SLA 4h)</button>
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="applyFeedbackPreset('strictTrap')">🛡️ Siết Chặt Bẫy Non-fit Lệch SP</button>
+                <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="applyFeedbackPreset('looseAlias')">🔍 Gom Nhóm Tên Viết Tắt Alias</button>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <input type="text" class="ai-input" id="feedbackCustomInput" placeholder="Ví dụ: Tăng cường ưu tiên các ca giải pháp ERP cho ngành Cơ khí..." onkeydown="if(event.key==='Enter') handleFeedbackSubmit();" />
+                <button type="button" class="btn-ai btn-ai-warning" id="btnSubmitFeedbackAndRerun" onclick="handleFeedbackSubmit()">
+                  <span>Gửi Feedback & Chạy Lại</span>
+                </button>
+              </div>
+              <div id="feedbackHistoryList" style="margin-top:14px;"></div>
+            </div>
+          </div>
+        </section>
+<section class="view-section" id="sec-tasks">
+          <div class="card-enterprise">
+            <div class="card-header-row">
+              <div class="card-title-group">
+                <h2 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2.5"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                  <span>Quản Lý Tác Vụ CRM & Cam Kết SLA Tiếp Cận</span>
+                </h2>
+                <span class="card-subtitle">P1 Hot cam kết gọi trong 4 giờ · P2 Warm gửi tài liệu 24 giờ · P3 Cold chăm sóc tự động</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <select class="ai-select" id="taskFilterStatus" onchange="filterTasks()">
+                  <option value="ALL">Mọi trạng thái</option>
+                  <option value="PENDING">Chờ xử lý</option>
+                  <option value="COMPLETED">Đã hoàn thành</option>
+                </select>
+                <select class="ai-select" id="taskFilterPriority" onchange="filterTasks()">
+                  <option value="ALL">Mọi ưu tiên (P1-P3)</option>
+                  <option value="P1">🔥 P1 Hot (4h SLA)</option>
+                  <option value="P2">⚡ P2 Warm (24h SLA)</option>
+                  <option value="P3">❄️ P3 Cold (48h SLA)</option>
+                </select>
+                <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" onclick="openCreateTaskModal()" title="Tạo tác vụ SLA mới">
+                  <span>+ Tạo Tác Vụ Mới</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="table-responsive-wrapper">
+              <table class="table-enterprise">
+                <thead>
+                  <tr>
+                    <th>Khách Hàng</th>
+                    <th>Mức Độ Ưu Tiên</th>
+                    <th>Cam Kết SLA</th>
+                    <th>Bộ Phận Phụ Trách</th>
+                    <th>Hành Động Khuyến Nghị Từ AI</th>
+                    <th>Trạng Thái</th>
+                  </tr>
+                </thead>
+                <tbody id="taskTableBody">
+                  <tr>
+                    <td><strong>CTCP May Sài Gòn</strong></td>
+                    <td><span class="badge-priority p1">🔥 P1 Hot</span></td>
+                    <td><span style="color:var(--danger); font-weight:700;">Hạn: 4 Giờ</span></td>
+                    <td>Đội ngũ Kinh Doanh Miền Nam</td>
+                    <td>Thực hiện cuộc gọi trực tiếp, demo phân hệ ERP Dệt may</td>
+                    <td><span class="badge-status warning">Đang chờ gọi</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tập đoàn Cơ Khí Hà Nội</strong></td>
+                    <td><span class="badge-priority p1">🔥 P1 Hot</span></td>
+                    <td><span style="color:var(--danger); font-weight:700;">Hạn: 4 Giờ</span></td>
+                    <td>Đội ngũ Kinh Doanh Miền Bắc</td>
+                    <td>Gặp trực tiếp Giám đốc nhà máy, khảo sát dây chuyền</td>
+                    <td><span class="badge-status warning">Đang chờ gọi</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Logistics Miền Trung</strong></td>
+                    <td><span class="badge-priority p2">⚡ P2 Warm</span></td>
+                    <td><span>Hạn: 24 Giờ</span></td>
+                    <td>Đội ngũ Kinh Doanh Miền Trung</td>
+                    <td>Gửi hồ sơ năng lực phần mềm WMS và báo giá sơ bộ</td>
+                    <td><span class="badge-status info">Đã gửi email</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Dược Phẩm Nam Việt</strong></td>
+                    <td><span class="badge-priority p2">⚡ P2 Warm</span></td>
+                    <td><span>Hạn: 24 Giờ</span></td>
+                    <td>Đội ngũ Kinh Doanh Miền Bắc</td>
+                    <td>Đặt lịch demo online qua Zoom với Trưởng phòng CNTT</td>
+                    <td><span class="badge-status info">Đang liên hệ</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>TNHH Thương Mại Á Châu</strong></td>
+                    <td><span class="badge-priority p3">❄️ P3 Cold</span></td>
+                    <td><span>Hạn: 48 Giờ</span></td>
+                    <td>Bùi Đình Thịnh</td>
+                    <td>Ghi danh chuỗi email tự động giới thiệu tính năng kế toán</td>
+                    <td><span class="badge-status success">Đã kích hoạt</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Incomplete Drafts Section (Bản nháp tiếp cận AI & Khai thác thông tin) -->
+          <div class="card-enterprise" style="margin-top:24px;">
+            <div class="card-header-row">
+              <div class="card-title-group">
+                <h3 class="card-title">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ai-accent)" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                  <span>Bản Nháp Tiếp Cận AI & Khai Thác Hồ Sơ Thiếu Thông Tin</span>
+                </h3>
+                <span class="card-subtitle">AI Agent tự động sinh câu hỏi phỏng vấn khai thác và soạn thảo bản nháp thông điệp tiếp cận qua Zalo/Email</span>
+              </div>
+            </div>
+            <div id="incompleteDraftsContainer"></div>
+          </div>
+        </section>
+        </div>
+      </div> <!-- appCanvas -->
+    </main>
+  </div> <!-- appShell -->
+<div class="demo-mode-bar" id="demoModeBar" style="display:none;">
+    <span class="demo-step-badge" id="demoStepBadge">BƯỚC 1/6</span>
+    <span class="demo-step-title" id="demoStepTitle">1. Tổng Quan Bài Toán Nghiệp Vụ Nam Việt</span>
+    <div style="display:flex; gap:8px;">
+      <button type="button" class="btn-ai btn-ai-secondary btn-ai-sm" onclick="prevDemoStep()">❮ Trước</button>
+      <button type="button" class="btn-ai btn-ai-primary btn-ai-sm" onclick="nextDemoStep()">Tiếp Theo ❯</button>
+      <button type="button" class="btn-ai btn-ai-outline btn-ai-sm" onclick="exitDemoMode()">Thoát Demo</button>
+    </div>
+  </div>
+
+  <!-- ==================================================================
+       COMMON MODAL (DATA IMPORT, WEIGHTS, CUSTOMER DETAIL)
+       ================================================================== -->
+  <div class="ai-modal-overlay" id="commonModal">
+    <div class="ai-modal-box">
+      <div class="ai-modal-header">
+        <h3 id="commonModalTitle" style="font-size:16px; font-weight:700; color:#1E293B;">Chi Tiết</h3>
+        <button type="button" class="sidebar-collapse-btn" onclick="closeCommonModal()">✕</button>
+      </div>
+      <div class="ai-modal-body" id="commonModalBody"></div>
+      <div class="ai-modal-footer">
+        <button type="button" class="btn-ai btn-ai-secondary" onclick="closeCommonModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- APPLICATION SCRIPTS -->
+  <script src="universal_data_engine.js"></script>
+  <script src="mock_data.js"></script>
+  <script src="ai_engine.js"></script>
+  <script src="app.js"></script>
+
+  <script>
+    // Initialize Lucide icons on load
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) lucide.createIcons();
+    });
+
+    // 3-Page Switcher
+    window.switchPage = function(pageNum) {
+      const pageMap = {
+        1: 'pageIntro',
+        2: 'pagePipeline',
+        3: 'pageDashboard'
+      };
+      const titleMap = {
+        1: '01 · Giới Thiệu & Định Hướng',
+        2: '02 · Luồng Phân Tích Agent',
+        3: '03 · Dashboard KPI & Báo Cáo'
+      };
+
+      document.querySelectorAll('.app-page-section').forEach(el => el.classList.remove('active'));
+      const targetPage = document.getElementById(pageMap[pageNum]);
+      if (targetPage) targetPage.classList.add('active');
+
+      for (let i = 1; i <= 3; i++) {
+        const tabBtn = document.getElementById(`pageTabBtn${i}`);
+        if (tabBtn) {
+          if (i === pageNum) tabBtn.classList.add('active');
+          else tabBtn.classList.remove('active');
+        }
+      }
+
+      document.querySelectorAll('.sidebar-nav-item').forEach(el => el.classList.remove('active'));
+      const sbItem = document.getElementById(`sidebarNavPage${pageNum}`);
+      if (sbItem) sbItem.classList.add('active');
+
+      const breadcrumb = document.getElementById('topbarCurrentViewTitle');
+      if (breadcrumb) breadcrumb.textContent = titleMap[pageNum] || `Trang ${pageNum}`;
+
+      const canvas = document.getElementById('appCanvas');
+      if (canvas) canvas.scrollTop = 0;
+
+      if (pageNum === 3) {
+        if (typeof window.syncTopKpiWithActiveDataset === 'function') {
+          window.syncTopKpiWithActiveDataset();
+        }
+        if (typeof window.renderExecutiveReport === 'function') {
+          window.renderExecutiveReport(window.AppState ? window.AppState.pipelineResult : null);
+        }
+      }
+    };
+
+    // Navigation Router (Backwards Compatible)
+    window.switchNavSection = function(sectionId) {
+      if (sectionId === 'sec-intro' || sectionId === 'page1') {
+        window.switchPage(1);
+        return;
+      }
+      if (sectionId === 'sec-import' || sectionId === 'sec-agent' || sectionId === 'sec-logs' || sectionId === 'page2') {
+        window.switchPage(2);
+        setTimeout(() => {
+          const el = document.getElementById(sectionId);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 120);
+        return;
+      }
+      window.switchPage(3);
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 120);
+    };
+
+    // Sidebar Toggle
+    window.toggleSidebar = function() {
+      const sb = document.getElementById('appSidebar');
+      if (sb) sb.classList.toggle('collapsed');
+    };
+
+    // Modal Controls
+    window.closeCommonModal = function() {
+      const modal = document.getElementById('commonModal');
+      if (modal) modal.classList.remove('open');
+    };
+
+    // Quick Trigger for AI Pipeline
+    window.triggerRunAiPipeline = function() {
+      const statusText = document.getElementById('topbarAgentStatusText');
+      if (statusText) statusText.textContent = "AI Agent: Đang xử lý...";
+      showToast("⚡ <strong>AI Agent đang xử lý toàn bộ quy trình 7 bước...</strong>");
+      
+      setTimeout(() => {
+        if (typeof window.executePipeline === 'function') {
+          window.executePipeline();
+        }
+        if (statusText) statusText.textContent = "AI Agent: Sẵn sàng (538 Golden Records)";
+        showToast("✅ <strong>Xử lý hoàn tất!</strong> Đã tạo 538 Golden Records và hoàn tất quy trình phân tích.");
+        window.switchPage(3);
+      }, 500);
+    };
+
+    // Demo Mode Controller
+    const demoSteps = [
+      { id: 'page1', title: '1. Giới Thiệu Sản Phẩm & Định Hướng Phân Tích', badge: 'BƯỚC 1/5' },
+      { id: 'sec-import', title: '2. Nạp Dữ Liệu Thô & Kiểm Định Cổng 3', badge: 'BƯỚC 2/5' },
+      { id: 'sec-agent', title: '3. Quy Trình Thực Thi AI Agent 7 Bước', badge: 'BƯỚC 3/5' },
+      { id: 'sec-reports', title: '4. Dashboard KPI & Biểu Đồ Trực Quan', badge: 'BƯỚC 4/5' },
+      { id: 'sec-customers', title: '5. Khám Phá Golden Records & Xuất Báo Cáo', badge: 'BƯỚC 5/5' }
+    ];
+    let currentDemoIndex = 0;
+
+    window.startDemoMode = function() {
+      currentDemoIndex = 0;
+      const bar = document.getElementById('demoModeBar');
+      if (bar) bar.style.display = 'flex';
+      applyDemoStep();
+      showToast("🚀 <strong>Đã kích hoạt Demo Mode!</strong> Sử dụng thanh điều hướng bên dưới để demo trước giảng viên.");
+    };
+
+    window.exitDemoMode = function() {
+      const bar = document.getElementById('demoModeBar');
+      if (bar) bar.style.display = 'none';
+      showToast("Đã thoát chế độ Demo.");
+    };
+
+    window.nextDemoStep = function() {
+      if (currentDemoIndex < demoSteps.length - 1) {
+        currentDemoIndex++;
+        applyDemoStep();
+      } else {
+        showToast("🎉 Đã hoàn thành toàn bộ kịch bản trình chiếu demo!");
+      }
+    };
+
+    window.prevDemoStep = function() {
+      if (currentDemoIndex > 0) {
+        currentDemoIndex--;
+        applyDemoStep();
+      }
+    };
+
+    function applyDemoStep() {
+      const step = demoSteps[currentDemoIndex];
+      const badge = document.getElementById('demoStepBadge');
+      const title = document.getElementById('demoStepTitle');
+      if (badge) badge.textContent = step.badge;
+      if (title) title.textContent = step.title;
+      switchNavSection(step.id);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+history_id,company_alias,normalized_key,tax_code,domain,sales_id,sales_name,last_contact_date,stage,note
+HIST-101,CTCP Tiếp vận Á Châu,achau,0314455667,achaulogistics.vn,NVKD-06,Đặng Gia Huy,2026-11-04,Đã gửi báo giá sơ bộ gói WMS,"Đã làm việc với anh Khôi (Trưởng phòng Kho) tuần trước tại TP.HCM. Đang chờ Ban Giám đốc duyệt thêm phân hệ Kế toán."
+HIST-102,Mekong Pharma,duocphammekong,0309988776,mekongpharma.com.vn,NVKD-07,Hoàng Mai Phương,2026-10-29,Đã Demo lần 1 (OmniCRM),"Chị Lan (GĐ Kinh doanh) quan tâm quản lý trình dược viên & đại lý miền Tây."
+HIST-103,Cơ khí Chính xác Sao Việt,cokhisaoviet,0108877665,saovietmech.vn,NVKD-01,Nguyễn Minh Tuấn,2026-11-06,Đang khảo sát quy trình sản xuất,"Anh Dũng (GĐ Nhà máy Bắc Ninh) đã trao đổi, lưu ý khách có văn phòng đại diện ở cả Hà Nội và Bình Dương."
+HIST-104,Chuỗi Thực phẩm Xanh GreenMart,greenmart,0105544332,greenmart.vn,NVKD-02,Trần Thu Hà,2026-11-02,Đã gọi điện tư vấn lần 1,"Khách đang so sánh POS và quản lý tồn kho hạn sử dụng cho 18 cửa hàng tại Hà Nội."
+

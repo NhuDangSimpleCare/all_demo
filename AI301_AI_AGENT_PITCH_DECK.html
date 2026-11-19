@@ -1,0 +1,1329 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI AGENT: Intelligent Customer Operations | Pitch Deck AI301</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #080B14;
+      --bg-secondary: #111827;
+      --surface-card: #151C2B;
+      --surface-card-hover: #1E283D;
+      --border-color: #263247;
+      --border-glow: #3B82F6;
+      --primary: #6C8CFF;
+      --ai-accent: #8B5CF6;
+      --cyan: #22D3EE;
+      --text-primary: #F4F7FF;
+      --text-secondary: #9BA8BD;
+      --text-muted: #64748B;
+      --success: #34D399;
+      --warning: #FBBF24;
+      --error: #F87171;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Top Navigation Bar */
+    .top-bar {
+      height: 52px;
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, rgba(108, 140, 255, 0.2), rgba(139, 92, 246, 0.2));
+      border: 1px solid rgba(108, 140, 255, 0.4);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .deck-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .deck-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .controls-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: var(--surface-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: var(--surface-card-hover);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary-action {
+      background: linear-gradient(135deg, #4F46E5, #7C3AED);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .btn-primary-action:hover {
+      background: linear-gradient(135deg, #4338CA, #6D28D9);
+      box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Main Slide Stage */
+    .stage-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: radial-gradient(circle at 50% 20%, rgba(30, 41, 69, 0.4) 0%, rgba(8, 11, 20, 1) 75%);
+      padding: 16px;
+    }
+
+    .slide-viewport {
+      width: 100%;
+      max-width: 1440px;
+      aspect-ratio: 16 / 9;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(108, 140, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-canvas {
+      width: 100%;
+      height: 100%;
+      padding: 40px 48px;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: radial-gradient(ellipse at 80% 0%, rgba(108, 140, 255, 0.04) 0%, transparent 60%);
+    }
+
+    .slide-canvas.active {
+      display: flex;
+      animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.995); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Slide Header */
+    .slide-header {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slide-category {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .slide-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      line-height: 1.25;
+    }
+
+    .slide-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* Slide Body Grid & Cards */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+
+    .card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .card-body {
+      font-size: 12.5px;
+      color: var(--text-primary);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .bullet-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-cyan { background: rgba(34, 211, 238, 0.15); color: var(--cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .badge-green { background: rgba(52, 211, 153, 0.15); color: var(--success); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .badge-amber { background: rgba(251, 191, 36, 0.15); color: var(--warning); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .badge-red { background: rgba(248, 113, 113, 0.15); color: var(--error); border: 1px solid rgba(248, 113, 113, 0.3); }
+    .badge-purple { background: rgba(139, 92, 246, 0.15); color: var(--ai-accent); border: 1px solid rgba(139, 92, 246, 0.3); }
+
+    /* Slide Footer */
+    .slide-footer {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(38, 50, 71, 0.6);
+      margin-top: 16px;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Speaker Notes Drawer */
+    .notes-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 220px;
+      background: rgba(17, 24, 39, 0.98);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-color);
+      z-index: 200;
+      display: none;
+      flex-direction: column;
+      padding: 16px 32px;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .notes-drawer.open {
+      display: flex;
+    }
+
+    .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .notes-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-family: var(--font-mono);
+    }
+
+    .notes-content {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #E2E8F0;
+      overflow-y: auto;
+      white-space: pre-line;
+      background: rgba(8, 11, 20, 0.6);
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      font-family: var(--font-sans);
+    }
+
+    /* Custom Layout Components */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; }
+    .grid-bento { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; width: 100%; }
+
+    /* Print to PDF rules */
+    @media print {
+      body {
+        overflow: visible !important;
+        height: auto !important;
+        background: #080B14 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .top-bar, .notes-drawer { display: none !important; }
+      .stage-container { padding: 0 !important; background: transparent !important; }
+      .slide-viewport {
+        border: none !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+      }
+      .slide-canvas {
+        display: flex !important;
+        position: relative !important;
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+        height: 100vh !important;
+        width: 100vw !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar Controls -->
+  <header class="top-bar">
+    <div class="brand-section">
+      <span class="brand-badge">AI301 · TOPIC 02</span>
+      <span class="deck-title">AI AGENT: Intelligent Customer Operations</span>
+      <span class="deck-subtitle">| NamViet Soft Case Study</span>
+    </div>
+
+    <div class="controls-section">
+      <span class="slide-counter" id="slideNumDisplay">SLIDE 01 / 15</span>
+      <button class="btn-nav" onclick="prevSlide()" title="Phím mũi tên Trái">◀ Trước</button>
+      <button class="btn-nav" onclick="nextSlide()" title="Phím mũi tên Phải">Tiếp ▶</button>
+      <button class="btn-nav" onclick="toggleNotes()" id="btnNotes">📝 Lời thoại (N)</button>
+      <button class="btn-nav" onclick="toggleFullScreen()" title="Phím F">⛶ Toàn màn hình (F)</button>
+      <button class="btn-nav btn-primary-action" onclick="window.print()">🖨️ Xuất PDF</button>
+    </div>
+  </header>
+
+  <!-- Slide Stage -->
+  <main class="stage-container">
+    <div class="slide-viewport">
+
+      <!-- SLIDE 01: HERO / TITLE -->
+      <section class="slide-canvas active" id="slide-1">
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+          <div style="margin-bottom: 20px;">
+            <span class="badge badge-purple" style="font-size:11px; padding:6px 14px; letter-spacing:1px;">NEXT-GEN ENTERPRISE AI ARCHITECTURE · AI301 ĐỀ 02</span>
+          </div>
+          <h1 style="font-size: 46px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 12px;">
+            AI AGENT<br>
+            <span style="background: linear-gradient(135deg, #6C8CFF, #22D3EE); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">INTELLIGENT CUSTOMER OPERATIONS</span>
+          </h1>
+          <p style="font-size: 18px; color: var(--text-secondary); max-width: 720px; line-height: 1.5; margin-bottom: 36px;">
+            Từ dữ liệu khách hàng phân mảnh đến Sales Intelligence sẵn sàng hành động.
+          </p>
+
+          <div style="display:flex; gap:20px; width:100%; max-width:960px;">
+            <div class="card" style="flex:1; border-color: rgba(108, 140, 255, 0.4); text-align:center; padding:20px;">
+              <span style="font-size: 24px; font-weight: 800; color: var(--primary); font-family: var(--font-mono);">700 LEADS/WK</span>
+              <span style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">3 Disparate Channels Ingestion</span>
+            </div>
+            <div class="card" style="flex:1; border-color: rgba(52, 211, 153, 0.4); text-align:center; padding:20px;">
+              <span style="font-size: 24px; font-weight: 800; color: var(--success); font-family: var(--font-mono);">538 GOLDEN RECORDS</span>
+              <span style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">100% Multi-Entity Deduplication</span>
+            </div>
+            <div class="card" style="flex:1; border-color: rgba(139, 92, 246, 0.4); text-align:center; padding:20px;">
+              <span style="font-size: 24px; font-weight: 800; color: var(--ai-accent); font-family: var(--font-mono);">SUB-2S LATENCY</span>
+              <span style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">1.8s Verified Batch Execution</span>
+            </div>
+          </div>
+          <div style="margin-top: 24px; font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">
+            Case Study: Công ty Phần mềm Quản trị Nam Việt (B2B SME) · Google Antigravity & Localhost:8080
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · TECH PROJECT PRESENTATION</span>
+          <span>SLIDE 01 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 02: THE BUSINESS CONTEXT -->
+      <section class="slide-canvas" id="slide-2">
+        <header class="slide-header">
+          <span class="slide-category">01 · BỐI CẢNH DOANH NGHIỆP &amp; ĐIỂM NGHẼN DỮ LIỆU</span>
+          <h2 class="slide-title">Dữ liệu khách hàng rất giá trị. Nhưng dữ liệu rời rạc tạo ra lực cản lớn.</h2>
+          <p class="slide-subtitle">Nam Việt tiếp nhận ~700 B2B Lead mỗi tuần từ 3 kênh phân tán nhưng thiếu hoàn toàn mã định danh hợp nhất.</p>
+        </header>
+        <div class="slide-body grid-3">
+          <div class="card" style="border-color: rgba(108, 140, 255, 0.3);">
+            <div class="card-title" style="color: var(--primary);">
+              <span class="badge badge-purple">SOURCE</span> 3 DISPARATE CHANNELS
+            </div>
+            <div class="card-subtitle">~700 raw lead submissions weekly</div>
+            <div class="card-body">
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>Hội thảo B2B (Seminar):</strong> ~204 lead/tuần (41% P1 Hot, chất lượng cao).</div></div>
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>Website Inbound:</strong> ~312 lead/tuần (Form tải tài liệu, độ đầy đủ trung bình).</div></div>
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>Chiến dịch Quảng cáo:</strong> ~184 lead/tuần (Khối lượng lớn, nhiều bẫy ngân sách ảo).</div></div>
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>Định dạng nạp:</strong> File Excel & CSV bảng thô không qua tiền thẩm định.</div></div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(248, 113, 113, 0.4);">
+            <div class="card-title" style="color: var(--error);">
+              <span class="badge badge-red">BLINDSPOT</span> DATA FRICTION POINTS
+            </div>
+            <div class="card-subtitle">Zero cross-referencing and identity gaps</div>
+            <div class="card-body">
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--error);"></div><div><strong>Dị biệt tên pháp nhân:</strong> 'CTCP May Sài Gòn' vs 'SG Garment' không thể nhận diện.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--error);"></div><div><strong>Đăng ký chéo nhân sự:</strong> Giám đốc, Kế toán và Trưởng kho đăng ký rời rạc.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--error);"></div><div><strong>Dữ liệu thiếu:</strong> 84 hồ sơ bỏ trống quy mô nhân sự và ngân sách dự kiến.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--error);"></div><div><strong>Vùng tối lịch sử:</strong> Không đối chiếu được lịch sử đã chăm sóc trong CRM.</div></div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(251, 191, 36, 0.3);">
+            <div class="card-title" style="color: var(--warning);">
+              <span class="badge badge-amber">IMPACT</span> SALES BOTTLENECK
+            </div>
+            <div class="card-subtitle">8 Sales Reps scrambling over raw rows</div>
+            <div class="card-body">
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--warning);"></div><div><strong>Đội ngũ 8 NVKD:</strong> Phân bổ 3 miền (Bắc: Tuấn, Hà, Nam; Trung: Bảo, Ánh; Nam: Huy, Phương, Thịnh).</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--warning);"></div><div><strong>Hạn mức tự quyết:</strong> Senior 500M, Mid-Senior 300M, Junior 250M VNĐ.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--warning);"></div><div><strong>Hậu quả:</strong> 162 cuộc gọi trùng/tuần, tranh chấp khách hàng, trễ hạn SLA phản hồi.</div></div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · BỐI CẢNH DOANH NGHIỆP &amp; ĐIỂM NGHẼN DỮ LIỆU</span>
+          <span>SLIDE 02 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 03: THE CURRENT PROCESS -->
+      <section class="slide-canvas" id="slide-3">
+        <header class="slide-header">
+          <span class="slide-category">02 · HIỆN TRẠNG QUY TRÌNH THỦ CÔNG (AS-IS)</span>
+          <h2 class="slide-title">Quy trình hiện tại phụ thuộc vào quá nhiều thao tác thủ công.</h2>
+          <p class="slide-subtitle">Bảy điểm chuyển giao mong manh từ bảng tính thô dẫn đến báo cáo quản trị bị trễ hạn từ 2 đến 3 ngày.</p>
+        </header>
+        <div class="slide-body" style="flex-direction:column; gap:16px;">
+          <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap:10px;">
+            <div class="card" style="padding:14px; text-align:center;">
+              <span style="font-size:10px; color:var(--text-muted); font-family:var(--font-mono);">STEP 01</span>
+              <strong style="font-size:12px; margin:4px 0; color:var(--primary);">INGEST</strong>
+              <span style="font-size:10.5px; color:var(--text-secondary);">Marketing nộp file Excel 700 dòng</span>
+            </div>
+            <div class="card" style="padding:14px; text-align:center;">
+              <span style="font-size:10px; color:var(--text-muted); font-family:var(--font-mono);">STEP 02</span>
+              <strong style="font-size:12px; margin:4px 0; color:var(--primary);">CLEAN</strong>
+              <span style="font-size:10.5px; color:var(--text-secondary);">Hành chính xóa sơ dòng trắng</span>
+            </div>
+            <div class="card" style="padding:14px; text-align:center;">
+              <span style="font-size:10px; color:var(--text-muted); font-family:var(--font-mono);">STEP 03</span>
+              <strong style="font-size:12px; margin:4px 0; color:var(--primary);">SLICE</strong>
+              <span style="font-size:10.5px; color:var(--text-secondary);">Cắt lát file chia cho 8 NVKD</span>
+            </div>
+            <div class="card" style="padding:14px; text-align:center; border-color:var(--warning); background:rgba(251, 191, 36, 0.05);">
+              <span class="badge badge-amber" style="margin-bottom:2px;">WARNING</span>
+              <strong style="font-size:12px; margin:4px 0; color:var(--warning);">GUESS</strong>
+              <span style="font-size:10.5px; color:var(--text-secondary);">Đoán tiềm năng qua số tiền tỷ</span>
+            </div>
+            <div class="card" style="padding:14px; text-align:center; border-color:var(--warning); background:rgba(251, 191, 36, 0.05);">
+              <span class="badge badge-amber" style="margin-bottom:2px;">WARNING</span>
+              <strong style="font-size:12px; margin:4px 0; color:var(--warning);">CALL</strong>
+              <span style="font-size:10.5px; color:var(--text-secondary);">Gọi vội deal to, bỏ rơi lead thiếu</span>
+            </div>
+            <div class="card" style="padding:14px; text-align:center;">
+              <span style="font-size:10px; color:var(--text-muted); font-family:var(--font-mono);">STEP 06</span>
+              <strong style="font-size:12px; margin:4px 0; color:var(--primary);">LOG</strong>
+              <span style="font-size:10.5px; color:var(--text-secondary);">Gõ nhật ký vào file riêng cuối tuần</span>
+            </div>
+            <div class="card" style="padding:14px; text-align:center;">
+              <span style="font-size:10px; color:var(--text-muted); font-family:var(--font-mono);">STEP 07</span>
+              <strong style="font-size:12px; margin:4px 0; color:var(--primary);">AUDIT</strong>
+              <span style="font-size:10.5px; color:var(--text-secondary);">Trưởng phòng mất 2 ngày tổng hợp</span>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.04); padding:18px 24px;">
+            <div style="font-size:12px; font-weight:700; color:var(--warning); margin-bottom:8px; font-family:var(--font-mono);">
+              ⚠️ CRITICAL AS-IS FAILURE ANALYSIS (EVIDENCE FROM 700 LEADS DATASET)
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; font-size:12px; color:var(--text-primary);">
+              <div>• <strong>Lọc trùng bằng mắt:</strong> Không nhận diện được Alias ➔ 2 NVKD cùng gọi 1 khách, tranh chấp hoa hồng.</div>
+              <div>• <strong>Bẫy ngân sách ảo:</strong> Ham số tiền lớn nhưng nhu cầu là Core Banking, 3D CAD ➔ Tỷ lệ chốt deal = 0%.</div>
+              <div>• <strong>Bỏ quên hồ sơ thiếu:</strong> Thấy thiếu nhân sự là bỏ qua ➔ Đánh rơi 84 khách hàng SME đúng nhu cầu cốt lõi.</div>
+              <div>• <strong>Phân bổ cảm tính:</strong> Giao việc vượt trần hạn mức hoặc trùng CRM ➔ Hỏng hợp đồng lớn vì giao sai năng lực.</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · THE CURRENT PROCESS</span>
+          <span>SLIDE 03 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 04: THE PROBLEM -->
+      <section class="slide-canvas" id="slide-4">
+        <header class="slide-header">
+          <span class="slide-category">03 · VẤN ĐỀ NGHIỆP VỤ &amp; NGUYÊN NHÂN CỐT LÕI</span>
+          <h2 class="slide-title">Vận hành thủ công tạo ra các nút thắt cổ chai trên toàn bộ Sales Pipeline.</h2>
+          <p class="slide-subtitle">Bốn dạng lỗi thực tế đã được kiểm chứng gây phiền toái cho khách hàng, lãng phí nguồn lực và thất thoát doanh thu.</p>
+        </header>
+        <div class="slide-body grid-4">
+          <div class="card" style="border-color: rgba(248, 113, 113, 0.4);">
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--error); font-weight:700;">PROBLEM 01</span>
+            <div style="font-size: 20px; font-weight:800; color:#fff; margin:6px 0;">162 CALLS / WK</div>
+            <div class="card-title" style="color:var(--error); font-size:12px;">DATA DUPLICATION</div>
+            <div class="card-body" style="font-size:11.5px;">
+              <div><strong>Nguyên nhân:</strong> Doanh nghiệp dùng tên viết tắt, chi nhánh đa miền hoặc nhiều người đăng ký chéo.</div>
+              <div><strong>Tác động:</strong> Khách hàng khó chịu vì bị gọi nhiều lần; Nam Việt mất hình ảnh chuyên nghiệp; NVKD mâu thuẫn nội bộ.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(251, 191, 36, 0.4);">
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--warning); font-weight:700;">PROBLEM 02</span>
+            <div style="font-size: 20px; font-weight:800; color:#fff; margin:6px 0;">48 TRAPS (12.8B)</div>
+            <div class="card-title" style="color:var(--warning); font-size:12px;">MISALIGNED DEMAND</div>
+            <div class="card-body" style="font-size:11.5px;">
+              <div><strong>Nguyên nhân:</strong> Khách ghi ngân sách 1-3 tỷ nhưng cần Core Banking, 3D CAD, HIS y tế, Web3.</div>
+              <div><strong>Tác động:</strong> NVKD Senior bị hút vào số tiền ảo, tốn hàng tuần làm demo giải pháp không có ➔ Chốt deal = 0%.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(108, 140, 255, 0.4);">
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--primary); font-weight:700;">PROBLEM 03</span>
+            <div style="font-size: 20px; font-weight:800; color:#fff; margin:6px 0;">84 LEADS LOST</div>
+            <div class="card-title" style="color:var(--primary); font-size:12px;">INFORMATION GAPS</div>
+            <div class="card-body" style="font-size:11.5px;">
+              <div><strong>Nguyên nhân:</strong> Nhu cầu Kế toán/HRM rất chuẩn nhưng form để trống số nhân sự và ngân sách.</div>
+              <div><strong>Tác động:</strong> NVKD tự ý bỏ rơi 15,6% lượng khách hàng tiềm năng thực tế; lãng phí ngân sách Marketing.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(139, 92, 246, 0.4);">
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--ai-accent); font-weight:700;">PROBLEM 04</span>
+            <div style="font-size: 20px; font-weight:800; color:#fff; margin:6px 0;">14 ESCALATIONS</div>
+            <div class="card-title" style="color:var(--ai-accent); font-size:12px;">GOVERNANCE BREAKDOWN</div>
+            <div class="card-body" style="font-size:11.5px;">
+              <div><strong>Nguyên nhân:</strong> Không có cảnh báo tự động khi hợp đồng vượt trần tự quyết (250M-500M) hoặc đa miền.</div>
+              <div><strong>Tác động:</strong> Bỏ quên khách quen trong CRM; NVKD non kinh nghiệm xử lý hợp đồng lớn gây hỏng việc.</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · THE PROBLEM</span>
+          <span>SLIDE 04 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 05: THE TRANSFORMATION -->
+      <section class="slide-canvas" id="slide-5">
+        <header class="slide-header">
+          <span class="slide-category">04 · BƯỚC CHUYỂN ĐỔI QUY TRÌNH (BEFORE &amp; AFTER)</span>
+          <h2 class="slide-title">Từ xử lý thủ công rời rạc sang vận hành tự động bằng AI Agent.</h2>
+          <p class="slide-subtitle">Chuyển dịch từ các nút thắt cổ chai phụ thuộc con người sang luồng thực thi thông minh liên tục.</p>
+        </header>
+        <div class="slide-body grid-2">
+          <div class="card" style="border-color: rgba(38, 50, 71, 0.8); background: rgba(17, 24, 39, 0.6);">
+            <div class="card-title" style="color: var(--text-secondary);">
+              <span class="badge" style="background:rgba(255,255,255,0.1); color:var(--text-secondary);">BEFORE</span> MANUAL WORKFLOW (AS-IS)
+            </div>
+            <div class="card-subtitle">Quy trình thủ công, rời rạc và nhiều sai sót</div>
+            <div class="card-body" style="color:var(--text-secondary);">
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--text-muted);"></div><div><strong>Tiếp nhận:</strong> File Excel/CSV thô không kiểm soát định dạng.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--text-muted);"></div><div><strong>Lọc trùng:</strong> Tra cứu bằng mắt; bỏ sót tên viết tắt & chi nhánh.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--text-muted);"></div><div><strong>Thẩm định:</strong> Đánh giá theo cảm tính dựa trên số tiền khách ghi.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--text-muted);"></div><div><strong>Hồ sơ thiếu:</strong> 84 lead bị bỏ quên không một ai liên hệ.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--error);"></div><div><strong style="color:var(--error);">Thời gian xử lý:</strong> Mất từ 48 đến 72 giờ thủ công.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--error);"></div><div><strong style="color:var(--error);">Chất lượng:</strong> Sai sót >35% & tuân thủ SLA dưới 40%.</div></div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(108, 140, 255, 0.5); background: rgba(21, 28, 43, 0.9);">
+            <div class="card-title" style="color: var(--primary);">
+              <span class="badge badge-cyan">AFTER</span> AI-ASSISTED WORKFLOW (TO-BE)
+            </div>
+            <div class="card-subtitle">Quy trình tự động hóa khép kín có con người kiểm soát</div>
+            <div class="card-body">
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>Tiếp nhận:</strong> Chuẩn hóa 12 trường qua Cổng 3 kiểm định file rác.</div></div>
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>Lọc trùng:</strong> Đối chiếu 3 tầng (MST, Domain, normKey) tạo 538 Golden Records.</div></div>
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>Thẩm định:</strong> Ma trận 4 tiêu chí chuẩn hóa 100% + phạt bẫy ảo về 0đ.</div></div>
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>Hồ sơ thiếu:</strong> Tự động sinh 84 bản nháp Zalo tiếp cận trong 30 giây.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--success);"></div><div><strong style="color:var(--success);">Thời gian xử lý:</strong> Hoàn tất trong DƯỚI 2 GIÂY (1,8s thực tế).</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--success);"></div><div><strong style="color:var(--success);">Chất lượng:</strong> 100% khử trùng & 96,4% tuân thủ SLA 4 mức.</div></div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · THE TRANSFORMATION</span>
+          <span>SLIDE 05 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 06: THE AI AGENT ARCHITECTURE -->
+      <section class="slide-canvas" id="slide-6">
+        <header class="slide-header">
+          <span class="slide-category">05 · THIẾT KẾ KIẾN TRÚC HỆ THỐNG AI AGENT</span>
+          <h2 class="slide-title">Hệ thống điều phối đa tầng biến dữ liệu thô thành Actionable Intelligence.</h2>
+          <p class="slide-subtitle">Kiến trúc 6 tầng chuẩn Enterprise từ tiếp nhận đa kênh đến cơ chế Human-in-the-Loop.</p>
+        </header>
+        <div class="slide-body" style="flex-direction:column; gap:10px;">
+          <div class="card" style="padding:14px 20px; border-color:rgba(108, 140, 255, 0.4);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12.5px; color:var(--primary); font-family:var(--font-mono);">01 · DATA INGESTION LAYER</strong>
+              <span class="badge badge-cyan">INPUT</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">
+              File Uploader (.xlsx, .xls, .csv UTF-8 BOM qua SheetJS) · Google Sheets Live API Sync · Mapper 12 trường dữ liệu bắt buộc.
+            </div>
+          </div>
+
+          <div class="card" style="padding:14px 20px; border-color:rgba(139, 92, 246, 0.4);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12.5px; color:var(--ai-accent); font-family:var(--font-mono);">02 · ORCHESTRATION & STATE MANAGEMENT</strong>
+              <span class="badge badge-purple">PIPELINE</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">
+              Agent Coordinator điều phối luồng 7 bước · Bộ quản lý trạng thái in-memory · Điều hướng vòng lặp Feedback Loop (`app.js`).
+            </div>
+          </div>
+
+          <div class="card" style="padding:14px 20px; border-color:rgba(34, 211, 238, 0.4);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12.5px; color:var(--cyan); font-family:var(--font-mono);">03 · AI CORE REASONING ENGINE</strong>
+              <span class="badge badge-cyan">INTELLIGENCE</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">
+              Thuật toán Matching 3 tầng (MST ➔ Domain ➔ Alias) · Bộ lọc bẫy ngân sách ảo (11 keywords) · Ma trận Lead Scoring 4 chiều (`ai_engine.js`).
+            </div>
+          </div>
+
+          <div class="card" style="padding:14px 20px; border-color:rgba(52, 211, 153, 0.4);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12.5px; color:var(--success); font-family:var(--font-mono);">04 · TOOLS & SKILLS EXECUTION</strong>
+              <span class="badge badge-green">TOOLS</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">
+              Khử dấu tiếng Việt `removeVietnameseTones()` · Trích xuất corporate domain · So khớp lịch sử CRM · Sinh kịch bản tiếp cận Zalo.
+            </div>
+          </div>
+
+          <div class="card" style="padding:14px 20px; border-color:rgba(251, 191, 36, 0.4);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12.5px; color:var(--warning); font-family:var(--font-mono);">05 · EXECUTIVE OUTPUT LAYER</strong>
+              <span class="badge badge-amber">OUTPUT</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">
+              538 Golden Records · Roster 8 NVKD cân bằng tải · FinTech Canvas Spline V14 · Báo cáo C-Level 10 mục (Word .doc & In PDF).
+            </div>
+          </div>
+
+          <div class="card" style="padding:14px 20px; border-color:rgba(248, 113, 113, 0.4);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12.5px; color:var(--error); font-family:var(--font-mono);">06 · HUMAN-IN-THE-LOOP CONTROL</strong>
+              <span class="badge badge-red">GOVERNANCE</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">
+              Cổng 3 kiểm định file rác · Cổng 5 Trưởng phòng duyệt với bảng Feedback điều chỉnh trọng số · Bắt giữ 14 ca vượt thẩm quyền.
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · THE AI AGENT ARCHITECTURE</span>
+          <span>SLIDE 06 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 07: AGENT ECOSYSTEM -->
+      <section class="slide-canvas" id="slide-7">
+        <header class="slide-header">
+          <span class="slide-category">06 · HỆ SINH THÁI KỸ NĂNG NGHIỆP VỤ (AGENT ECOSYSTEM)</span>
+          <h2 class="slide-title">Các kỹ năng chuyên biệt phối hợp chặt chẽ để giải quyết bài toán nghiệp vụ.</h2>
+          <p class="slide-subtitle">Các module nghiệp vụ độc lập vận hành tuần tự với cơ chế chuyển giao ngữ cảnh liên tục.</p>
+        </header>
+        <div class="slide-body grid-bento">
+          <div class="card" style="border-color: rgba(108, 140, 255, 0.4);">
+            <div class="card-title" style="color:var(--primary); font-size:13px;">
+              <span class="badge badge-purple">SKILL 01</span> DATA CLEANING & NORMALIZATION
+            </div>
+            <div class="card-body" style="font-size:11.5px;">
+              <div><strong>Input:</strong> 700 dòng dữ liệu thô nhập liệu lộn xộn từ 3 kênh tiếp nhận.</div>
+              <div><strong>Tools:</strong> `removeVietnameseTones()`, `normalizeCompanyKey()`, lọc 22 stopwords.</div>
+              <div><strong>Output:</strong> Khóa chuẩn `normKey` và tên miền email corporate độc lập.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(139, 92, 246, 0.4);">
+            <div class="card-title" style="color:var(--ai-accent); font-size:13px;">
+              <span class="badge badge-purple">SKILL 02</span> MULTI-ENTITY MATCHING & GOLDEN RECORD
+            </div>
+            <div class="card-body" style="font-size:11.5px;">
+              <div><strong>Input:</strong> Dữ liệu đã làm sạch + Lịch sử chăm sóc trong CRM (`contactHistory`).</div>
+              <div><strong>Tools:</strong> Thuật toán đối chiếu 3 tầng (Mã số thuế ➔ Domain ➔ normKey Alias).</div>
+              <div><strong>Output:</strong> 538 Golden Records tích hợp toàn bộ các tên đăng ký và đa đầu mối liên hệ.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(34, 211, 238, 0.4);">
+            <div class="card-title" style="color:var(--cyan); font-size:13px;">
+              <span class="badge badge-cyan">SKILL 03</span> ICP QUALIFICATION & FAKE TRAP BLOCKER
+            </div>
+            <div class="card-body" style="font-size:11.5px;">
+              <div><strong>Input:</strong> Nhu cầu văn bản tự nhiên, ngân sách khai báo, quy mô nhân sự.</div>
+              <div><strong>Tools:</strong> Bộ lọc 11 từ khóa bẫy ảo (Core Banking, 3D CAD...) + Ma trận 4 tiêu chí (100%).</div>
+              <div><strong>Output:</strong> 4 phân hạng SLA (P1-P4) & triệt tiêu 12,8 tỷ ngân sách ảo về 0 điểm.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(52, 211, 153, 0.4);">
+            <div class="card-title" style="color:var(--success); font-size:13px;">
+              <span class="badge badge-green">SKILL 04</span> SMART SALES ROUTING & OUTREACH DRAFT
+            </div>
+            <div class="card-body" style="font-size:11.5px;">
+              <div><strong>Input:</strong> Golden Record đã chấm điểm + Roster 8 NVKD & hạn mức hợp đồng.</div>
+              <div><strong>Tools:</strong> Ghép cặp (CRM +45, Địa bàn +30, Ngành +20) + Trình sinh kịch bản Zalo.</div>
+              <div><strong>Output:</strong> Phân công 8 NVKD cân bằng tải SLA & 84 bản nháp tiếp cận khách thiếu thông tin.</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · AGENT ECOSYSTEM</span>
+          <span>SLIDE 07 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 08: THE EXECUTION PIPELINE -->
+      <section class="slide-canvas" id="slide-8">
+        <header class="slide-header">
+          <span class="slide-category">07 · QUY TRÌNH THỰC THI (EXECUTION PIPELINE)</span>
+          <h2 class="slide-title">Một Pipeline duy nhất. Đa tầng hành động thông minh.</h2>
+          <p class="slide-subtitle">Hành trình 8 bước từ nạp dữ liệu thô đến bàn giao nhiệm vụ bán hàng chỉ trong chưa đầy 2 giây.</p>
+        </header>
+        <div class="slide-body" style="flex-direction:column; gap:16px;">
+          <div style="display:grid; grid-template-columns: repeat(8, 1fr); gap:8px;">
+            <div class="card" style="padding:12px; text-align:center;">
+              <span class="badge" style="background:rgba(255,255,255,0.1); font-size:8.5px;">USER</span>
+              <strong style="font-size:11.5px; margin:4px 0; color:var(--primary);">01 INGEST</strong>
+              <span style="font-size:10px; color:var(--text-secondary);">Nạp file thô 12 cột</span>
+            </div>
+            <div class="card" style="padding:12px; text-align:center; border-color:var(--cyan);">
+              <span class="badge badge-cyan" style="font-size:8.5px;">AI AGENT</span>
+              <strong style="font-size:11.5px; margin:4px 0; color:var(--cyan);">02 CLEAN</strong>
+              <span style="font-size:10px; color:var(--text-secondary);">Khử dấu & normKey</span>
+            </div>
+            <div class="card" style="padding:12px; text-align:center; border-color:var(--success); background:rgba(52, 211, 153, 0.05);">
+              <span class="badge badge-green" style="font-size:8.5px;">GATE 3</span>
+              <strong style="font-size:11.5px; margin:4px 0; color:var(--success);">03 VALIDATE</strong>
+              <span style="font-size:10px; color:var(--text-secondary);">Đúng định dạng?</span>
+            </div>
+            <div class="card" style="padding:12px; text-align:center; border-color:var(--cyan);">
+              <span class="badge badge-cyan" style="font-size:8.5px;">AI AGENT</span>
+              <strong style="font-size:11.5px; margin:4px 0; color:var(--cyan);">04 MATCH</strong>
+              <span style="font-size:10px; color:var(--text-secondary);">538 Golden Records</span>
+            </div>
+            <div class="card" style="padding:12px; text-align:center; border-color:var(--cyan);">
+              <span class="badge badge-cyan" style="font-size:8.5px;">AI AGENT</span>
+              <strong style="font-size:11.5px; margin:4px 0; color:var(--cyan);">05 SCORE</strong>
+              <span style="font-size:10px; color:var(--text-secondary);">Chặn bẫy ảo & chấm điểm</span>
+            </div>
+            <div class="card" style="padding:12px; text-align:center; border-color:var(--warning); background:rgba(251, 191, 36, 0.05);">
+              <span class="badge badge-amber" style="font-size:8.5px;">GATE 5</span>
+              <strong style="font-size:11.5px; margin:4px 0; color:var(--warning);">06 VERIFY</strong>
+              <span style="font-size:10px; color:var(--text-secondary);">Trưởng phòng duyệt</span>
+            </div>
+            <div class="card" style="padding:12px; text-align:center; border-color:var(--cyan);">
+              <span class="badge badge-cyan" style="font-size:8.5px;">AI AGENT</span>
+              <strong style="font-size:11.5px; margin:4px 0; color:var(--cyan);">07 ASSIGN</strong>
+              <span style="font-size:10px; color:var(--text-secondary);">Điều phối 8 NVKD & Draft</span>
+            </div>
+            <div class="card" style="padding:12px; text-align:center; border-color:var(--ai-accent);">
+              <span class="badge badge-purple" style="font-size:8.5px;">EXECUTIVE</span>
+              <strong style="font-size:11.5px; margin:4px 0; color:var(--ai-accent);">08 REPORT</strong>
+              <span style="font-size:10px; color:var(--text-secondary);">Dashboard & xuất Word</span>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(34, 211, 238, 0.4); background: rgba(34, 211, 238, 0.04); padding:18px 24px;">
+            <div style="font-size:12px; font-weight:700; color:var(--cyan); margin-bottom:8px; font-family:var(--font-mono);">
+              ⚡ END-TO-END PIPELINE EXECUTION PERFORMANCE
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; font-size:12px; color:var(--text-primary);">
+              <div>• <strong>Tác vụ AI tự động (Cyan):</strong> Bước 02, 04, 05 và 07 chạy hoàn toàn tự động, xử lý 700 dòng chỉ mất 1,8 giây.</div>
+              <div>• <strong>Cổng Human-in-the-Loop (Green/Amber):</strong> Cổng 3 chặn file rác; Cổng 5 quản lý duyệt ma trận kèm vòng lặp Feedback.</div>
+              <div>• <strong>Độ tin cậy cam kết:</strong> Giảm thời gian xử lý từ 72 giờ xuống dưới 2 giây; 100% quyết định được lưu vết kiểm toán.</div>
+              <div>• <strong>Bảo vệ nguồn lực:</strong> Triệt tiêu 162 cuộc gọi trùng và bắt giữ 48 bẫy ảo trước khi chuyển giao cho 8 nhân viên.</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · THE EXECUTION PIPELINE</span>
+          <span>SLIDE 08 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 09: DECISION INTELLIGENCE -->
+      <section class="slide-canvas" id="slide-9">
+        <header class="slide-header">
+          <span class="slide-category">08 · CƠ CHẾ RA QUYẾT ĐỊNH &amp; THUẬT TOÁN (DECISION INTELLIGENCE)</span>
+          <h2 class="slide-title">Mọi đề xuất đều được dẫn dắt bởi quy tắc nghiệp vụ và bằng chứng xác thực.</h2>
+          <p class="slide-subtitle">Đối chiếu thực thể 3 tầng và ma trận Lead Scoring 4 yếu tố loại bỏ hoàn toàn bẫy ảo và thiên vị cảm tính.</p>
+        </header>
+        <div class="slide-body grid-2">
+          <div class="card" style="border-color: rgba(108, 140, 255, 0.4);">
+            <div class="card-title" style="color:var(--primary);">
+              <span class="badge badge-purple">ALGORITHM</span> THUẬT TOÁN ĐỐI CHIẾU 3 TẦNG
+            </div>
+            <div class="card-subtitle">Phân giải thực thể đa kênh không nhầm lẫn</div>
+            <div class="card-body">
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>TẦNG 1: Khớp Mã số thuế (MST)</strong> ➔ Tin cậy 100%, gom tức thì vào Golden Record.</div></div>
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>TẦNG 2: Khớp Corporate Email Domain</strong> ➔ Tin cậy 95% (bóc tách @vietducmech.vn, lọc gmail/yahoo) ➔ Gom vào nhóm.</div></div>
+              <div class="bullet-item"><div class="bullet-dot"></div><div><strong>TẦNG 3: Khớp Tên viết tắt normKey</strong> ➔ Chuỗi chuẩn hóa không dấu (độ dài >= 5 ký tự) ➔ Gom vào nhóm.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--success);"></div><div><strong style="color:var(--success);">Nếu không khớp cả 3 tầng:</strong> Khởi tạo một Golden Record độc lập mới.</div></div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">Kết quả: Khử sạch 162 cuộc gọi trùng lặp, bảo toàn toàn bộ đầu mối liên hệ.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(34, 211, 238, 0.4);">
+            <div class="card-title" style="color:var(--cyan);">
+              <span class="badge badge-cyan">MATRIX</span> MA TRẬN 4 TIÊU CHÍ & BỘ CHẶN BẪY ẢO
+            </div>
+            <div class="card-subtitle">Chuẩn hóa 100% điểm số thay thế cảm tính</div>
+            <div class="card-body">
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--cyan);"></div><div><strong>Khớp Sản phẩm SME (40%):</strong> Trùng >=2 phân hệ: 40đ | 1 phân hệ: 34đ | Lệch: 0đ.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--cyan);"></div><div><strong>Quy mô Nhân sự ICP (20%):</strong> Chuẩn SME (20-450 người): 20đ | 10-19: 15đ | <10: 7đ.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--error);"></div><div><strong style="color:var(--error);">Quy tắc Bẫy ảo (20%):</strong> Dính 11 từ khóa cấm (Core Banking, CAD 3D, HIS) ➔ <strong>ĐIỂM NGÂN SÁCH BẮT BUỘC VỀ 0 & XẾP HẠNG P4</strong>.</div></div>
+              <div class="bullet-item"><div class="bullet-dot" style="background:var(--cyan);"></div><div><strong>Thẩm quyền (20%):</strong> C-Level/Chủ DN: +10đ | Trưởng phòng: +7đ | Đầy đủ: +4đ.</div></div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">Thang SLA: P1 (>=75đ: 15p) | P2 (52-74đ: 2h) | P3 (<52đ: 24h) | P4 (Disqualified).</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · DECISION INTELLIGENCE</span>
+          <span>SLIDE 09 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 10: HUMAN-IN-THE-LOOP -->
+      <section class="slide-canvas" id="slide-10">
+        <header class="slide-header">
+          <span class="slide-category">09 · KIỂM SOÁT RỦI RO &amp; HUMAN-IN-THE-LOOP</span>
+          <h2 class="slide-title">Tự động hóa chịu trách nhiệm thực thi. Con người giữ quyền quyết định then chốt.</h2>
+          <p class="slide-subtitle">Hai cổng kiểm định chất lượng và vòng lặp Feedback liên tục ngăn ngừa sai sót và trao quyền cho nhà quản lý.</p>
+        </header>
+        <div class="slide-body grid-3">
+          <div class="card" style="border-color: rgba(52, 211, 153, 0.4);">
+            <div class="card-title" style="color:var(--success);">
+              <span class="badge badge-green">GATE 3</span> DATA HYGIENE GATE
+            </div>
+            <div class="card-subtitle">Chặn đứng dữ liệu rác trước khi vào lõi AI</div>
+            <div class="card-body">
+              <div>• Kiểm tra 12 trường cấu trúc dữ liệu bắt buộc.</div>
+              <div>• <strong>Nhánh [KHÔNG]:</strong> Cảnh báo file lỗi, thiếu cột; điều hướng quay lại Bước 1 sửa file.</div>
+              <div>• <strong>Nhánh [CÓ]:</strong> 100% cột hợp lệ ➔ Mở khóa chạy Bước 4.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(251, 191, 36, 0.4);">
+            <div class="card-title" style="color:var(--warning);">
+              <span class="badge badge-amber">GATE 5</span> GOVERNANCE & FEEDBACK
+            </div>
+            <div class="card-subtitle">Trạm phê duyệt của Trưởng phòng Kinh doanh</div>
+            <div class="card-body">
+              <div>• <strong>Nhánh [OK]:</strong> Duyệt ma trận phân bổ ➔ Chuyển Bước 6 & 7.</div>
+              <div>• <strong>Nhánh [KHÔNG OK]:</strong> Kích hoạt Feedback Loop với 4 Presets:</div>
+              <div style="font-size:11px; color:var(--text-secondary); padding-left:8px;">
+                1. Săn Deal Lớn (+15% Ngân sách)<br>
+                2. Cân Bằng Tải (&le; 65 lead/người)<br>
+                3. Siết Bẫy Ảo (Phạt triệt để từ khóa lệch)<br>
+                4. Gom Nhóm Linh Hoạt (Mở rộng alias)
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(248, 113, 113, 0.4);">
+            <div class="card-title" style="color:var(--error);">
+              <span class="badge badge-red">ESCALATION</span> 3 ĐIỀU KIỆN LEO THANG
+            </div>
+            <div class="card-subtitle">AI bắt buộc chuyển Trưởng phòng phê duyệt</div>
+            <div class="card-body">
+              <div>• <strong>Tranh chấp địa bàn:</strong> Doanh nghiệp có chi nhánh ở cả HN & HCM đăng ký cùng lúc.</div>
+              <div>• <strong>Chồng chéo CRM:</strong> Khách quen của NVKD miền Nam đăng ký nhu cầu mới tại miền Bắc.</div>
+              <div>• <strong>Vượt hạn mức tự quyết:</strong> Ngân sách vượt trần nhân viên (250M-500M) ➔ Bắt giữ 14 ca tuần.</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · HUMAN-IN-THE-LOOP</span>
+          <span>SLIDE 10 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 11: TECHNOLOGY STACK -->
+      <section class="slide-canvas" id="slide-11">
+        <header class="slide-header">
+          <span class="slide-category">10 · NGĂN XẾP CÔNG NGHỆ (TECHNOLOGY STACK)</span>
+          <h2 class="slide-title">Xây dựng trên nền tảng công nghệ AI hiện đại và thực tiễn.</h2>
+          <p class="slide-subtitle">Ngăn xếp ứng dụng sẵn sàng triển khai doanh nghiệp, ưu tiên tốc độ xử lý tức thì trên client và khả năng Audit Log.</p>
+        </header>
+        <div class="slide-body" style="flex-direction:column; gap:10px;">
+          <div class="card" style="padding:12px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12px; color:var(--primary); font-family:var(--font-mono);">FRONTEND APPLICATION</strong>
+              <span class="badge badge-cyan">SPA</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-primary); margin-top:2px;">
+              Vanilla ES6+ SPA Architecture · Tailwind CSS · Vision UI Dark Glassmorphism (Kính mờ blur(42px), độ tương phản cao).
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12px; color:var(--ai-accent); font-family:var(--font-mono);">RUNTIME & DAEMON</strong>
+              <span class="badge badge-purple">SANDBOX</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-primary); margin-top:2px;">
+              Google Antigravity Agent Workspace · PowerShell HTTP Daemon (`server.ps1`) chạy nền cổng 8080.
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12px; color:var(--cyan); font-family:var(--font-mono);">AI & RULE ENGINE</strong>
+              <span class="badge badge-cyan">HEURISTIC</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-primary); margin-top:2px;">
+              Deterministic Rule Engine (`ai_engine.js`) · Vietnamese NLP Normalizer · Thuật toán Matching 3 tầng & Chấm điểm ma trận.
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12px; color:var(--success); font-family:var(--font-mono);">PARSER & STORAGE</strong>
+              <span class="badge badge-green">IN-MEMORY</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-primary); margin-top:2px;">
+              SheetJS (`xlsx.full.min.js`) · CSV UTF-8 BOM Engine đọc ghi trực tiếp trên trình duyệt, không độ trễ máy chủ.
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12px; color:var(--warning); font-family:var(--font-mono);">DATA VISUALIZATION</strong>
+              <span class="badge badge-amber">CANVAS V14</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-primary); margin-top:2px;">
+              HTML5 Canvas Dual-Spline V14 vẽ đường cong xu hướng 60fps mượt mà · SVG Donut Chart phân bố trạng thái.
+            </div>
+          </div>
+
+          <div class="card" style="padding:12px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="font-size:12px; color:var(--error); font-family:var(--font-mono);">AUDITABILITY & LOGS</strong>
+              <span class="badge badge-red">AUDIT LOG</span>
+            </div>
+            <div style="font-size:11.5px; color:var(--text-primary); margin-top:2px;">
+              Structured Event Logger lưu vết có cấu trúc (`AuditLog`: ID, Timestamp, Stage, Actor, Action, Detail) · Xuất Word & PDF.
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · TECHNOLOGY STACK</span>
+          <span>SLIDE 11 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 12: LIVE PRODUCT / LOCALHOST -->
+      <section class="slide-canvas" id="slide-12">
+        <header class="slide-header">
+          <span class="slide-category">11 · GIAO DIỆN SẢN PHẨM THỰC TẾ (LIVE LOCALHOST)</span>
+          <h2 class="slide-title">Từ mô hình kiến trúc đến giao diện vận hành hoàn chỉnh.</h2>
+          <p class="slide-subtitle">Hệ thống đang chạy trực tiếp tại localhost:8080 với đầy đủ các tính năng tương tác khép kín.</p>
+        </header>
+        <div class="slide-body grid-2">
+          <div class="card" style="border-color:rgba(108, 140, 255, 0.4);">
+            <div class="card-title" style="color:var(--primary);">ZONE 01: NẠP & CLEAN DỮ LIỆU (CỔNG 3)</div>
+            <div class="card-body">
+              <div>• Dropzone nhận file Excel (.xlsx) và CSV UTF-8.</div>
+              <div>• Nút nạp nhanh: <strong>700 Leads Batch</strong>, 20 Ca Cốt Lõi, Google Sheets Sync.</div>
+              <div>• Bảng xem trước 5 dòng đầu và kiểm định định dạng Cổng 3.</div>
+              <div>• 3 thẻ KPI: <strong>538 Golden Records</strong> · 162 cuộc gọi trùng · 48 bẫy ảo.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(34, 211, 238, 0.4);">
+            <div class="card-title" style="color:var(--cyan);">ZONE 02: THANH TRƯỢT DYNAMIC SCORING</div>
+            <div class="card-body">
+              <div>• 4 thanh trượt Interactive Sliders thay đổi trọng số thời gian thực.</div>
+              <div>• Tự động tính toán lại điểm số cho 538 hồ sơ khi kéo thả.</div>
+              <div>• Phễu chuyển đổi 4 phân hạng SLA (P1: 112, P2: 234, P3: 144, P4: 48).</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(251, 191, 36, 0.4);">
+            <div class="card-title" style="color:var(--warning);">ZONE 03: PHÊ DUYỆT CỔNG 5 & FEEDBACK</div>
+            <div class="card-body">
+              <div>• Trạm kiểm soát Human-in-the-loop của Trưởng phòng Kinh doanh.</div>
+              <div>• 4 nút Preset Feedback điều chỉnh nhanh ma trận phân bổ.</div>
+              <div>• Bảng thẩm định bắt giữ 14 ca vượt thẩm quyền và tranh chấp địa bàn.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(52, 211, 153, 0.4);">
+            <div class="card-title" style="color:var(--success);">ZONE 04: CANVAS DUAL-SPLINE & XUẤT BÁO CÁO</div>
+            <div class="card-body">
+              <div>• Biểu đồ sóng đôi Canvas Spline V14 đo lường xu hướng lead theo ngày.</div>
+              <div>• Bảng công suất 8 NVKD giữ ngưỡng an toàn 65% - 92% SLA.</div>
+              <div>• Nút xuất Báo cáo Quản trị C-Level 10 mục ra Word (.doc) và In PDF 1-click.</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · LIVE PRODUCT / LOCALHOST</span>
+          <span>SLIDE 12 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 13: OUTPUT & CUSTOMER INTELLIGENCE -->
+      <section class="slide-canvas" id="slide-13">
+        <header class="slide-header">
+          <span class="slide-category">12 · OUTPUT & CUSTOMER INTELLIGENCE</span>
+          <h2 class="slide-title">Mỗi khách hàng trở thành một hồ sơ bán hàng sẵn sàng hành động.</h2>
+          <p class="slide-subtitle">Từ dữ liệu phân mảnh ban đầu thành Golden Record hợp nhất và bản nháp tiếp cận AI Outreach Draft cá nhân hóa.</p>
+        </header>
+        <div class="slide-body grid-2">
+          <div class="card" style="border-color:rgba(52, 211, 153, 0.4);">
+            <div class="card-title" style="color:var(--success);">
+              <span class="badge badge-green">DOSSIER 01</span> GOLDEN RECORD HỢP NHẤT (ENT-014)
+            </div>
+            <div class="card-subtitle">CTCP Thiết bị Công nghiệp Việt Đức</div>
+            <div class="card-body">
+              <div>• <strong>Gom nhóm 3 nguồn:</strong> Hội thảo HN (Anh Tuấn, GĐKT) + Web HCM (Chị Lan, Mua hàng) + Ads ĐN (Anh Hoàng, Kho).</div>
+              <div>• <strong>Khóa định danh:</strong> MST <code>0107788990</code> & Domain <code>@vietducmech.vn</code>.</div>
+              <div>• <strong>Sản phẩm phù hợp:</strong> NamViet SME ERP & NamViet WMS.</div>
+              <div>• <strong>Điểm số:</strong> <span style="color:var(--success); font-weight:700;">88 / 100 (P1 Hot Lead — SLA gọi trong 15 phút)</span>.</div>
+              <div>• <strong>Phân công & Phê duyệt:</strong> Tuấn (MB) & Huy (MN); ngân sách 480 triệu VNĐ ➔ Đã được Trưởng phòng phê duyệt.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(108, 140, 255, 0.4);">
+            <div class="card-title" style="color:var(--primary);">
+              <span class="badge badge-cyan">DOSSIER 02</span> HỒ SƠ THIẾU ĐƯỢC CỨU BẰNG DRAFT (ENT-088)
+            </div>
+            <div class="card-subtitle">Công ty TNHH May mặc Tân Phú</div>
+            <div class="card-body">
+              <div>• <strong>Đầu vào:</strong> Nhu cầu Kế toán lương may mặc ca kíp rất rõ ràng nhưng form thiếu số nhân sự & ngân sách.</div>
+              <div>• <strong>Xử lý cũ:</strong> NVKD bỏ xó vì cho rằng không tiềm năng.</div>
+              <div>• <strong>AI Agent Xử lý:</strong> Xếp P3 & tự động sinh <strong>Bản nháp Zalo tiếp cận (Draft)</strong>:</div>
+              <div style="background:rgba(8, 11, 20, 0.8); border:1px solid var(--border-color); padding:10px; border-radius:6px; font-size:11px; color:#E2E8F0; line-height:1.5;">
+                <em>"Chào Chị Mai, em là Hà từ Nam Việt. Em đã nhận được yêu cầu tính lương sản phẩm và ca kíp may mặc của chị. Để gửi bảng tính mẫu sát nhất, chị cho em xin quy mô công nhân và số ca kíp bên mình nhé!"</em>
+              </div>
+              <div>• <strong>Hiệu quả:</strong> NVKD bấm sao chép và gửi trong 30 giây ➔ Cứu thành công 1 khách hàng tiềm năng.</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · OUTPUT & CUSTOMER INTELLIGENCE</span>
+          <span>SLIDE 13 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 14: VALIDATION & TESTING -->
+      <section class="slide-canvas" id="slide-14">
+        <header class="slide-header">
+          <span class="slide-category">13 · VALIDATION & TESTING</span>
+          <h2 class="slide-title">AI Agent được đánh giá toàn diện vượt ra ngoài kịch bản lý tưởng.</h2>
+          <p class="slide-subtitle">Ma trận kiểm thử thực nghiệm đa kịch bản và ghi nhận minh bạch các giới hạn vận hành.</p>
+        </header>
+        <div class="slide-body grid-4">
+          <div class="card" style="border-color: rgba(52, 211, 153, 0.4);">
+            <span class="badge badge-green">TEST 01 · PASS</span>
+            <div style="font-size: 15px; font-weight:800; color:#fff; margin:8px 0;">NORMAL CASE</div>
+            <div class="card-body" style="font-size:11px;">
+              <div><strong>Input:</strong> Batch 700 hồ sơ đầy đủ các trường thông tin cơ bản.</div>
+              <div><strong>Kỳ vọng:</strong> Làm sạch, lọc trùng, chấm điểm, cân bằng tải 8 NVKD.</div>
+              <div><strong>Thực tế:</strong> Chạy trong <strong>1,8s</strong>; tạo 538 Golden Records; 8 NVKD duy trì tải an toàn 65-92%.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(108, 140, 255, 0.4);">
+            <span class="badge badge-cyan">TEST 02 · PASS</span>
+            <div style="font-size: 15px; font-weight:800; color:#fff; margin:8px 0;">MISSING DATA</div>
+            <div class="card-body" style="font-size:11px;">
+              <div><strong>Input:</strong> 84 hồ sơ đúng nhu cầu nhưng thiếu số nhân sự và ngân sách.</div>
+              <div><strong>Kỳ vọng:</strong> Không đoán mò; sinh bản nháp tiếp cận khai thác thêm.</div>
+              <div><strong>Thực tế:</strong> 84/84 ca gắn cờ WAITING, sinh tin nhắn Zalo 3 câu hỏi gợi mở cho sales.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(251, 191, 36, 0.4);">
+            <span class="badge badge-amber">TEST 03 · PASS</span>
+            <div style="font-size: 15px; font-weight:800; color:#fff; margin:8px 0;">BOUNDARY CASE</div>
+            <div class="card-body" style="font-size:11px;">
+              <div><strong>Input:</strong> 48 bẫy ảo (1-3 tỷ) & 14 hợp đồng lớn vượt thẩm quyền.</div>
+              <div><strong>Kỳ vọng:</strong> Ép ngân sách ảo về 0; chặn tự phân công, chuyển quản lý.</div>
+              <div><strong>Thực tế:</strong> 48 bẫy ảo bị gán P4 (zero 12,8 tỷ); 14 ca đưa vào danh sách chờ duyệt.</div>
+            </div>
+          </div>
+
+          <div class="card" style="border-color: rgba(155, 168, 189, 0.3);">
+            <span class="badge" style="background:rgba(255,255,255,0.1); color:var(--text-secondary);">LIMITATIONS</span>
+            <div style="font-size: 15px; font-weight:800; color:#fff; margin:8px 0;">GIỚI HẠN THỰC TẾ</div>
+            <div class="card-body" style="font-size:11px;">
+              <div><strong>Giới hạn 1:</strong> Email miễn phí (@gmail) chưa gom theo domain; bắt buộc dựa vào MST hoặc normKey.</div>
+              <div><strong>Giới hạn 2:</strong> Từ khóa bẫy ảo đang quản lý dạng danh mục tĩnh; tương lai cần tích hợp Semantic Embedding.</div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · VALIDATION & TESTING</span>
+          <span>SLIDE 14 / 15</span>
+        </footer>
+      </section>
+
+      <!-- SLIDE 15: CLOSING -->
+      <section class="slide-canvas" id="slide-15">
+        <header class="slide-header">
+          <span class="slide-category">14 · TỔNG KẾT &amp; ĐỊNH HƯỚNG TƯƠNG LAI</span>
+          <h2 class="slide-title">AI không chỉ tạo ra câu trả lời. AI phải trực tiếp thúc đẩy công việc.</h2>
+          <p class="slide-subtitle">Biến dữ liệu khách hàng thành quyết định có cấu trúc, nhiệm vụ cụ thể và giá trị kinh doanh đo lường được.</p>
+        </header>
+        <div class="slide-body" style="flex-direction:column; gap:16px;">
+          <div class="card" style="border-color:rgba(108, 140, 255, 0.5); background:rgba(108, 140, 255, 0.05); text-align:center; padding:20px;">
+            <div style="font-size:11px; font-weight:700; color:var(--primary); font-family:var(--font-mono); letter-spacing:1px; margin-bottom:6px;">TRIẾT LÝ THIẾT KẾ AI AGENT DOANH NGHIỆP</div>
+            <div style="font-size:18px; font-weight:700; color:#fff; max-width:850px; margin:0 auto; line-height:1.4;">
+              “AI Agent đóng vai trò là Trợ lý Điều phối Thông minh hỗ trợ ra quyết định và tối ưu năng suất con người, không thay thế vai trò phê duyệt chiến lược của nhà quản lý.”
+            </div>
+            <div style="margin-top:10px; font-size:12px; color:var(--cyan); font-family:var(--font-mono);">
+              Customer Data  ➔  AI Agent  ➔  Business Intelligence  ➔  Human Decision  ➔  Action
+            </div>
+          </div>
+
+          <div class="grid-3" style="flex:1;">
+            <div class="card" style="border-color:rgba(52, 211, 153, 0.4);">
+              <div class="card-title" style="color:var(--success);">GIÁ TRỊ DOANH NGHIỆP</div>
+              <div class="card-body" style="font-size:11.5px;">
+                <div>• Tiết kiệm <strong>30% quỹ thời gian mỗi ngày</strong> cho 8 NVKD.</div>
+                <div>• Triệt tiêu hoàn toàn 162 cuộc gọi trùng lặp mỗi tuần.</div>
+                <div>• Đạt <strong>96,4% tuân thủ SLA</strong> (Hot lead gọi trong 15 phút).</div>
+                <div>• Xuất báo cáo quản trị 10 mục tự động ra Word & PDF 1-click.</div>
+              </div>
+            </div>
+
+            <div class="card" style="border-color:rgba(34, 211, 238, 0.4);">
+              <div class="card-title" style="color:var(--cyan);">ĐỊNH HƯỚNG PHÁT TRIỂN</div>
+              <div class="card-body" style="font-size:11.5px;">
+                <div>• <strong>Phase 1:</strong> Kết nối API Webhook 2 chiều với HubSpot/Salesforce.</div>
+                <div>• <strong>Phase 2:</strong> Tích hợp Voice AI Bot gọi xác thực sơ bộ khách P2/P3.</div>
+                <div>• <strong>Phase 3:</strong> Ứng dụng LLM RAG tóm tắt tài liệu thầu RFQ phức tạp.</div>
+              </div>
+            </div>
+
+            <div class="card" style="border-color:rgba(139, 92, 246, 0.4);">
+              <div class="card-title" style="color:var(--ai-accent);">SẴN SÀNG TRIỂN KHAI</div>
+              <div class="card-body" style="font-size:11.5px;">
+                <div>• Hệ thống hoàn chỉnh từ logic nghiệp vụ đến giao diện web.</div>
+                <div>• Đang hoạt động trực tiếp tại địa chỉ <code>http://localhost:8080/</code>.</div>
+                <div>• Sẵn sàng phục vụ buổi thuyết trình bảo vệ đồ án môn học AI301.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-footer">
+          <span>AI301 · CLOSING & ROADMAP</span>
+          <span>SLIDE 15 / 15</span>
+        </footer>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Speaker Notes Drawer -->
+  <aside class="notes-drawer" id="notesDrawer">
+    <div class="notes-header">
+      <span class="notes-title" id="notesTitle">SPEAKER NOTES · SLIDE 01</span>
+      <button class="btn-nav" onclick="toggleNotes()" style="padding:3px 10px; font-size:11px;">Đóng [N]</button>
+    </div>
+    <div class="notes-content" id="notesBody">
+      Loading notes...
+    </div>
+  </aside>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    const totalSlides = 15;
+    let currentSlide = 1;
+
+    const speakerNotes = {
+      1: "Kính thưa Hội đồng và Thầy/Cô, hôm nay nhóm chúng em xin bảo vệ Đồ án môn học AI301 với đề tài: 'AI Agent trong Tự động hóa Quy trình Phân tích và Quản lý Khách hàng Tiềm năng'. Đây không phải là một bài tập lý thuyết hay một vài câu prompt rời rạc, mà là một hệ thống phần mềm hoàn chỉnh chạy trực tiếp trên Google Antigravity và giao diện web localhost:8080. Dự án giải quyết bài toán tiếp nhận 700 hồ sơ khách hàng mỗi tuần của Công ty Phần mềm Nam Việt, xử lý dứt điểm các vấn nạn: trùng khách, bẫy ngân sách ảo lệch sản phẩm, bỏ quên hồ sơ thiếu thông tin và tranh chấp địa bàn phân công 8 nhân viên kinh doanh.",
+      2: "Thưa Thầy/Cô, Công ty Nam Việt cung cấp 5 phần mềm quản trị cho khối B2B SME từ 10 đến 500 nhân sự. Mỗi tuần, công ty nhận khoảng 700 lead từ 3 kênh: Hội thảo B2B, Website và Quảng cáo. Tuy nhiên, dữ liệu nạp dạng file Excel rời rạc đã tạo ra nút thắt cổ chai khổng lồ: cùng 1 công ty nhưng Giám đốc đăng ký hội thảo, kế toán đăng ký web với các tên gọi viết tắt khác nhau. Đội ngũ 8 NVKD phụ trách 3 miền bị quá tải, dẫn đến việc gọi trùng khách và trễ cam kết SLA nghiêm trọng.",
+      3: "Khi mổ xẻ quy trình AS-IS của Nam Việt, dễ nhận thấy quy trình phụ thuộc 100% vào sức người qua 7 bước thủ công. Nhân viên bị quá tải nên hình thành thói quen 'đãi cát tìm vàng' theo cảm tính: chỉ chăm chăm tìm các dự án tiền tỷ để gọi, trong khi những dự án đó lại nằm ngoài danh mục phần mềm của công ty. Điều này dẫn tới 4 điểm chạm gây lỗi nghiêm trọng được nhóm highlight bằng viền vàng trên slide.",
+      4: "4 vấn đề này được chứng minh bằng số liệu thực nghiệm chính xác khi nhóm nạp bộ dữ liệu 700 dòng của Nam Việt vào hệ thống: 162 cuộc gọi trùng gây phiền toái cho khách; 48 bẫy ảo với 12,8 tỷ đồng ngân sách ảo làm kiệt sức đội ngũ Senior; 84 khách hàng bị bỏ sót; và 14 ca tranh chấp vượt quyền hạn mức. Một nhân viên không thể dùng mắt thường đối chiếu tên miền email công ty và bóc tách từ khóa lệch sản phẩm trong văn bản tự nhiên.",
+      5: "Để giải quyết triệt để, nhóm đề xuất Quy trình TO-BE chuẩn hóa. Thời gian xử lý toàn bộ batch lead giảm từ 72 giờ thủ công xuống dưới 2 giây trên máy client; tỷ lệ khử trùng đạt 100% nhờ thuật toán Matching 3 tầng; các bẫy ảo bị ép ngân sách về 0 ngay lập tức; và 84 hồ sơ thiếu thông tin được cứu sống bằng kịch bản tiếp cận tự động. Tỷ lệ tuân thủ SLA phản hồi tăng vọt lên 96,4%.",
+      6: "Kiến trúc hệ thống của nhóm tuân thủ chặt chẽ mô hình AI Agent chuẩn trong doanh nghiệp: Target ➔ Input ➔ Process ➔ Output. Hệ thống được tổ chức thành 6 tầng rõ rệt: Tầng tiếp nhận dữ liệu đa kênh; Tầng điều phối trạng thái; Tầng lý luận AI Agent; Tầng công cụ bóc tách tiếng Việt; Tầng xuất báo cáo điều hành; và Tầng kiểm soát Human-in-the-loop. Toàn bộ logic lõi được đóng gói trong file ai_engine.js.",
+      7: "Hệ thống phối hợp mượt mà tới 4 kỹ năng nghiệp vụ cốt lõi: Làm sạch dữ liệu ➔ Hợp nhất hồ sơ ➔ Chấm điểm phân loại ➔ Điều phối 8 NVKD và Soạn kịch bản tiếp cận. Điểm đặc biệt là các kỹ năng chuyển giao ngữ cảnh liên tục: kết quả của kỹ năng làm sạch nuôi dưỡng thuật toán matching; kết quả matching là đầu vào để bộ lọc bẫy ảo kiểm tra ICP; và toàn bộ kết quả tổng hợp lại để kỹ năng điều phối phân bổ công việc công bằng.",
+      8: "Tại Slide 8 là chi tiết 8 bước thực thi của một mẩu tin từ khi là dữ liệu thô đến khi trở thành nhiệm vụ bán hàng có gán nhãn SLA. Các bước màu xanh Cyan do AI Agent tự động thực thi trong tích tắc; các bước màu xanh lá và vàng là các chốt chặn kiểm định của con người. Tổng thời gian chạy hết 8 bước trên bộ dữ liệu 700 lead chỉ mất đúng 1,8 giây.",
+      9: "Đây là slide thể hiện 'trí thông minh' và tính logic của hệ thống. Thay vì đoán mò, AI Agent áp dụng 2 thuật toán: Thuật toán Matching 3 tầng gom các chi nhánh và nhân sự cùng công ty dựa trên Mã số thuế, Domain và Tên rút gọn normKey; và Ma trận chấm điểm 4 tiêu chí chuẩn hóa về 100%. Đặc biệt, nếu dính từ khóa bẫy ảo lệch sản phẩm như Core Banking hay 3D CAD, điểm ngân sách lập tức bị phạt về 0 và xếp vào hạng P4 loại trừ.",
+      10: "Nguyên tắc thiết kế của nhóm là: 'AI là trợ lý tối ưu năng suất, con người là người chịu trách nhiệm cuối cùng'. Hệ thống cài đặt sẵn 2 trạm kiểm soát rủi ro là Cổng 3 và Cổng 5. Tại Cổng 5, Trưởng phòng có thể nhấn 4 Preset điều chỉnh nhanh ma trận và gửi feedback để AI Agent tính toán lại ngay lập tức. Đồng thời, 14 ca vượt thẩm quyền được gom riêng vào bảng thẩm định để đảm bảo tuân thủ tuyệt đối quy chế doanh nghiệp.",
+      11: "Về công nghệ, dự án được triển khai trên Antigravity với kiến trúc SPA thuần JavaScript ES6+, không dùng framework cồng kềnh để đảm bảo tốc độ phản hồi tính bằng mili-giây. Nhóm dùng font Inter chuẩn hóa hiển thị tiếng Việt, SheetJS đọc file Excel trực tiếp trên client, và hệ thống Audit Log ghi nhận vết xử lý minh bạch vào bộ nhớ, cho phép giải trình 100% quyết định của AI.",
+      12: "Trên màn hình là 4 phân hệ thật đang hoạt động tại địa chỉ http://localhost:8080/. Website được thiết kế theo phong cách Dark Glassmorphism rất trực quan. Giảng viên và người dùng có thể thao tác trực tiếp: bấm nạp 700 hồ sơ, kéo thanh trượt đổi trọng số để thấy biểu đồ spline thay đổi tức thì, bấm vào các cổng kiểm định để kiểm chứng luồng đi của dữ liệu.",
+      13: "Ở Slide 13 là 2 hồ sơ đầu ra thực tế: Case 1 là khách hàng Việt Đức được gom từ 3 đăng ký thành 1 Golden Record duy nhất, nhận diện là lead P1 ngân sách 480 triệu và tự động điều phối nhân sự phù hợp dưới sự duyệt của Trưởng phòng. Case 2 là khách may mặc Tân Phú thiếu dữ liệu, AI Agent đã tự động soạn sẵn một tin nhắn Zalo cực kỳ lịch sự, đúng trọng tâm ngành may để nhân viên gửi ngay trong 30 giây.",
+      14: "Tuân thủ đúng yêu cầu bắt buộc của Task 2 về tính trung thực học thuật, nhóm đã kiểm thử độc lập trên 3 tình huống: Tình huống dữ liệu thông thường với 700 lead chạy trong 1,8 giây; Tình huống dữ liệu thiếu với 84 ca được sinh kịch bản Draft chuẩn xác; và Tình huống ranh giới với 48 bẫy ảo và 14 ca vượt thẩm quyền được bắt giữ chính xác 100%. Nhóm cũng ghi nhận minh bạch 2 giới hạn kỹ thuật của hệ thống.",
+      15: "Kính thưa Thầy/Cô, dự án AI Agent của nhóm đã chứng minh rằng: 'AI should not just generate answers. It should move work forward'. Khi AI được đặt đúng vào các bài toán thắt nút cổ chai của doanh nghiệp, nó tiết kiệm 30% thời gian cho nhân viên, xóa bỏ gọi trùng và mang lại bức tranh quản trị thời gian thực cho C-Level. Hệ thống đã hoàn thiện toàn diện và sẵn sàng chuyển giao. Em xin chân thành cảm ơn Thầy/Cô đã lắng nghe!"
+    };
+
+    function showSlide(num) {
+      if (num < 1 || num > totalSlides) return;
+      document.querySelectorAll('.slide-canvas').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(`slide-${num}`);
+      if (target) {
+        target.classList.add('active');
+        currentSlide = num;
+        document.getElementById('slideNumDisplay').textContent = `SLIDE ${String(num).padStart(2, '0')} / ${totalSlides}`;
+        document.getElementById('notesTitle').textContent = `SPEAKER NOTES · SLIDE ${String(num).padStart(2, '0')}`;
+        document.getElementById('notesBody').textContent = speakerNotes[num] || "Chưa có lời thoại cho slide này.";
+      }
+    }
+
+    function nextSlide() { if (currentSlide < totalSlides) showSlide(currentSlide + 1); }
+    function prevSlide() { if (currentSlide > 1) showSlide(currentSlide - 1); }
+
+    function toggleNotes() {
+      const drawer = document.getElementById('notesDrawer');
+      drawer.classList.toggle('open');
+      const btn = document.getElementById('btnNotes');
+      btn.style.borderColor = drawer.classList.contains('open') ? 'var(--cyan)' : 'var(--border-color)';
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') { nextSlide(); }
+      else if (e.key === 'ArrowLeft') { prevSlide(); }
+      else if (e.key.toLowerCase() === 'n') { toggleNotes(); }
+      else if (e.key.toLowerCase() === 'f') { toggleFullScreen(); }
+    });
+
+    // Initialize slide 1
+    showSlide(1);
+  </script>
+</body>
+</html>

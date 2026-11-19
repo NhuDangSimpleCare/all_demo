@@ -1,0 +1,96 @@
+﻿<USER_REQUEST>
+      # TASK: FIX ALL INTERACTIVE ELEMENTS â€“ FULL FUNCTIONALITY IMPLEMENTATION FOR NAM VIá»†T AI
+
+Báº¡n hÃ£y Ä‘Ã³ng vai Senior Full-stack Developer, Frontend Engineer, Backend Engineer vÃ  QA Tester.
+
+TÃ´i muá»‘n báº¡n kiá»ƒm tra vÃ  sá»­a toÃ n bá»™ cÃ¡c nÃºt báº¥m, chá»©c nÄƒng tÆ°Æ¡ng tÃ¡c vÃ  Ä‘iá»u hÆ°á»›ng trÃªn website NAM VIá»†T AI â€“ B2B Lead Intelligence hiá»‡n táº¡i.
+
+
+1. Váº¤N Äá»€ HIá»†N Táº I
+
+Website Ä‘Ã£ cÃ³ giao diá»‡n tÆ°Æ¡ng Ä‘á»‘i hoÃ n chá»‰nh nhÆ°ng nhiá»u nÃºt báº¥m chÆ°a hoáº¡t Ä‘á»™ng hoáº·c chÆ°a thá»±c hiá»‡n Ä‘Ãºng chá»©c nÄƒng.
+
+Má»™t sá»‘ váº¥n Ä‘á» cÃ³ thá»ƒ gáº·p:
+
+- Click nÃºt nhÆ°ng khÃ´ng cÃ³ pháº£n há»“i.
+- NÃºt chá»‰ cÃ³ giao diá»‡n nhÆ°ng chÆ°a cÃ³ logic.
+- NÃºt Ä‘iá»u hÆ°á»›ng khÃ´ng chuyá»ƒn Ä‘Ãºng trang.
+- NÃºt upload khÃ´ng má»Ÿ há»™p thoáº¡i chá»n file.
+- NÃºt Run AI Agent khÃ´ng thá»±c sá»± cháº¡y Agent.
+- NÃºt Reset khÃ´ng xÃ³a hoáº·c khÃ´i phá»¥c tráº¡ng thÃ¡i.
+- NÃºt táº£i file máº«u khÃ´ng táº£i Ä‘Æ°á»£c file.
+- CÃ¡c báº£ng dá»¯ liá»‡u chÆ°a cÃ³ chá»©c nÄƒng tÃ¬m kiáº¿m vÃ  lá»c.
+- Modal khÃ´ng má»Ÿ hoáº·c khÃ´ng Ä‘Ã³ng Ä‘Æ°á»£c.
+- Má»™t sá»‘ nÃºt bá»‹ disabled nhÆ°ng khÃ´ng giáº£i thÃ­ch lÃ½ do.
+- Frontend cÃ³ nÃºt nhÆ°ng chÆ°a káº¿t ná»‘i API backend.
+- CÃ¡c chá»©c nÄƒng Demo Mode chÆ°a hoáº¡t Ä‘á»™ng Ä‘Ãºng.
+
+**YÃŠU Cáº¦U: KhÃ´ng chá»‰ sá»­a má»™t vÃ i nÃºt. HÃ£y audit vÃ  xá»­ lÃ½ toÃ n bá»™ cÃ¡c thÃ nh pháº§n tÆ°Æ¡ng tÃ¡c trÃªn website.**
+
+
+2. KIá»‚M TRA TOÃ€N Bá»˜ CODEBASE TRÆ¯á»šC KHI Sá»¬A
+
+TrÆ°á»›c tiÃªn, hÃ£y:
+
+1. Kiá»ƒm tra cáº¥u trÃºc project.
+2. Kiá»ƒm tra framework frontend.
+3. Kiá»ƒm tra backend vÃ  API.
+4. Kiá»ƒm tra cÃ¡c component chá»©a button.
+5. Kiá»ƒm tra event handlers.
+6. Kiá»ƒm tra cÃ¡c hÃ m onClick, onSubmit, onChange.
+7. Kiá»ƒm tra cÃ¡c route Ä‘iá»u hÆ°á»›ng.
+8. Kiá»ƒm tra API calls.
+9. Kiá»ƒm tra tráº¡ng thÃ¡i loading, disabled vÃ  error.
+10. Kiá»ƒm tra console errors vÃ  backend logs.
+
+HÃ£y láº­p danh sÃ¡ch táº¥t cáº£ nÃºt báº¥m trÃªn website vÃ  phÃ¢n loáº¡i:
+
+- ÄÃ£ hoáº¡t Ä‘á»™ng.
+- ChÆ°a cÃ³ chá»©c nÄƒng.
+<truncated 11141 bytes>
+bá»™ sidebar Ä‘iá»u hÆ°á»›ng hoáº¡t Ä‘á»™ng.
+2. CÃ¡c nÃºt trÃªn topbar hoáº¡t Ä‘á»™ng.
+3. Upload file hoáº¡t Ä‘á»™ng.
+4. Import Data hoáº¡t Ä‘á»™ng.
+5. Download template hoáº¡t Ä‘á»™ng.
+6. Run AI Agent thá»±c sá»± gá»i workflow.
+7. Reset cÃ³ xÃ¡c nháº­n.
+8. Search vÃ  Filter hoáº¡t Ä‘á»™ng.
+9. Customer Detail má»Ÿ Ä‘Æ°á»£c.
+10. Sales Routing hoáº¡t Ä‘á»™ng theo logic thá»±c táº¿.
+11. Task Management cÃ³ thá»ƒ thao tÃ¡c.
+12. Human Review cÃ³ thá»ƒ ghi nháº­n quyáº¿t Ä‘á»‹nh.
+13. Reports hiá»ƒn thá»‹ dá»¯ liá»‡u thá»±c.
+14. Activity Logs xem Ä‘Æ°á»£c.
+15. KhÃ´ng cÃ³ lá»—i JavaScript nghiÃªm trá»ng.
+16. KhÃ´ng cÃ³ nÃºt quan trá»ng nÃ o bá»‹ click nhÆ°ng khÃ´ng pháº£n há»“i.
+
+Cuá»‘i cÃ¹ng, hÃ£y:
+
+- Cháº¡y láº¡i localhost.
+- Thá»­ tá»«ng chá»©c nÄƒng.
+- Sá»­a lá»—i phÃ¡t hiá»‡n Ä‘Æ°á»£c.
+- BÃ¡o cÃ¡o danh sÃ¡ch nÃºt Ä‘Ã£ sá»­a.
+- BÃ¡o cÃ¡o chá»©c nÄƒng nÃ o chÆ°a hoÃ n thÃ nh vÃ  lÃ½ do.
+- HÆ°á»›ng dáº«n tÃ´i cÃ¡ch cháº¡y láº¡i website.
+
+**YÃŠU Cáº¦U QUAN TRá»ŒNG NHáº¤T:**
+
+HÃ£y trá»±c tiáº¿p sá»­a code vÃ  lÃ m cho website thá»±c sá»± tÆ°Æ¡ng tÃ¡c Ä‘Æ°á»£c.
+
+TÃ´i khÃ´ng cáº§n má»™t báº£n thiáº¿t káº¿ má»›i hoáº·c má»™t danh sÃ¡ch hÆ°á»›ng dáº«n. TÃ´i cáº§n má»™t sáº£n pháº©m hoáº¡t Ä‘á»™ng thá»±c táº¿, trong Ä‘Ã³ má»—i nÃºt báº¥m Ä‘á»u thá»±c hiá»‡n Ä‘Ãºng chá»©c nÄƒng Ä‘Æ°á»£c thá»ƒ hiá»‡n trÃªn giao diá»‡n.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-19T11:24:53+07:00.
+
+The user's current state is as follows:
+Active Document: c:\Users\cong chua sofia\Downloads\AII_DEMO\AI301_AI_AGENT_PITCH_DECK.html (LANGUAGE_UNSPECIFIED)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\server.ps1 (LANGUAGE_UNSPECIFIED)
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\index.html (LANGUAGE_UNSPECIFIED)
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\ai_engine.js (LANGUAGE_UNSPECIFIED)
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\styles.css (LANGUAGE_UNSPECIFIED)
+- c:\Users\cong chua sofia\Downloads\AII_DEMO\mock_data.js (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>
+

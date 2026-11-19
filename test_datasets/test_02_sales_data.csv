@@ -1,0 +1,7 @@
+﻿order_id,order_date,product,quantity,revenue,region
+"ORD-2026-001","2026-04-01","Áo sơ mi Oxford Nam",15,4500000,"Miền Bắc"
+"ORD-2026-002","2026-04-02","Quần âu Slimfit",8,3200000,"Miền Nam"
+"ORD-2026-003","2026-04-02","Giày da công sở Oxford",4,4800000,"Miền Trung"
+"ORD-2026-004","2026-04-03","Thắt lưng da bò cao cấp",20,6000000,"Miền Nam"
+"ORD-2026-005","2026-04-04","Áo khoác Blazer Nam",5,4250000,"Miền Bắc"
+"ORD-2026-006","2026-04-05","Ví cầm tay da thật",12,3600000,"Miền Nam"

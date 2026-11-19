@@ -1,0 +1,6 @@
+﻿employee_id,employee_name,department,position,salary,hire_date
+"NV-001","Trần Đình Trọng","Phòng Kỹ Thuật (R&D)","Kỹ sư trưởng",28000000,"2022-03-15"
+"NV-002","Nguyễn Mai Phương","Phòng Kinh Doanh B2B","Trưởng nhóm Sales",22000000,"2023-01-10"
+"NV-003","Lê Hoàng Nam","Phòng Marketing","Chuyên viên SEO/Ads",16500000,"2023-08-01"
+"NV-004","Phạm Thị Thúy","Phòng Nhân Sự (HR)","Chuyên viên C&B",15000000,"2024-02-20"
+"NV-005","Vũ Minh Quân","Phòng Kế Toán","Kế toán tổng hợp",18500000,"2021-11-05"

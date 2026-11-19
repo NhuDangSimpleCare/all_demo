@@ -1,0 +1,6 @@
+﻿feature_alpha,feature_beta,metric_gamma,cluster_id,flag_x
+0.854,12.4,98.2,"Group-A",1
+0.432,8.9,45.6,"Group-B",0
+0.912,15.1,112.5,"Group-A",1
+0.125,4.2,22.8,"Group-C",0
+0.781,11.8,87.4,"Group-A",1

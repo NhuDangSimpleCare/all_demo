@@ -1,0 +1,6 @@
+﻿transaction_id,transaction_date,category,amount,account
+"TX-901","2026-04-01","Thu tiền khách hàng phần mềm",85000000,"TK VCB Doanh Nghiệp"
+"TX-902","2026-04-02","Chi thanh toán hạ tầng Cloud AWS",-14500000,"TK Techcombank"
+"TX-903","2026-04-03","Chi tiền thuê mặt bằng văn phòng",-35000000,"TK VCB Doanh Nghiệp"
+"TX-904","2026-04-04","Thu phí duy trì bản quyền năm",42000000,"TK MB Bank"
+"TX-905","2026-04-05","Chi tạm ứng công tác phí NVKD",-8000000,"Quỹ tiền mặt"

@@ -1,0 +1,7 @@
+product_id,product_name,category,ideal_size,min_budget_million,target_industries,keywords
+NV-ERP,NamViet SME ERP,Quản trị tổng thể,30 - 300 nhân sự,40,"Sản xuất & Chế biến; Thương mại & Phân phối; Xây dựng & Kỹ thuật","erp, quản trị tổng thể, quy trình, đồng bộ, phê duyệt, mua hàng, sản xuất, tài chính, đa chi nhánh"
+NV-CRM,NamViet OmniCRM & POS,Quản lý Khách hàng & Bán hàng,10 - 200 nhân sự,15,"Thương mại & Phân phối; Dịch vụ & F&B; Giáo dục & Y tế; Bất động sản & Nội thất","crm, khách hàng, bán hàng, sale, chăm sóc khách hàng, telesale, pos, chuỗi cửa hàng, đa kênh, báo giá, hợp đồng"
+NV-HRM,NamViet SmartHRM & Payroll,Nhân sự Chấm công & Tiền lương,20 - 500 nhân sự,20,"Sản xuất & Chế biến; Dịch vụ & F&B; Thương mại & Phân phối; Giáo dục & Y tế","hrm, nhân sự, chấm công, tính lương, ca kíp, kpi, tuyển dụng, bảo hiểm, bhxh, lương"
+NV-ACC,NamViet Finance & e-Invoice,Kế toán Tài chính & Hóa đơn,10 - 250 nhân sự,12,"Thương mại & Phân phối; Xây dựng & Kỹ thuật; Dịch vụ & F&B; Sản xuất & Chế biến","kế toán, công nợ, thuế, hóa đơn điện tử, báo cáo tài chính, dòng tiền, chi phí, giá thành"
+NV-WMS,NamViet WMS & Logistics,Quản lý Kho vận & Chuỗi cung ứng,20 - 300 nhân sự,25,"Sản xuất & Chế biến; Thương mại & Phân phối; Logistics & Kho vận","kho, wms, tồn kho, xuất nhập tồn, mã vạch, barcode, qr code, vận chuyển, logistics, định mức nguyên vật liệu"
+

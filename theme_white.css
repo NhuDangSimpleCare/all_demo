@@ -1,0 +1,1497 @@
+/* ============================================================================
+   NAM VIỆT AI — ENTERPRISE WHITE THEME & UNIFIED TYPOGRAPHY SYSTEM
+   Base: Clean White (#FFFFFF / #F8FAFC)
+   Accents: Hot Pink (#FF2A85), Warm Amber/Orange (#FFA500), Slate Navy (#222736), Lilac (#A855F7)
+   Font Standard: Be Vietnam Pro (Vietnamese Native Priority), Inter (Fallback)
+   ============================================================================ */
+
+/* 1. GOOGLE FONTS FAILSAFE IMPORT (FULL VIETNAMESE SUBSETS & WEIGHTS) */
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&subset=vietnamese,latin-ext&display=swap');
+
+/* 2. UNIVERSAL BOX SIZING & ROOT VARIABLES */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root, [data-theme="white"], [data-theme="light"], html {
+  --bg-app: #F8FAFC !important;
+  --bg-surface: #FFFFFF !important;
+  --bg-surface-elevated: #FFFFFF !important;
+  --bg-surface-hover: #F1F5F9 !important;
+  --bg-card: #FFFFFF !important;
+  --bg-subtle: #F8FAFC !important;
+  --bg-modal: #FFFFFF !important;
+
+  --border-main: #E2E8F0 !important;
+  --border-subtle: #EDF2F7 !important;
+  --border-card: #E2E8F0 !important;
+  --border-focus: #FF2A85 !important;
+  --border-color: #E2E8F0 !important;
+
+  --primary: #FF2A85 !important;
+  --primary-hover: #E11D48 !important;
+  --primary-rgb: 255, 42, 133 !important;
+  --primary-light: rgba(255, 42, 133, 0.08) !important;
+  --primary-border: rgba(255, 42, 133, 0.25) !important;
+  --primary-gradient: linear-gradient(135deg, #FF2A85 0%, #FFA500 100%) !important;
+  --primary-gradient-btn: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%) !important;
+
+  --accent-pink: #FF2A85 !important;
+  --accent-orange: #FFA500 !important;
+  --accent-navy: #222736 !important;
+  --accent-lilac: #A855F7 !important;
+
+  --ai-accent: #FF2A85 !important;
+  --cyan: #0EA5E9 !important;
+  --success: #10B981 !important;
+  --warning: #FFA500 !important;
+  --danger: #EF4444 !important;
+
+  --text-primary: #1E202A !important;
+  --text-secondary: #475569 !important;
+  --text-muted: #64748B !important;
+  --text-title: #1E202A !important;
+  --text-body: #334155 !important;
+  --text-main: #1E202A !important;
+
+  --card-bg: #FFFFFF !important;
+  --card-border: #E2E8F0 !important;
+  --sidebar-bg: #FFFFFF !important;
+  --sidebar-border: #E2E8F0 !important;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+  --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* 3. GLOBAL FONT FAMILY & BASE STYLES */
+html, body {
+  font-family: 'Be Vietnam Pro', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  color: var(--text-primary) !important;
+  background-color: var(--bg-app) !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Universal Typography Scale */
+h1, .h1 {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 30px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  color: #1E202A !important;
+  letter-spacing: -0.4px !important;
+  margin: 0 0 8px 0;
+}
+
+h2, .h2 {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 23px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  color: #1E202A !important;
+  letter-spacing: -0.3px !important;
+  margin: 0 0 6px 0;
+}
+
+h3, .h3 {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  color: #1E202A !important;
+  margin: 0 0 6px 0;
+}
+
+h4, .h4 {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  color: #1E202A !important;
+  margin: 0 0 4px 0;
+}
+
+p {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  color: var(--text-body) !important;
+  margin: 0 0 8px 0;
+}
+
+span, label, li, a, td, th {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+}
+
+button, input, select, textarea, optgroup {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+}
+
+code, pre, .terminal-window, .monospace {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, Menlo, monospace !important;
+}
+
+/* ============================================================================
+   TOPBAR LAYOUT & NO-WRAP RULES
+   ============================================================================ */
+.app-topbar {
+  height: 68px !important;
+  min-height: 68px !important;
+  max-height: 68px !important;
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Left Group */
+.topbar-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-shrink: 0 !important;
+  min-width: 0 !important;
+}
+
+.topbar-breadcrumbs {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.topbar-breadcrumbs a {
+  color: #1E202A !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.topbar-breadcrumbs .divider {
+  color: #CBD5E1 !important;
+  flex-shrink: 0 !important;
+}
+
+.topbar-breadcrumbs .current {
+  color: #64748B !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 240px !important;
+}
+
+/* Center Group: 3 Navigation Tabs */
+.top-page-tabs {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: #F1F5F9 !important;
+  padding: 4px 6px !important;
+  border-radius: 99px !important;
+  border: 1px solid #E2E8F0 !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+.page-tab-btn {
+  padding: 7px 16px !important;
+  border-radius: 99px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  color: #64748B !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  line-height: 1 !important;
+  user-select: none !important;
+}
+
+.page-tab-btn:hover {
+  color: #1E202A !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
+.page-tab-btn.active {
+  background: #FFFFFF !important;
+  color: #FF2A85 !important;
+  box-shadow: 0 2px 8px rgba(255, 42, 133, 0.16) !important;
+  border-color: rgba(255, 42, 133, 0.22) !important;
+  font-weight: 700 !important;
+}
+
+.page-tab-btn .tab-num {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: #E2E8F0 !important;
+  color: #475569 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  flex-shrink: 0 !important;
+}
+
+.page-tab-btn.active .tab-num {
+  background: #FF2A85 !important;
+  color: #FFFFFF !important;
+}
+
+/* Right Group: Action Controls */
+.topbar-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+.topbar-status-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 6px 13px !important;
+  border-radius: 99px !important;
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
+}
+
+.topbar-status-badge .badge-dot {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: #10B981 !important;
+  flex-shrink: 0 !important;
+}
+
+.btn-start-orange {
+  background: #FFA500 !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 8px 18px !important;
+  border-radius: 99px !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(255, 165, 0, 0.35) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  text-decoration: none !important;
+  line-height: 1 !important;
+  text-transform: none !important;
+}
+
+.btn-start-orange:hover {
+  background: #FF8C00 !important;
+  box-shadow: 0 6px 18px rgba(255, 165, 0, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-download-pill {
+  background: #FFFFFF !important;
+  color: #222736 !important;
+  font-weight: 700 !important;
+  font-size: 12.5px !important;
+  padding: 7px 16px !important;
+  border-radius: 99px !important;
+  border: 2px solid #222736 !important;
+  cursor: pointer !important;
+  box-shadow: 2px 2px 0px #222736 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  text-decoration: none !important;
+  line-height: 1 !important;
+}
+
+.btn-download-pill:hover {
+  transform: translate(1px, 1px) !important;
+  box-shadow: 1px 1px 0px #222736 !important;
+}
+
+.btn-download-pill .arrow-pink {
+  color: #FF2A85 !important;
+  font-weight: 900 !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+}
+
+.app-topbar .btn-ai {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  padding: 7px 14px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  border-radius: 8px !important;
+}
+
+/* ============================================================================
+   SIDEBAR LAYOUT & TYPOGRAPHY
+   ============================================================================ */
+.app-sidebar {
+  width: 260px !important;
+  min-width: 260px !important;
+  background-color: #FFFFFF !important;
+  border-right: 1px solid #E2E8F0 !important;
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 60 !important;
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.app-sidebar.collapsed {
+  width: 72px !important;
+  min-width: 72px !important;
+}
+
+.sidebar-header {
+  height: 68px !important;
+  min-height: 68px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 16px !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  background: #FFFFFF !important;
+}
+
+.sidebar-brand-box {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  min-width: 0 !important;
+}
+
+.sidebar-brand-icon {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #FF2A85 0%, #FFA500 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #FFFFFF !important;
+  flex-shrink: 0 !important;
+}
+
+.sidebar-brand-text {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  white-space: nowrap !important;
+}
+
+.sidebar-brand-title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1E202A !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+}
+
+.sidebar-brand-badge {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  padding: 1px 6px !important;
+  border-radius: 99px !important;
+  background: #FFE8F2 !important;
+  color: #FF2A85 !important;
+  border: 1px solid rgba(255, 42, 133, 0.25) !important;
+}
+
+.sidebar-brand-sub {
+  font-size: 11px !important;
+  color: #64748B !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+
+.sidebar-nav {
+  flex: 1 !important;
+  padding: 14px 10px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.sidebar-nav-group-title {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #94A3B8 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  padding: 12px 10px 4px !important;
+  white-space: nowrap !important;
+}
+
+.sidebar-nav-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 9px 12px !important;
+  border-radius: 10px !important;
+  color: #475569 !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  position: relative !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+}
+
+.sidebar-nav-item:hover {
+  background: #F8FAFC !important;
+  color: #1E202A !important;
+}
+
+.sidebar-nav-item.active {
+  background: #FFF1F7 !important;
+  color: #FF2A85 !important;
+  border-left: 3px solid #FF2A85 !important;
+  font-weight: 600 !important;
+}
+
+.sidebar-nav-icon {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  color: inherit !important;
+}
+
+.sidebar-nav-label {
+  flex: 1 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  min-width: 0 !important;
+}
+
+.sidebar-nav-pill {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  margin-left: auto !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  padding: 2px 7px !important;
+  border-radius: 99px !important;
+  background: #F1F5F9 !important;
+  color: #475569 !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+.sidebar-nav-item.active .sidebar-nav-pill {
+  background: #FFE8F2 !important;
+  color: #FF2A85 !important;
+  border-color: rgba(255, 42, 133, 0.3) !important;
+}
+
+.sidebar-footer {
+  background: #FFFFFF !important;
+  border-top: 1px solid #E2E8F0 !important;
+  padding: 12px 14px !important;
+}
+
+.sidebar-status-box {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  padding: 8px 10px !important;
+  margin-bottom: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* ============================================================================
+   PAGE 1: HERO SHOWCASE (IMAGE SPECIFICATION)
+   ============================================================================ */
+.hero-art-card {
+  background: #FFFFFF !important;
+  border-radius: 28px !important;
+  border: 1.5px solid #E2E8F0 !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
+  padding: 36px 40px !important;
+  display: grid !important;
+  grid-template-columns: 1.25fr 1fr !important;
+  gap: 36px !important;
+  align-items: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin-bottom: 32px !important;
+}
+
+.hero-art-left {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  z-index: 2 !important;
+}
+
+.hero-art-nav-preview {
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.6px !important;
+  white-space: nowrap !important;
+}
+
+.hero-art-nav-preview span:first-child {
+  color: #FF2A85 !important;
+}
+
+.hero-art-nav-preview span {
+  color: #64748B !important;
+}
+
+.hero-display-title {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 38px !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.5px !important;
+  color: #222736 !important;
+  margin: 0 !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+}
+
+.hero-script-pink {
+  font-family: 'Brush Script MT', 'Segoe Script', 'Great Vibes', cursive, sans-serif !important;
+  color: #FF2A85 !important;
+  font-weight: 400 !important;
+  font-size: 52px !important;
+  display: block !important;
+  margin-top: -6px !important;
+  text-shadow: 0 4px 14px rgba(255, 42, 133, 0.25) !important;
+}
+
+.hero-art-desc {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 14.5px !important;
+  line-height: 1.65 !important;
+  color: #64748B !important;
+  max-width: 520px !important;
+  margin-top: 4px !important;
+}
+
+.hero-art-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-top: 10px !important;
+}
+
+.hero-dots-row {
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+  margin-top: 6px !important;
+}
+
+.hero-dot-pink {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #FF2A85 !important;
+}
+
+.hero-dot-gray {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #E2E8F0 !important;
+}
+
+/* Right Slate Navy Panel */
+.hero-art-right {
+  background: #222736 !important;
+  border-radius: 24px !important;
+  padding: 30px 26px !important;
+  position: relative !important;
+  min-height: 360px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-shadow: 0 16px 36px rgba(34, 39, 54, 0.2) !important;
+  overflow: hidden !important;
+}
+
+.art-widget-calendar {
+  background: #FFFFFF !important;
+  border-radius: 18px !important;
+  padding: 14px 18px !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+  width: 100% !important;
+  max-width: 280px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.art-cal-header {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: #8B5CF6 !important;
+  letter-spacing: 0.8px !important;
+  margin-bottom: 6px !important;
+  text-align: center !important;
+}
+
+.art-cal-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 4px !important;
+  text-align: center !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+}
+
+.art-cal-day-active {
+  background: #FFA500 !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+  font-weight: 800 !important;
+  padding: 2px 0 !important;
+}
+
+.art-floating-shield {
+  position: absolute !important;
+  top: 130px !important;
+  left: 18px !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  background: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 22px !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12) !important;
+  border: 2px solid #FFA500 !important;
+  z-index: 2 !important;
+}
+
+.art-floating-wifi {
+  position: absolute !important;
+  top: 135px !important;
+  right: 24px !important;
+  width: 66px !important;
+  height: 66px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 30px !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 22px rgba(255, 165, 0, 0.35) !important;
+  z-index: 2 !important;
+}
+
+.art-floating-mail {
+  position: absolute !important;
+  bottom: 75px !important;
+  right: 18px !important;
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+  background: #FF2A85 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 18px rgba(255, 42, 133, 0.4) !important;
+  z-index: 2 !important;
+}
+
+.art-floating-cloud {
+  position: absolute !important;
+  bottom: 28px !important;
+  left: 30px !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+  color: #A855F7 !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12) !important;
+  border: 2px solid #A855F7 !important;
+  z-index: 2 !important;
+}
+
+.art-floating-plus {
+  position: absolute !important;
+  bottom: 80px !important;
+  left: 105px !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: #FF2A85 !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 12px rgba(255, 42, 133, 0.4) !important;
+  z-index: 2 !important;
+}
+
+/* ============================================================================
+   DOMAIN CARDS (HƯỚNG PHÂN TÍCH DỮ LIỆU)
+   ============================================================================ */
+.domain-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 20px !important;
+  margin-bottom: 32px !important;
+}
+
+.domain-card {
+  background: #FFFFFF !important;
+  border-radius: 18px !important;
+  border: 1.5px solid #E2E8F0 !important;
+  padding: 22px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.domain-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+  border-color: #CBD5E1 !important;
+}
+
+.domain-card-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 12px !important;
+}
+
+.domain-card-icon {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 19px !important;
+}
+
+.domain-card-title {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  color: #1E202A !important;
+  margin-bottom: 6px !important;
+}
+
+.domain-card-desc {
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  color: #64748B !important;
+  margin-bottom: 14px !important;
+}
+
+.domain-card-metrics {
+  background: #F8FAFC !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  font-size: 12px !important;
+  color: #334155 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  margin-bottom: 16px !important;
+  border: 1px solid #EDF2F7 !important;
+}
+
+/* ============================================================================
+   CARDS, TABLES, FORMS & INPUTS LIGHT OVERRIDES
+   ============================================================================ */
+.card-enterprise {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
+  color: #1E202A !important;
+}
+
+.card-title {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: #1E202A !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.card-subtitle {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 12.5px !important;
+  color: #64748B !important;
+  margin-top: 3px !important;
+  line-height: 1.4 !important;
+}
+
+/* Tables */
+.table-enterprise {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+}
+
+.table-enterprise thead th {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  background: #F8FAFC !important;
+  color: #475569 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+  padding: 10px 14px !important;
+  border-bottom: 2px solid #E2E8F0 !important;
+  white-space: nowrap !important;
+}
+
+.table-enterprise tbody td {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 13px !important;
+  color: #1E202A !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  line-height: 1.45 !important;
+}
+
+.table-enterprise tbody tr:hover {
+  background: #F8FAFC !important;
+}
+
+/* Inputs & Form Controls */
+.ai-input, .ai-select, .form-input, textarea, input[type="text"], input[type="search"] {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important;
+  color: #1E202A !important;
+  border-radius: 10px !important;
+  font-size: 13.5px !important;
+  padding: 9px 13px !important;
+  line-height: 1.5 !important;
+}
+
+.ai-input:focus, .ai-select:focus, .form-input:focus, textarea:focus {
+  border-color: #FF2A85 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(255, 42, 133, 0.12) !important;
+}
+
+.ai-input::placeholder, textarea::placeholder {
+  color: #94A3B8 !important;
+  font-weight: 400 !important;
+}
+
+/* KPI Cards */
+.kpi-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03) !important;
+  border-radius: 16px !important;
+  padding: 18px 20px !important;
+}
+
+.kpi-card-label {
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+}
+
+.kpi-card-value {
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  color: #1E202A !important;
+  margin: 6px 0 2px !important;
+  letter-spacing: -0.5px !important;
+  white-space: nowrap !important;
+}
+
+.kpi-card-sub {
+  font-size: 12px !important;
+  color: #64748B !important;
+  line-height: 1.4 !important;
+}
+
+/* Step Card Clickable */
+.step-card-clickable {
+  background: #FFFFFF !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.2s ease !important;
+}
+
+.step-card-clickable:hover {
+  border-color: #FF2A85 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255, 42, 133, 0.08) !important;
+}
+
+/* Modal Overlay & Box */
+.ai-modal-box {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #1E202A !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 20px !important;
+}
+
+.ai-modal-header {
+  border-bottom: 1px solid #E2E8F0 !important;
+  padding: 16px 20px !important;
+}
+
+.ai-modal-header h3 {
+  color: #1E202A !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+.ai-modal-footer {
+  border-top: 1px solid #E2E8F0 !important;
+  padding: 14px 20px !important;
+}
+
+/* Mode selector cards */
+.mode-card {
+  background: #FFFFFF !important;
+  border: 1.5px solid #E2E8F0 !important;
+  color: #1E202A !important;
+  border-radius: 14px !important;
+  padding: 14px 16px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.mode-card.active {
+  border-color: #FF2A85 !important;
+  background: #FFF9FB !important;
+}
+
+/* AI Terminal */
+.terminal-window {
+  background: #1E202A !important;
+  border: 1px solid #334155 !important;
+  color: #E2E8F0 !important;
+  border-radius: 16px !important;
+}
+
+/* App Shell & Main Layout */
+.app-shell {
+  background-color: #F8FAFC !important;
+}
+
+.app-main {
+  background-color: #F8FAFC !important;
+}
+
+.app-canvas {
+  background-color: #F8FAFC !important;
+  padding: 24px 28px 80px !important;
+}
+
+/* Page Section visibility */
+.app-page-section {
+  display: none;
+  animation: fadeIn 0.25s ease forwards;
+}
+
+.app-page-section.active {
+  display: block;
+}
+
+.app-page-section.active .view-section {
+  display: block !important;
+  margin-bottom: 24px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================================
+   RESPONSIVE LAYOUT BREAKPOINTS
+   ============================================================================ */
+@media (max-width: 1536px) {
+  .topbar-breadcrumbs .current {
+    max-width: 180px !important;
+  }
+}
+
+@media (max-width: 1366px) {
+  .app-topbar {
+    padding: 0 14px !important;
+    gap: 10px !important;
+  }
+  .topbar-breadcrumbs {
+    display: none !important;
+  }
+  .page-tab-btn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    gap: 6px !important;
+  }
+  .topbar-right {
+    gap: 8px !important;
+  }
+  .btn-start-orange {
+    padding: 7px 14px !important;
+    font-size: 12px !important;
+  }
+  .btn-download-pill {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .topbar-status-badge {
+    display: none !important;
+  }
+  #topbarDemoModeBtn span, #topbarResetBtn span {
+    display: none !important;
+  }
+  #topbarDemoModeBtn, #topbarResetBtn {
+    padding: 7px 10px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-art-card {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ============================================================================
+   LIGHT ENTERPRISE AI SAAS - DESIGN SYSTEM CONSISTENCY PATCH
+   Strict overrides for:
+   - Schema & Data Profiling KPI cards (White card, subtle border)
+   - Source check / Business context form (Image 1 style)
+   - Universal Analytics & Top Categories (Image 2 style)
+   - Executive Reporting Dashboard, 4 KPIs, and 4 Charts
+   - High-contrast text & anti-truncation rules
+   ============================================================================ */
+
+/* 1. SCHEMA DETECTION & DATA PROFILING 6 METRIC CARDS */
+.schema-metric-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+  gap: 12px !important;
+  margin-top: 14px !important;
+}
+
+.schema-metric-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  padding: 16px 18px !important;
+  text-align: left !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+.schema-metric-card:hover {
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+  transform: translateY(-1px) !important;
+}
+
+.schema-metric-val {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.3px !important;
+}
+
+.schema-metric-lbl {
+  font-size: 12px !important;
+  color: #64748B !important;
+  margin-top: 5px !important;
+  font-weight: 500 !important;
+}
+
+/* 2. KIỂM TRA NGUỒN DỮ LIỆU & BỐI CẢNH DOANH NGHIỆP */
+.source-check-wrapper {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
+  padding: 24px 26px !important;
+  margin-bottom: 24px !important;
+}
+
+.source-check-subcard {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  padding: 20px 22px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+.source-check-wrapper h3,
+.source-check-wrapper h4,
+.source-check-wrapper h5,
+.source-check-subcard h4,
+.source-check-subcard h5 {
+  color: #1E293B !important;
+  font-weight: 700 !important;
+}
+
+.source-check-wrapper label,
+.source-check-subcard label {
+  color: #334155 !important;
+  font-weight: 600 !important;
+  font-size: 12.5px !important;
+}
+
+.source-check-wrapper p,
+.source-check-wrapper li,
+.source-check-subcard p,
+.source-check-subcard li {
+  color: #475569 !important;
+  line-height: 1.6 !important;
+}
+
+.source-check-wrapper input,
+.source-check-wrapper textarea,
+.source-check-subcard input,
+.source-check-subcard textarea {
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important;
+  color: #1E293B !important;
+  border-radius: 8px !important;
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 13px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+.source-check-wrapper input::placeholder,
+.source-check-wrapper textarea::placeholder,
+.source-check-subcard input::placeholder,
+.source-check-subcard textarea::placeholder {
+  color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+
+.source-check-wrapper input:focus,
+.source-check-wrapper textarea:focus,
+.source-check-subcard input:focus,
+.source-check-subcard textarea:focus {
+  border-color: #10B981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16) !important;
+  background: #FFFFFF !important;
+  outline: none !important;
+}
+
+/* 3. MAPPING TABLE & UPLOAD ZONE */
+.universal-upload-zone {
+  background: #FFFFFF !important;
+  border: 2px dashed #CBD5E1 !important;
+  color: #1E293B !important;
+  border-radius: 12px !important;
+}
+
+.universal-upload-zone:hover {
+  border-color: #FF2D87 !important;
+  background: #FFF5F9 !important;
+}
+
+.mapping-table {
+  background: #FFFFFF !important;
+  border-collapse: separate !important;
+}
+
+.mapping-table th {
+  background: #F8FAFC !important;
+  color: #334155 !important;
+  border-bottom: 2px solid #E2E8F0 !important;
+  font-weight: 700 !important;
+  font-size: 12.5px !important;
+}
+
+.mapping-table td {
+  background: #FFFFFF !important;
+  color: #1E293B !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  font-size: 13px !important;
+}
+
+.mapping-table tr:hover td {
+  background: #F8FAFC !important;
+}
+
+/* 4. DASHBOARD BÁO CÁO KPI KINH DOANH (PAGE 3) */
+.rep-kpi-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 16px !important;
+  margin-bottom: 16px !important;
+}
+
+@media (max-width: 1024px) {
+  .rep-kpi-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+.rep-kpi-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  padding: 16px 18px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.2s ease !important;
+}
+
+.rep-kpi-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: #FF2D87 !important;
+  box-shadow: 0 8px 24px rgba(255, 45, 135, 0.08) !important;
+}
+
+.rep-kpi-label {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+  margin-bottom: 6px !important;
+}
+
+.rep-kpi-value,
+.rep-kpi-val-text {
+  font-size: clamp(17px, 1.4vw, 22px) !important;
+  font-weight: 800 !important;
+  color: #1E293B !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.4px !important;
+}
+
+.rep-kpi-unit {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #64748B !important;
+}
+
+.rep-kpi-sub {
+  font-size: 11.5px !important;
+  color: #10B981 !important;
+  font-weight: 600 !important;
+}
+
+/* 5. CHARTS & VISUALIZATIONS */
+.rep-charts-grid-2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+  margin-bottom: 18px !important;
+}
+
+@media (max-width: 900px) {
+  .rep-charts-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.rep-chart-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  padding: 20px 22px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
+}
+
+.rep-chart-title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1E293B !important;
+  margin: 0 0 4px 0 !important;
+}
+
+.rep-chart-subtitle {
+  font-size: 12px !important;
+  color: #64748B !important;
+  margin: 0 !important;
+}
+
+.rep-bar-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 12px !important;
+  font-size: 13px !important;
+}
+
+.rep-bar-label {
+  width: 90px !important;
+  flex-shrink: 0 !important;
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+.rep-bar-track {
+  flex: 1 !important;
+  height: 10px !important;
+  background: #E2E8F0 !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+}
+
+.rep-bar-value {
+  width: 120px !important;
+  text-align: right !important;
+  flex-shrink: 0 !important;
+  font-weight: 700 !important;
+  color: #1E293B !important;
+  font-size: 12.5px !important;
+}
+
+#repSelectDataset,
+#repSelectPeriod {
+  background: #FFFFFF !important;
+  color: #1E293B !important;
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  outline: none !important;
+}
+
+#repFooterMetricsContainer {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  padding: 12px 18px !important;
+  color: #1E293B !important;
+}
+
+#repFooterMetricsContainer span {
+  color: #475569 !important;
+}
+
+#repFooterMetricsContainer strong {
+  color: #1E293B !important;
+}
+
+/* 6. STRATEGIC RECOMMENDATIONS & ACTION CARDS */
+.rep-action-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  padding: 20px 22px !important;
+  margin-bottom: 16px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
+}
+
+.rep-action-card h4 {
+  color: #1E293B !important;
+}
+
+.rep-action-evidence {
+  background: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  margin: 10px 0 12px 0 !important;
+  font-size: 12.5px !important;
+  color: #475569 !important;
+  line-height: 1.6 !important;
+}
+
+/* 7. OVERVIEW SPLINE & DONUT CONTRAST FIXES */
+#kpiRevenueNum,
+#donutCenterPct,
+#legendCompleted,
+#legendShipped,
+#legendProcessing,
+#legendCanceled {
+  color: #1E293B !important;
+}
+
+#donutCenterSub {
+  color: #64748B !important;
+}

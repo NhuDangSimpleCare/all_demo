@@ -1,0 +1,10 @@
+sales_id,sales_name,region,provinces,industries,specialties,seniority,max_budget_authority_million,current_load,weekly_capacity,conversion_rate,sla_compliance
+NVKD-01,Nguyễn Minh Tuấn,Miền Bắc,"Hà Nội, Hải Phòng, Quảng Ninh, Hưng Yên, Vĩnh Phúc","Sản xuất & Chế biến; Logistics & Kho vận","NV-ERP, NV-WMS",Senior (5 năm - Key Account),500,42,95,28%,96%
+NVKD-02,Trần Thu Hà,Miền Bắc,"Hà Nội, Bắc Ninh, Bắc Giang, Thái Nguyên, Hải Dương","Thương mại & Phân phối; Bán lẻ & Chuỗi","NV-CRM, NV-ACC, NV-WMS",Mid-Senior (3.5 năm),300,51,95,25%,94%
+NVKD-03,Lê Hoàng Nam,Miền Bắc,"Hà Nội, Nam Định, Thanh Hóa, Nghệ An, Phú Thọ","Dịch vụ & F&B; Giáo dục & Y tế; Xây dựng & Kỹ thuật; Bất động sản & Nội thất","NV-HRM, NV-CRM, NV-ACC",Middle (2.5 năm),250,38,90,22%,91%
+NVKD-04,Phạm Quốc Bảo,Miền Trung,"Đà Nẵng, Thừa Thiên Huế, Quảng Nam, Quảng Ngãi, Bình Định, Khánh Hòa","Sản xuất & Chế biến; Thương mại & Phân phối; Logistics & Kho vận; Xây dựng & Kỹ thuật","NV-ERP, NV-WMS, NV-ACC",Senior (4 năm),400,29,85,26%,97%
+NVKD-05,Võ Thị Ngọc Ánh,Miền Trung,"Đà Nẵng, Khánh Hòa, Lâm Đồng, Đắk Lắk, Gia Lai, Bình Thuận","Dịch vụ & F&B; Giáo dục & Y tế; Bán lẻ & Chuỗi; Bất động sản & Nội thất","NV-CRM, NV-HRM, NV-ACC",Middle (2 năm),250,24,80,21%,93%
+NVKD-06,Đặng Gia Huy,Miền Nam,"TP.HCM, Bình Dương, Đồng Nai, Long An, Bà Rịa - Vũng Tàu","Sản xuất & Chế biến; Logistics & Kho vận","NV-ERP, NV-WMS, NV-HRM",Senior (5.5 năm - Key Account),500,58,100,30%,98%
+NVKD-07,Hoàng Mai Phương,Miền Nam,"TP.HCM, Cần Thơ, Tiền Giang, An Giang, Kiên Giang","Thương mại & Phân phối; Bán lẻ & Chuỗi","NV-CRM, NV-ACC, NV-WMS",Mid-Senior (3 năm),300,47,95,24%,95%
+NVKD-08,Bùi Đức Thịnh,Miền Nam,"TP.HCM, Bình Dương, Đồng Nai, Tây Ninh","Dịch vụ & F&B; Giáo dục & Y tế; Xây dựng & Kỹ thuật; Bất động sản & Nội thất","NV-HRM, NV-CRM, NV-ERP",Middle (2.5 năm),280,44,90,23%,90%
+
